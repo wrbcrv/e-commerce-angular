@@ -31,5 +31,4 @@ export class EstadoService {
   delete(estado: Estado): Observable<any> {
     return this.http.delete<Estado>(`${this.baseURL}/estados/${estado.id}`);
   }
-
 }

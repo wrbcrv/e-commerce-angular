@@ -1,0 +1,69 @@
+<mat-toolbar class="centered-toolbar">Cadastro de Produto</mat-toolbar>
+<div class="form-container">
+    <mat-card>
+        <mat-card-content>
+            <form [formGroup]="formGroup">
+                <mat-form-field appearance="outline" class="full-width-input">
+                    <mat-label>Nome</mat-label>
+                    <input matInput type="text" formControlName="nome" />
+                    <mat-error *ngIf="formGroup.get('nome') &&
+                formGroup.get('nome')?.invalid &&
+                formGroup.get('nome')?.touched">
+                        Nome é obrigatório.
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="full-width-input">
+                    <mat-label>Preço</mat-label>
+                    <input matInput type="number" formControlName="preco" />
+                    <mat-error *ngIf="formGroup.get('preco') &&
+                formGroup.get('preco')?.invalid &&
+                formGroup.get('preco')?.touched">
+                        Preço é obrigatório.
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="full-width-input">
+                    <mat-label>Estoque</mat-label>
+                    <input matInput type="number" formControlName="estoque" />
+                    <mat-error *ngIf="formGroup.get('estoque') &&
+                formGroup.get('estoque')?.invalid &&
+                formGroup.get('estoque')?.touched">
+                        Estoque é obrigatório.
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="full-width-input">
+                    <mat-label>Modelo</mat-label>
+                    <input matInput type="text" formControlName="modelo" />
+                    <mat-error *ngIf="formGroup.get('modelo') &&
+                formGroup.get('modelo')?.invalid &&
+                formGroup.get('modelo')?.touched">
+                        Modelo é obrigatório.
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="full-width-input">
+                    <mat-label>Data de Lançamento</mat-label>
+                    <input matInput [matDatepicker]="picker" formControlName="lancamento" />
+                    <mat-error *ngIf="formGroup.get('lancamento') &&
+                              formGroup.get('lancamento')?.invalid &&
+                              formGroup.get('lancamento')?.touched">
+                        Data de Lançamento é obrigatório.
+                    </mat-error>
+                    <mat-hint>DD/MM/YYYY</mat-hint>
+                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+            </form>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-raised-button color="primary" (click)="salvar()" [disabled]="formGroup.invalid">
+                Salvar
+            </button>
+            <button mat-raised-button *ngIf="formGroup?.get('id')?.value" color="warn" (click)="excluir()"
+                [disabled]="formGroup.invalid">
+                Excluir
+            </button>
+            <button mat-raised-button routerLink="/hardwares/list">
+                Cancelar
+            </button>
+        </mat-card-actions>
+    </mat-card>
+</div>

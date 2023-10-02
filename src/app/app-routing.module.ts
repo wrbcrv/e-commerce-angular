@@ -30,6 +30,12 @@ const routes: Routes = [
     path: 'cupons', loadChildren:
       () => import('./cupom/cupom.module')
         .then(m => m.CupomModule)
+  },
+
+  {
+    path: 'hardwares', loadChildren:
+      () => import('./hardware/hardware.module')
+        .then(m => m.HardwareModule)
   }
 ];
 

@@ -3,9 +3,9 @@ import { NgModule } from '@angular/core';
 
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { CupomFormComponent } from './components/cupom-form/cupom-form.component';
-import { CupomListComponent } from './components/cupom-list/cupom-list.component';
-import { CupomRoutingModule } from './cupom-routing.module';
+import { HardwareFormComponent } from './components/hardware-form/hardware-form.component';
+import { HardwareListComponent } from './components/hardware-list/hardware-list.component';
+import { HardwareRoutingModule } from './hardware-routing.module';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -16,18 +16,17 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 
-
 @NgModule({
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' },
   ],
   declarations: [
-    CupomListComponent,
-    CupomFormComponent
+    HardwareListComponent,
+    HardwareFormComponent
   ],
   imports: [
     CommonModule,
-    CupomRoutingModule,
+    HardwareRoutingModule,
     MatTableModule,
     MatToolbarModule,
     ReactiveFormsModule,
@@ -40,5 +39,4 @@ import { MatInputModule } from '@angular/material/input';
     MatNativeDateModule
   ]
 })
-
-export class CupomModule { }
+export class HardwareModule { }

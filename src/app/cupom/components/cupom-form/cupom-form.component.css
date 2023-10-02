@@ -3,11 +3,6 @@
     margin-bottom: 20px;
 }
 
-.full-width-button {
-    width: 100% !important;
-    margin-bottom: 1rem;
-}
-
 mat-card {
     max-width: 800px;
     margin: 2rem auto;

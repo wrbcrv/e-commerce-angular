@@ -1,0 +1,51 @@
+<mat-toolbar>
+  <div class="flex-container">
+    <span class="toolbar-title"> Controle de Cupons </span>
+    <button mat-fab color="accent" routerLink="/cupons/new">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+</mat-toolbar>
+
+<table mat-table [dataSource]="cupons" class="mat-elevation-z8">
+  <!-- Id Column -->
+  <ng-container matColumnDef="id-column">
+    <th mat-header-cell *matHeaderCellDef> Id </th>
+    <td mat-cell *matCellDef="let cupom"> {{cupom.id}} </td>
+  </ng-container>
+
+  <!-- Descrição Column -->
+  <ng-container matColumnDef="descricao-column">
+    <th mat-header-cell *matHeaderCellDef> Descrição </th>
+    <td mat-cell *matCellDef="let cupom">
+      <a routerLink="/cupons/edit/{{cupom.id}}"> {{cupom.descricao}} </a>
+    </td>
+  </ng-container>
+
+  <!-- Código Column -->
+  <ng-container matColumnDef="codigo-column">
+    <th mat-header-cell *matHeaderCellDef> Código </th>
+    <td mat-cell *matCellDef="let cupom"> {{cupom.codigo}} </td>
+  </ng-container>
+
+  <!-- Data de Início Column -->
+  <ng-container matColumnDef="inicio-column">
+    <th mat-header-cell *matHeaderCellDef> Data de Início </th>
+    <td mat-cell *matCellDef="let cupom"> {{cupom.inicio}} </td>
+  </ng-container>
+
+  <!-- Data de Término Column -->
+  <ng-container matColumnDef="termino-column">
+    <th mat-header-cell *matHeaderCellDef> Data de Término </th>
+    <td mat-cell *matCellDef="let cupom"> {{cupom.termino}} </td>
+  </ng-container>
+  
+  <!-- Desconto Column -->
+  <ng-container matColumnDef="desconto-column">
+    <th mat-header-cell *matHeaderCellDef> Desconto </th>
+    <td mat-cell *matCellDef="let cupom"> {{cupom.desconto}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="tableColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: tableColumns;"></tr>
+</table>

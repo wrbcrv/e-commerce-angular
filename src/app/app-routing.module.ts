@@ -24,6 +24,12 @@ const routes: Routes = [
     path: 'marcas', loadChildren:
       () => import('./marca/marca.module')
         .then(m => m.MarcaModule)
+  },
+
+  {
+    path: 'cupons', loadChildren:
+      () => import('./cupom/cupom.module')
+        .then(m => m.CupomModule)
   }
 ];
 

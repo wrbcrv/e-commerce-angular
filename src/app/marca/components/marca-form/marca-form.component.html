@@ -21,7 +21,7 @@
                         Site é obrigatório.
                     </mat-error>
                 </mat-form-field>
-                <mat-form-field>
+                <mat-form-field appearance="outline" class="full-width-input">
                     <mat-label>Data de Fundação</mat-label>
                     <input matInput [matDatepicker]="picker" formControlName="fundacao">
                     <mat-error *ngIf="formGroup.get('fundacao') &&

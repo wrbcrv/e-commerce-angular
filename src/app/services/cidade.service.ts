@@ -12,12 +12,24 @@ export class CidadeService {
 
   constructor(private http: HttpClient) { }
 
-  findAll(): Observable<Cidade[]> {
-    return this.http.get<Cidade[]>(`${this.baseURL}/cidades`);
+  findAll(page: number, pageSize: number): Observable<Cidade[]> {
+    const params = {
+      page: page.toString(),
+      pageSize: pageSize.toString()
+    }
+    return this.http.get<Cidade[]>(`${this.baseURL}/cidades`, {params});
   }
 
   findById(id: string): Observable<Cidade> {
     return this.http.get<Cidade>(`${this.baseURL}/cidades/${id}`);
+  }
+
+  findByNome(nome: string, page: number, pageSize: number): Observable<Cidade[]> {
+    const params = {
+      page: page.toString(),
+      pageSize: pageSize.toString()
+    }
+    return this.http.get<Cidade[]>(`${this.baseURL}/cidades/search/${nome}`, {params});
   }
 
   save(cidade: Cidade): Observable<Cidade> {
@@ -40,5 +52,13 @@ export class CidadeService {
 
   delete(cidade: Cidade): Observable<any> {
     return this.http.delete<Cidade>(`${this.baseURL}/cidades/${cidade.id}`);
+  }
+
+  count(): Observable<number> {
+    return this.http.get<number>(`${this.baseURL}/cidades/count`);
+  }
+
+  countByNome(nome: string): Observable<number> {
+    return this.http.get<number>(`${this.baseURL}/cidades/search/${nome}/count`);
   }
 }

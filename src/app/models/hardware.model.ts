@@ -1,8 +1,11 @@
+import { Marca } from "./marca.model";
+
 export class Hardware {
-    id!: number;
-    nome!: string;
-    preco!: number;
-    estoque!: number;
-    modelo!: string;
+    id        !: number;
+    marca     !: Marca;
+    nome      !: string;
+    preco     !: number;
+    estoque   !: number;
+    modelo    !: string;
     lancamento!: Date;
 }

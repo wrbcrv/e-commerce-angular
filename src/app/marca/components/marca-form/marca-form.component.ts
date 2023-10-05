@@ -23,7 +23,7 @@ export class MarcaFormComponent {
       id:[(marca && marca.id) ? marca.id : null],
       nome:[(marca && marca.nome) ? marca.nome : '', Validators.required],
       site:[(marca && marca.site) ? marca.site : '', Validators.required],
-      fundacao:[(marca && marca.fundacao) ? marca.fundacao : '', Validators.required],
+      fundacao:[(marca && marca.fundacao) ? new Date(marca.fundacao) : Validators.required],
       sede:[(marca && marca.sede) ? marca.sede : '', Validators.required]
     })
   }

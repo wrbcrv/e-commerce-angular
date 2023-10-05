@@ -7,7 +7,8 @@ import { cupomResolver } from './resolver/cupom-resolver';
 const routes: Routes = [
   { path: 'list', component: CupomListComponent },
   { path: 'new', component: CupomFormComponent },
-  { path: 'edit/:id', component: CupomFormComponent, resolve: { cupom: cupomResolver } }
+  { path: 'edit/:id', component: CupomFormComponent, resolve: { cupom: cupomResolver } },
+  { path: 'associate/:id', component: CupomFormComponent, resolve: { cupom: cupomResolver } }
 ];
 
 @NgModule({

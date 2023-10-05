@@ -23,11 +23,11 @@ export class UsuarioFormComponent implements OnInit {
     private activatedRoute: ActivatedRoute) {
 
     this.formGroup = formBuilder.group({
-      id: [null],
-      nome: ['', Validators.required],
-      login: ['', Validators.required],
-      senha: ['', Validators.required],
-      cpf: ['', Validators.required],
+      id       : [null],
+      nome     : ['', Validators.required],
+      login    : ['', Validators.required],
+      senha    : ['', Validators.required],
+      cpf      : ['', Validators.required],
       telefones: formBuilder.array([]),
       enderecos: formBuilder.array([])
     });
@@ -53,11 +53,11 @@ export class UsuarioFormComponent implements OnInit {
     this.usuario = usuario;
 
     this.formGroup = this.formBuilder.group({
-      id: [(usuario && usuario.id) ? usuario.id : null],
-      nome: [(usuario && usuario.nome) ? usuario.nome : '', Validators.required],
-      login: [(usuario && usuario.login) ? usuario.login : '', Validators.required],
-      senha: [(usuario && usuario.senha) ? usuario.senha : '', Validators.required],
-      cpf: [(usuario && usuario.cpf) ? usuario.cpf : '', Validators.required],
+      id       : [(usuario && usuario.id) ? usuario.id : null],
+      nome     : [(usuario && usuario.nome) ? usuario.nome : '', Validators.required],
+      login    : [(usuario && usuario.login) ? usuario.login : '', Validators.required],
+      senha    : [(usuario && usuario.senha) ? usuario.senha : '', Validators.required],
+      cpf      : [(usuario && usuario.cpf) ? usuario.cpf : '', Validators.required],
       telefones: this.formBuilder.array([]),
       enderecos: this.formBuilder.array([])
     });
@@ -67,8 +67,8 @@ export class UsuarioFormComponent implements OnInit {
       usuario.telefones.forEach((telefone: Telefone) => {
         telefonesFormArray.push(
           this.formBuilder.group({
-            id: [(telefone && telefone.id) ? telefone.id : null],
-            ddd: [(telefone && telefone.ddd) ? telefone.ddd : '', Validators.required],
+            id    : [(telefone && telefone.id) ? telefone.id : null],
+            ddd   : [(telefone && telefone.ddd) ? telefone.ddd : '', Validators.required],
             numero: [(telefone && telefone.numero) ? telefone.numero : '', Validators.required]
           })
         );
@@ -80,12 +80,12 @@ export class UsuarioFormComponent implements OnInit {
       usuario.enderecos.forEach((endereco: Endereco) => {
         enderecosFormArray.push(
           this.formBuilder.group({
-            id: [(endereco && endereco.id) ? endereco.id : null],
-            logradouro: [(endereco && endereco.logradouro) ? endereco.logradouro : '', Validators.required],
-            numero: [(endereco && endereco.numero) ? endereco.numero : '', Validators.required],
+            id         : [(endereco && endereco.id) ? endereco.id : null],
+            logradouro : [(endereco && endereco.logradouro) ? endereco.logradouro : '', Validators.required],
+            numero     : [(endereco && endereco.numero) ? endereco.numero : '', Validators.required],
             complemento: [(endereco && endereco.complemento) ? endereco.complemento : null],
-            bairro: [(endereco && endereco.bairro) ? endereco.bairro : '', Validators.required],
-            cep: [(endereco && endereco.cep) ? endereco.cep : '', Validators.required],
+            bairro     : [(endereco && endereco.bairro) ? endereco.bairro : '', Validators.required],
+            cep        : [(endereco && endereco.cep) ? endereco.cep : '', Validators.required]
           })
         );
       });
@@ -102,6 +102,7 @@ export class UsuarioFormComponent implements OnInit {
       if (usuario.id == null) {
         this.usuarioService.save(usuario).subscribe({
           next: (usuarioCadastrado) => {
+            console.log('Usuario cadastrado com sucesso' + JSON.stringify(usuarioCadastrado));
             this.router.navigateByUrl('/usuarios/list');
           },
           error: (err) => {
@@ -111,6 +112,7 @@ export class UsuarioFormComponent implements OnInit {
       } else {
         this.usuarioService.update(usuario).subscribe({
           next: (usuarioCadastrado) => {
+            console.log('Usuario atualizado com sucesso' + JSON.stringify(usuarioCadastrado));
             this.router.navigateByUrl('/usuarios/list');
           },
           error: (err) => {
@@ -126,6 +128,7 @@ export class UsuarioFormComponent implements OnInit {
     if (usuario.id != null) {
       this.usuarioService.delete(usuario).subscribe({
         next: (e) => {
+          console.log('Usuario excluido com sucesso' + JSON.stringify(e));
           this.router.navigateByUrl('/usuarios/list');
         },
         error: (err) => {
@@ -137,8 +140,8 @@ export class UsuarioFormComponent implements OnInit {
 
   adicionarTelefone() {
     const telefoneFormGroup = this.formBuilder.group({
-      id: [null],
-      ddd: ['', Validators.required],
+      id    : [null],
+      ddd   : ['', Validators.required],
       numero: ['', Validators.required]
     });
 
@@ -175,12 +178,12 @@ export class UsuarioFormComponent implements OnInit {
 
   adicionarEndereco() {
     const enderecoFormGroup = this.formBuilder.group({
-      id: [null],
-      logradouro: ['', Validators.required],
-      numero: ['', Validators.required],
+      id         : [null],
+      logradouro : ['', Validators.required],
+      numero     : ['', Validators.required],
       complemento: ['', Validators.required],
-      bairro: ['', Validators.required],
-      cep: ['', Validators.required]
+      bairro     : ['', Validators.required],
+      cep        : ['', Validators.required]
     });
 
     this.enderecos.push(enderecoFormGroup);

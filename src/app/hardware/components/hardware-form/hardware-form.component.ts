@@ -1,42 +1,73 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Hardware } from 'src/app/models/hardware.model';
+import { Marca } from 'src/app/models/marca.model';
 import { HardwareService } from 'src/app/services/hardware.service';
+import { MarcaService } from 'src/app/services/marca.service';
 
 @Component({
   selector: 'app-hardware-form',
   templateUrl: './hardware-form.component.html',
   styleUrls: ['./hardware-form.component.css']
 })
-export class HardwareFormComponent {
+export class HardwareFormComponent implements OnInit {
   formGroup: FormGroup;
+  marcas: Marca[] = [];
 
   constructor(private formBuilder: FormBuilder,
-              private hardwareService: HardwareService,
-              private router: Router,
-              private activatedRoute: ActivatedRoute) {
+    private hardwareService: HardwareService,
+    private marcaService: MarcaService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute) {
 
     const hardware: Hardware = this.activatedRoute.snapshot.data['hardware'];
 
     this.formGroup = formBuilder.group({
-      id:[(hardware && hardware.id) ? hardware.id : null],
-      nome:[(hardware && hardware.nome) ? hardware.nome : '', Validators.required],
-      preco:[(hardware && hardware.preco) ? hardware.preco : '', Validators.required],
-      estoque:[(hardware && hardware.estoque) ? hardware.estoque : '', Validators.required],
-      modelo:[(hardware && hardware.modelo) ? hardware.modelo : '', Validators.required],
-      lancamento:[(hardware && hardware.lancamento) ? hardware.modelo : '', Validators.required]
+      id        : [null],
+      nome      : ['', Validators.required],
+      preco     : ['', Validators.required],
+      estoque   : ['', Validators.required],
+      modelo    : ['', Validators.required],
+      lancamento: [(hardware && hardware.lancamento) ? new Date(hardware.lancamento) : Validators.required],
+      marca     : [null]
+    });
+  }
+
+  ngOnInit(): void {
+    this.marcaService.findAll().subscribe(data => {
+      this.marcas = data;
+      this.initializeForm();
     })
+  }
+
+  initializeForm() {
+    const hardware: Hardware = this.activatedRoute.snapshot.data['hardware'];
+    const marca = this.marcas.find(marca => marca.id === (hardware?.marca?.id || null))
+
+    this.formGroup = this.formBuilder.group({
+      id        : [(hardware && hardware.id) ? hardware.id : null],
+      nome      : [(hardware  && hardware.nome) ? hardware.nome : '', Validators.required],
+      preco     : [(hardware && hardware.preco) ? hardware.preco : '', Validators.required],
+      estoque   : [(hardware && hardware.estoque) ? hardware.estoque : '', Validators.required],
+      modelo    : [(hardware && hardware.modelo) ? hardware.modelo : '', Validators.required],
+      lancamento: [(hardware && hardware.lancamento) ? new Date(hardware.lancamento) : Validators.required],
+      marca     : [marca]
+    })
+
+    console.log(this.formGroup.value)
   }
 
   salvar() {
     if (this.formGroup.valid) {
       const hardware = this.formGroup.value;
+
       if (hardware.id == null) {
         this.hardwareService.save(hardware).subscribe({
           next: (hardwareCadastrado) => {
             this.router.navigateByUrl('/hardwares/list');
           },
+          
           error: (err) => {
             console.log('Erro ao incluir' + JSON.stringify(err));
           }
@@ -46,10 +77,11 @@ export class HardwareFormComponent {
           next: (hardwareCadastrado) => {
             this.router.navigateByUrl('/hardwares/list');
           },
+
           error: (err) => {
             console.log('Erro ao alterar' + JSON.stringify(err));
           }
-        });        
+        });
       }
     }
   }
@@ -65,6 +97,6 @@ export class HardwareFormComponent {
           console.log('Erro ao excluir' + JSON.stringify(err));
         }
       });
-    }      
+    }
   }
 }

@@ -9,7 +9,7 @@ import { HardwareService } from 'src/app/services/hardware.service';
 })
 export class HardwareListComponent implements OnInit {
 
-  tableColumns: string[] = ['id-column', 'nome-column', 'preco-column', 'estoque-column', 'modelo-column', 'lancamento-column'];
+  tableColumns: string[] = ['id-column', 'marca-column', 'nome-column', 'preco-column', 'estoque-column', 'modelo-column', 'lancamento-column'];
   hardwares: Hardware[] = [];
 
   constructor(private hardwareService: HardwareService) { }

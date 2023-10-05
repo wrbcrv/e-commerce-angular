@@ -3,6 +3,14 @@
     <mat-card>
         <mat-card-content>
             <form [formGroup]="formGroup">
+                <mat-form-field appearance="outline">
+                    <mat-label for="marca-id">Marcas</mat-label>
+                    <mat-select formControlName="marca" id="marca-id">
+                        <mat-option *ngFor="let marca of marcas" [value]="marca">
+                            {{marca.nome}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
                 <mat-form-field appearance="outline" class="full-width-input">
                     <mat-label>Nome</mat-label>
                     <input matInput type="text" formControlName="nome" />

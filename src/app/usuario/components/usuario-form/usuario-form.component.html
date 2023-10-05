@@ -116,7 +116,8 @@
             </form>
         </mat-card-content>
         <mat-card-content>
-            <button mat-raised-button color="primary" (click)="salvar()" [disabled]="telefones.length === 0 || enderecos.length === 0">
+            <button mat-raised-button color="primary" (click)="salvar()"
+                [disabled]="telefones.length === 0 || enderecos.length === 0">
                 Salvar
             </button>
             <button mat-raised-button *ngIf="formGroup?.get('id')?.value" color="warn" (click)="excluir()"

@@ -23,10 +23,11 @@ mat-card-actions {
     font-size: x-large;
 }
 
-button[mat-raised-button] {
+button[mat-flat-button],
+button[mat-button] {
     width: 120px;
 }
 
-button[mat-raised-button]:not(:last-child) {
+button[mat-flat-button]:not(:last-child) {
     margin-right: 1rem;
 }

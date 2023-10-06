@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Fornecedor, Endereco } from 'src/app/models/fornecedor.model';
+import { Hardware } from 'src/app/models/hardware.model';
 import { FornecedorService } from 'src/app/services/fornecedor.service';
+import { HardwareService } from 'src/app/services/hardware.service';
 
 @Component({
     selector: 'app-fornecedor-form',
@@ -14,22 +16,30 @@ export class FornecedorFormComponent implements OnInit {
     formGroup: FormGroup;
     fornecedor: Fornecedor = new Fornecedor();
     fornecedores: Fornecedor[] = [];
+    hardwares: Hardware[] = [];
     isEditRoute: boolean = false;
     isNewRoute: boolean = false;
+    isAssociateRoute: boolean = false;
 
     constructor(private formBuilder: FormBuilder,
         private fornecedorService: FornecedorService,
+        private hardwareService: HardwareService,
         private router: Router,
         private activatedRoute: ActivatedRoute) {
 
+        const fornecedor: Fornecedor = this.activatedRoute.snapshot.data['fornecedor'];
+
         this.formGroup = formBuilder.group({
-            id: [null],
-            nome: ['', Validators.required],
-            enderecos: formBuilder.array([])
+            id: [(fornecedor && fornecedor.id) ? fornecedor.id : null],
+            nome: [(fornecedor && fornecedor.nome) ? fornecedor.nome : '', Validators.required],
+            enderecos: formBuilder.array([]),
+            hardwares: [null]
         });
     }
 
     ngOnInit(): void {
+        this.loadHardwares();
+        
         this.fornecedorService.findAll(0, 999).subscribe(data => {
             this.fornecedores = data;
             this.initializeForm();
@@ -42,6 +52,42 @@ export class FornecedorFormComponent implements OnInit {
         this.activatedRoute.url.subscribe(urlSegments => {
             this.isNewRoute = urlSegments.length > 0 && urlSegments[0].path === 'new';
         });
+
+        this.activatedRoute.url.subscribe(urlSegments => {
+            this.isAssociateRoute = urlSegments.length > 0 && urlSegments[0].path === 'associate';
+        });
+    }
+
+    loadHardwares() {
+        this.fornecedorService.getHardwares().subscribe(
+            (hardwares) => {
+                this.hardwares = hardwares;
+            },
+            (error) => {
+                console.log('Erro ao carregar hardwares: ' + JSON.stringify(error));
+            }
+        );
+    }
+
+    associarHardwares() {
+        const fornecedorId = this.formGroup.get('id')?.value;
+        const hardwareIds = this.formGroup.get('hardwares')?.value;
+
+        if (hardwareIds && hardwareIds.length > 0) {
+            for (const hardwareId of hardwareIds) {
+                this.fornecedorService.associateHardware(fornecedorId, hardwareId).subscribe(
+                    (hardware) => {
+                        console.log('Hardware associado com sucesso.' + JSON.stringify(hardware));
+                        this.router.navigateByUrl('/fornecedores/list');
+                    },
+                    (error) => {
+                        console.log('Erro ao associar hardware: ' + JSON.stringify(error));
+                    }
+                );
+            }
+        } else {
+            console.log('Selecione pelo menos um hardware antes de associar.');
+        }
     }
 
     initializeForm() {
@@ -51,7 +97,8 @@ export class FornecedorFormComponent implements OnInit {
         this.formGroup = this.formBuilder.group({
             id: [(fornecedor && fornecedor.id) ? fornecedor.id : null],
             nome: [(fornecedor && fornecedor.nome) ? fornecedor.nome : '', Validators.required],
-            enderecos: this.formBuilder.array([])
+            enderecos: this.formBuilder.array([]),
+            hardwares: [(fornecedor && fornecedor.hardwares) ? fornecedor.hardwares : []]
         });
 
         if (fornecedor && fornecedor.enderecos) {

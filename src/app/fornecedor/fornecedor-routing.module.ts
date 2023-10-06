@@ -3,11 +3,15 @@ import { RouterModule, Routes } from '@angular/router';
 import { FornecedorListComponent } from './components/fornecedor-list/fornecedor-list.component';
 import { FornecedorFormComponent } from './components/fornecedor-form/fornecedor-form.component';
 import { fornecedorResolver } from './resolver/fornecedor-resolver';
+import { HardwareFormComponent } from '../hardware/components/hardware-form/hardware-form.component';
+import { hardwareResolver } from '../hardware/resolver/hardware-resolver';
 
 const routes: Routes = [
   { path: 'list', component: FornecedorListComponent },
   { path: 'new', component: FornecedorFormComponent },
-  { path: 'edit/:id', component: FornecedorFormComponent, resolve: { fornecedor: fornecedorResolver } }
+  { path: 'edit/:id', component: FornecedorFormComponent, resolve: { fornecedor: fornecedorResolver } },
+  { path: 'associate/:id', component: FornecedorFormComponent, resolve: { fornecedor: fornecedorResolver } } 
+  
 ];
 
 @NgModule({

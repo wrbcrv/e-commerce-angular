@@ -67,10 +67,20 @@
             </form>
         </mat-card-content>
         <mat-card-actions>
-            <button mat-flat-button color="primary" (click)="salvar()" [disabled]="formGroup.invalid" *ngIf="!isAssociateRoute">
+            <button 
+                    mat-flat-button 
+                    color="primary" 
+                    (click)="salvar()" 
+                    [disabled]="formGroup.invalid" 
+                    *ngIf="!isAssociateRoute">
                 Salvar
             </button>
-            <button mat-flat-button color="primary" (click)="associarHardwares()" [disabled]="formGroup.invalid" *ngIf="isAssociateRoute">
+            <button 
+                    mat-flat-button 
+                    color="primary" 
+                    (click)="associarHardwares()" 
+                    [disabled]="formGroup.invalid" 
+                    *ngIf="isAssociateRoute">
                 Associar
             </button>
             <button mat-button color="warn" routerLink="/cupons/list">

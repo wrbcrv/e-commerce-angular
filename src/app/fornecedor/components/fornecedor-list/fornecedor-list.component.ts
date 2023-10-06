@@ -10,7 +10,7 @@ import { FornecedorService } from 'src/app/services/fornecedor.service';
 })
 export class FornecedorListComponent {
 
-  tableColumns: string[] = ['id-column', 'nome-column', 'endereco-column', 'acoes-column'];
+  tableColumns: string[] = ['id-column', 'nome-column', 'endereco-column', 'hardwares-column', 'acoes-column'];
   fornecedores: Fornecedor[] = [];
   totalRegistros = 0;
   pageSize = 2;

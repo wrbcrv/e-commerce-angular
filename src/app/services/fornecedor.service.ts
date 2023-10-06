@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Fornecedor } from '../models/fornecedor.model';
+import { Hardware } from '../models/hardware.model';
 
 @Injectable({
     providedIn: 'root'
@@ -56,5 +57,16 @@ export class FornecedorService {
 
     countByNome(nome: string): Observable<number> {
         return this.http.get<number>(`${this.baseURL}/fornecedores/search/${nome}/count`);
+    }
+
+    getHardwares(): Observable<Hardware[]> {
+        return this.http.get<Hardware[]>(`${this.baseURL}/hardwares`);
+    }
+
+    associateHardware(fornecedorId: number, hardwareId: number): Observable<Hardware> {
+        return this.http.post<Hardware>(
+            `${this.baseURL}/fornecedores/${fornecedorId}/associar-hardware/${hardwareId}`,
+            {}
+        );
     }
 }

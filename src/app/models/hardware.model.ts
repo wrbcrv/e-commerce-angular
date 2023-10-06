@@ -1,3 +1,4 @@
+import { Fabricante } from "./fabricante.model";
 import { Marca } from "./marca.model";
 
 export class Hardware {
@@ -7,5 +8,6 @@ export class Hardware {
     preco      !: number;
     estoque    !: number;
     modelo     !: string;
+    fabricante !: Fabricante;
     lancamento !: Date;
 }

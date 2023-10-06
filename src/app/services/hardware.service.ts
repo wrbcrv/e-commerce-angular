@@ -42,6 +42,7 @@ export class HardwareService {
       preco: hardware.preco,
       estoque: hardware.estoque,
       modelo: hardware.modelo,
+      idFabricante: hardware.fabricante.id,
       lancamento: hardware.lancamento
     }
 
@@ -55,6 +56,7 @@ export class HardwareService {
       preco: hardware.preco,
       estoque: hardware.estoque,
       modelo: hardware.modelo,
+      idFabricante: hardware.fabricante.id,
       lancamento: hardware.lancamento
     }
 

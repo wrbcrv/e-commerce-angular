@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Descricao } from 'src/app/models/descricao.model';
+import { Fabricante } from 'src/app/models/fabricante.model';
 import { Hardware } from 'src/app/models/hardware.model';
 import { Marca } from 'src/app/models/marca.model';
+import { FabricanteService } from 'src/app/services/fabricante.service';
 import { HardwareService } from 'src/app/services/hardware.service';
 import { MarcaService } from 'src/app/services/marca.service';
 
@@ -15,10 +17,12 @@ import { MarcaService } from 'src/app/services/marca.service';
 export class HardwareFormComponent implements OnInit {
   formGroup: FormGroup;
   marcas: Marca[] = [];
+  fabricantes: Fabricante[] = [];
 
   constructor(private formBuilder: FormBuilder,
     private hardwareService: HardwareService,
     private marcaService: MarcaService,
+    private fabricanteService: FabricanteService,
     private router: Router,
     private activatedRoute: ActivatedRoute) {
 
@@ -31,7 +35,8 @@ export class HardwareFormComponent implements OnInit {
       preco     : ['', Validators.required],
       estoque   : ['', Validators.required],
       modelo    : ['', Validators.required],
-      lancamento: [(hardware && hardware.lancamento) ? new Date(hardware.lancamento) : Validators.required]
+      lancamento: [(hardware && hardware.lancamento) ? new Date(hardware.lancamento) : Validators.required],
+      fabricante: [null]
     });
   }
 
@@ -40,11 +45,17 @@ export class HardwareFormComponent implements OnInit {
       this.marcas = data;
       this.initializeForm();
     });
+
+    this.fabricanteService.findAll(0, 999).subscribe(data => {
+      this.fabricantes = data;
+      this.initializeForm();
+    });
   }
 
   initializeForm() {
     const hardware: Hardware = this.activatedRoute.snapshot.data['hardware'];
     const marca = this.marcas.find(m => m.id === (hardware?.marca?.id || null));
+    const fabricante = this.fabricantes.find(m => m.id === (hardware?.fabricante?.id || null));
 
     this.formGroup = this.formBuilder.group({
       id        : [(hardware && hardware.id) ? hardware.id : null],
@@ -53,7 +64,8 @@ export class HardwareFormComponent implements OnInit {
       preco     : [(hardware && hardware.preco) ? hardware.preco : '', Validators.required],
       estoque   : [(hardware && hardware.estoque) ? hardware.estoque : '', Validators.required],
       modelo    : [(hardware && hardware.modelo) ? hardware.modelo : '', Validators.required],
-      lancamento: [(hardware && hardware.lancamento) ? new Date(hardware.lancamento) : Validators.required]
+      lancamento: [(hardware && hardware.lancamento) ? new Date(hardware.lancamento) : Validators.required],
+      fabricante: [fabricante]
     });
 
     console.log(this.formGroup.value);

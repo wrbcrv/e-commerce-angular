@@ -3,51 +3,57 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: 'estados', loadChildren:
-      () => import('./estado/estado.module')
-        .then(m => m.EstadoModule)
-  },
-
-  {
     path: 'cidades', loadChildren:
-      () => import('./cidade/cidade.module')
-        .then(m => m.CidadeModule)
-  },
-
-  {
-    path: 'usuarios', loadChildren:
-      () => import('./usuario/usuario.module')
-        .then(m => m.UsuarioModule)
-  },
-
-  {
-    path: 'marcas', loadChildren:
-      () => import('./marca/marca.module')
-        .then(m => m.MarcaModule)
+    () => import('./cidade/cidade.module')
+    .then(m => m.CidadeModule)
   },
 
   {
     path: 'cupons', loadChildren:
-      () => import('./cupom/cupom.module')
-        .then(m => m.CupomModule)
+    () => import('./cupom/cupom.module')
+    .then(m => m.CupomModule)
   },
-
+    
   {
-    path: 'hardwares', loadChildren:
+    path: 'descricoes', loadChildren:
+    () => import('./descricao/descricao.module')
+    .then(m => m.DescricaoModule)
+  },
+    
+  {
+    path: 'estados', loadChildren:
+    () => import('./estado/estado.module')
+    .then(m => m.EstadoModule)
+  },
+    
+  {
+    path: 'fabricantes', loadChildren:
+    () => import('./fabricante/fabricante.module')
+    .then(m => m.FabricanteModule)
+  },
+    
+  {
+    path: 'fornecedores', loadChildren:
+    () => import('./fornecedor/fornecedor.module')
+    .then(m => m.FornecedorModule)
+  },
+    
+  {
+      path: 'hardwares', loadChildren:
       () => import('./hardware/hardware.module')
         .then(m => m.HardwareModule)
   },
-
+    
   {
-    path: 'fornecedores', loadChildren:
-      () => import('./fornecedor/fornecedor.module')
-        .then(m => m.FornecedorModule)
+    path: 'marcas', loadChildren:
+    () => import('./marca/marca.module')
+    .then(m => m.MarcaModule)
   },
-
+    
   {
-    path: 'descricoes', loadChildren:
-      () => import('./descricao/descricao.module')
-        .then(m => m.DescricaoModule)
+    path: 'usuarios', loadChildren:
+    () => import('./usuario/usuario.module')
+    .then(m => m.UsuarioModule)
   }
 ];
 

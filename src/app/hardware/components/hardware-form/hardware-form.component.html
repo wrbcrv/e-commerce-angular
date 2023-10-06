@@ -47,6 +47,14 @@
                         Modelo é obrigatório.
                     </mat-error>
                 </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label for="fabricante-id">Fabricantes</mat-label>
+                    <mat-select formControlName="fabricante" id="fabricante-id">
+                        <mat-option *ngFor="let fabricante of fabricantes" [value]="fabricante">
+                            {{fabricante.nome}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
                 <mat-form-field appearance="outline" class="full-width-input">
                     <mat-label>Data de Lançamento</mat-label>
                     <input matInput [matDatepicker]="picker" formControlName="lancamento" />

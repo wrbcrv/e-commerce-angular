@@ -7,51 +7,85 @@
   </div>
 </mat-toolbar>
 
-<table mat-table [dataSource]="hardwares" class="mat-elevation-z8">
-  <!-- Id Column -->
-  <ng-container matColumnDef="id-column">
-    <th mat-header-cell *matHeaderCellDef> Id </th>
-    <td mat-cell *matCellDef="let hardware"> {{hardware.id}} </td>
-  </ng-container>
+<div class="container">
+  <div class="input-container">
+    <mat-form-field appearance="outline" class="input-field">
+      <mat-label>Pesquisar</mat-label>
+      <input [(ngModel)]="filtro" matInput #input>
+    </mat-form-field>
+    <button mat-icon-button color="primary" class="search-button" (click)="aplicarFiltro()">
+      <mat-icon>search</mat-icon>
+    </button>
+  </div>
+</div>
 
-  <!-- Marca Column -->
-  <ng-container matColumnDef="marca-column">
-    <th mat-header-cell *matHeaderCellDef> Marca </th>
-    <td mat-cell *matCellDef="let hardware"> {{hardware.marca.nome}}</td>
-  </ng-container>
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="hardwares" class="mat-elevation-z8">
+    <!-- Id Column -->
+    <ng-container matColumnDef="id-column">
+      <th mat-header-cell *matHeaderCellDef> Id </th>
+      <td mat-cell *matCellDef="let hardware"> {{hardware.id}} </td>
+    </ng-container>
 
-  <!-- Nome Column -->
-  <ng-container matColumnDef="nome-column">
-    <th mat-header-cell *matHeaderCellDef> Nome </th>
-    <td mat-cell *matCellDef="let hardware">
-      <a routerLink="/hardwares/edit/{{hardware.id}}"> {{hardware.nome}} </a>
-    </td>
-  </ng-container>
+    <!-- Marca Column -->
+    <ng-container matColumnDef="marca-column">
+      <th mat-header-cell *matHeaderCellDef> Marca </th>
+      <td mat-cell *matCellDef="let hardware"> {{hardware.marca.nome}}</td>
+    </ng-container>
 
-  <!-- Preço Column -->
-  <ng-container matColumnDef="preco-column">
-    <th mat-header-cell *matHeaderCellDef> Preço </th>
-    <td mat-cell *matCellDef="let hardware"> {{hardware.preco}} </td>
-  </ng-container>
+    <!-- Nome Column -->
+    <ng-container matColumnDef="nome-column">
+      <th mat-header-cell *matHeaderCellDef> Nome </th>
+      <td mat-cell *matCellDef="let hardware">
+        <a routerLink="/hardwares/edit/{{hardware.id}}"> {{hardware.nome}} </a>
+      </td>
+    </ng-container>
 
-  <!-- Estoque Column -->
-  <ng-container matColumnDef="estoque-column">
-    <th mat-header-cell *matHeaderCellDef> Estoque </th>
-    <td mat-cell *matCellDef="let hardware"> {{hardware.estoque}} </td>
-  </ng-container>
+    <!-- Preço Column -->
+    <ng-container matColumnDef="preco-column">
+      <th mat-header-cell *matHeaderCellDef> Preço </th>
+      <td mat-cell *matCellDef="let hardware"> {{hardware.preco}} </td>
+    </ng-container>
 
-  <!-- Modelo Column -->
-  <ng-container matColumnDef="modelo-column">
-    <th mat-header-cell *matHeaderCellDef> Modelo </th>
-    <td mat-cell *matCellDef="let hardware"> {{hardware.modelo}} </td>
-  </ng-container>
+    <!-- Estoque Column -->
+    <ng-container matColumnDef="estoque-column">
+      <th mat-header-cell *matHeaderCellDef> Estoque </th>
+      <td mat-cell *matCellDef="let hardware"> {{hardware.estoque}} </td>
+    </ng-container>
 
-  <!-- Lançamento Column -->
-  <ng-container matColumnDef="lancamento-column">
-    <th mat-header-cell *matHeaderCellDef> Data de Lançamento </th>
-    <td mat-cell *matCellDef="let hardware"> {{hardware.lancamento}} </td>
-  </ng-container>
-  
-  <tr mat-header-row *matHeaderRowDef="tableColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: tableColumns;"></tr>
-</table>
+    <!-- Modelo Column -->
+    <ng-container matColumnDef="modelo-column">
+      <th mat-header-cell *matHeaderCellDef> Modelo </th>
+      <td mat-cell *matCellDef="let hardware"> {{hardware.modelo}} </td>
+    </ng-container>
+
+    <!-- Lançamento Column -->
+    <ng-container matColumnDef="lancamento-column">
+      <th mat-header-cell *matHeaderCellDef> Data de Lançamento </th>
+      <td mat-cell *matCellDef="let hardware"> {{hardware.lancamento}} </td>
+    </ng-container>
+
+    <!-- Ações Column -->
+    <ng-container matColumnDef="acoes-column">
+      <th mat-header-cell *matHeaderCellDef> Ações </th>
+      <td mat-cell *matCellDef="let hardware">
+        <button mat-icon-button color="primary" routerLink="/hardwares/edit/{{hardware.id}}">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" (click)="excluirHardware(hardware)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="tableColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: tableColumns;"></tr>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">Nenhum dado correspondente à "{{input.value}}"</td>
+    </tr>
+  </table>
+  <mat-paginator [pageSizeOptions]="[2, 4, 8, 16]" [pageSize]="pageSize" [length]="totalRegistros"
+    (page)="paginar($event)">
+  </mat-paginator>
+</div>

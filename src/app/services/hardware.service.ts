@@ -12,12 +12,27 @@ export class HardwareService {
 
   constructor(private http: HttpClient) { }
 
-  findAll(): Observable<Hardware[]> {
-    return this.http.get<Hardware[]>(`${this.baseURL}/hardwares`);
+  findAll(page: number, pageSize: number): Observable<Hardware[]> {
+    const params = {
+      page: page.toString(),
+      pageSize: pageSize.toString()
+    }
+
+    return this.http.get<Hardware[]>(`${this.baseURL}/hardwares`, { params });
   }
 
   findById(id: string): Observable<Hardware> {
     return this.http.get<Hardware>(`${this.baseURL}/hardwares/${id}`);
+  }
+
+
+  findByNome(nome: string, page: number, pageSize: number): Observable<Hardware[]> {
+    const params = {
+      page: page.toString(),
+      pageSize: pageSize.toString()
+    }
+
+    return this.http.get<Hardware[]>(`${this.baseURL}/hardwares/search/${nome}`, { params });
   }
 
   save(hardware: Hardware): Observable<Hardware> {
@@ -48,5 +63,13 @@ export class HardwareService {
 
   delete(hardware: Hardware): Observable<any> {
     return this.http.delete<Hardware>(`${this.baseURL}/hardwares/${hardware.id}`);
+  }
+
+  count(): Observable<number> {
+    return this.http.get<number>(`${this.baseURL}/hardwares/count`);
+  }
+
+  countByNome(nome: string): Observable<number> {
+    return this.http.get<number>(`${this.baseURL}/hardwares/search/${nome}/count`);
   }
 }

@@ -17,7 +17,7 @@ export class CidadeService {
       page: page.toString(),
       pageSize: pageSize.toString()
     }
-    return this.http.get<Cidade[]>(`${this.baseURL}/cidades`, {params});
+    return this.http.get<Cidade[]>(`${this.baseURL}/cidades`, { params });
   }
 
   findById(id: string): Observable<Cidade> {
@@ -29,7 +29,7 @@ export class CidadeService {
       page: page.toString(),
       pageSize: pageSize.toString()
     }
-    return this.http.get<Cidade[]>(`${this.baseURL}/cidades/search/${nome}`, {params});
+    return this.http.get<Cidade[]>(`${this.baseURL}/cidades/search/${nome}`, { params });
   }
 
   save(cidade: Cidade): Observable<Cidade> {

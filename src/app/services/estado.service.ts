@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Estado } from '../models/estado.model';
 
@@ -8,16 +8,39 @@ import { Estado } from '../models/estado.model';
 })
 
 export class EstadoService {
-  private baseURL: string =  'http://localhost:8080';
+  private baseURL: string = 'http://localhost:8080';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
-  findAll(): Observable<Estado[]> {
-    return this.http.get<Estado[]>(`${this.baseURL}/estados`);
+  findAll(page: number, pageSize: number): Observable<Estado[]> {
+    const params = {
+      page: page.toString(),
+      pageSize: pageSize.toString()
+    }
+
+    return this.http.get<Estado[]>(`${this.baseURL}/estados`, { params });
   }
 
   findById(id: string): Observable<Estado> {
     return this.http.get<Estado>(`${this.baseURL}/estados/${id}`);
+  }
+
+
+  findByNome(nome: string, page: number, pageSize: number): Observable<Estado[]> {
+    const params = {
+      page: page.toString(),
+      pageSize: pageSize.toString()
+    }
+
+    return this.http.get<Estado[]>(`${this.baseURL}/estados/search/${nome}`, { params });
+  }
+
+  count(): Observable<number> {
+    return this.http.get<number>(`${this.baseURL}/estados/count`);
+  }
+
+  countByCodigo(nome: string): Observable<number> {
+    return this.http.get<number>(`${this.baseURL}/estados/search/${nome}/count`);
   }
 
   save(estado: Estado): Observable<Estado> {
@@ -25,7 +48,7 @@ export class EstadoService {
   }
 
   update(estado: Estado): Observable<Estado> {
-    return this.http.put<Estado>(`${this.baseURL}/estados/${estado.id}`, estado );
+    return this.http.put<Estado>(`${this.baseURL}/estados/${estado.id}`, estado);
   }
 
   delete(estado: Estado): Observable<any> {

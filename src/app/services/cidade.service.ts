@@ -17,6 +17,7 @@ export class CidadeService {
       page: page.toString(),
       pageSize: pageSize.toString()
     }
+
     return this.http.get<Cidade[]>(`${this.baseURL}/cidades`, { params });
   }
 
@@ -29,6 +30,7 @@ export class CidadeService {
       page: page.toString(),
       pageSize: pageSize.toString()
     }
+    
     return this.http.get<Cidade[]>(`${this.baseURL}/cidades/search/${nome}`, { params });
   }
 

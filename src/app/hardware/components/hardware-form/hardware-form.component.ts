@@ -35,7 +35,7 @@ export class HardwareFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.marcaService.findAll().subscribe(data => {
+    this.marcaService.findAll(0, 999).subscribe(data => {
       this.marcas = data;
       this.initializeForm();
     });

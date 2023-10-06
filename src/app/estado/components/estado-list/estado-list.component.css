@@ -26,15 +26,16 @@
 }
 
 .input-field {
+    margin-top: 22px;
     flex: 1;
     margin-right: 8px;
 }
 
 .search-button {
-    margin-top: 10px;
     width: 54px;
     height: 54px;
     align-self: flex-start;
+    margin-top: 22px;
 }
 
 mat-icon {

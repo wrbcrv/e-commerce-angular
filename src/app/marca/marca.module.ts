@@ -7,7 +7,7 @@ import { MarcaFormComponent } from './components/marca-form/marca-form.component
 import { MarcaListComponent } from './components/marca-list/marca-list.component';
 import { MarcaRoutingModule } from './marca-routing.module';
 
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
@@ -16,6 +16,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   providers: [
@@ -38,7 +39,10 @@ import { MatInputModule } from '@angular/material/input';
     MatIconModule,
     MatExpansionModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatIconModule,
+    MatPaginatorModule,
+    FormsModule
   ]
 })
 

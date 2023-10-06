@@ -34,7 +34,7 @@ export class UsuarioFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.usuarioService.findAll().subscribe(data => {
+    this.usuarioService.findAll(0, 999).subscribe(data => {
       this.usuarios = data;
       this.initializeForm();
     });

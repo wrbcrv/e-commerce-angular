@@ -7,74 +7,90 @@
   </div>
 </mat-toolbar>
 
-<table mat-table [dataSource]="usuarios" class="mat-elevation-z8 demo-table">
+<div class="container">
+  <div class="input-container">
+    <mat-form-field appearance="outline" class="input-field">
+      <mat-label>Pesquisar</mat-label>
+      <input [(ngModel)]="filtro" matInput #input>
+    </mat-form-field>
+    <button mat-icon-button color="primary" class="search-button" (click)="aplicarFiltro()">
+      <mat-icon>search</mat-icon>
+    </button>
+  </div>
+</div>
 
-  <!-- ID Column-->
-  <ng-container matColumnDef="id-column">
-    <th mat-header-cell *matHeaderCellDef>Id</th>
-    <td mat-cell *matCellDef="let usuario"> {{usuario.id}} </td>
-  </ng-container>
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="usuarios" class="mat-elevation-z8 demo-table">
 
-  <!-- Name Column -->
-  <ng-container matColumnDef="nome-column">
-    <th mat-header-cell *matHeaderCellDef>Nome</th>
-    <td mat-cell *matCellDef="let usuario">
-      <a routerLink="/usuarios/edit/{{usuario.id}}">{{usuario.nome}}</a>
-    </td>
-  </ng-container>
+    <!-- ID Column-->
+    <ng-container matColumnDef="id-column">
+      <th mat-header-cell *matHeaderCellDef> # </th>
+      <td mat-cell *matCellDef="let usuario"> {{usuario.id}} </td>
+    </ng-container>
 
-  <!-- Name Column -->
-  <ng-container matColumnDef="login-column">
-    <th mat-header-cell *matHeaderCellDef>Login</th>
-    <td mat-cell *matCellDef="let usuario">
-      <a>{{usuario.login}}</a>
-    </td>
-  </ng-container>
+    <!-- Nome Column -->
+    <ng-container matColumnDef="nome-column">
+      <th mat-header-cell *matHeaderCellDef> Nome </th>
+      <td mat-cell *matCellDef="let usuario"> {{usuario.nome}} </td>
+    </ng-container>
 
-  <!-- CPF Column -->
-  <ng-container matColumnDef="cpf-column">
-    <th mat-header-cell *matHeaderCellDef>CPF</th>
-    <td mat-cell *matCellDef="let usuario">
-      <a>{{usuario.cpf}}</a>
-    </td>
-  </ng-container>
+    <!-- Login Column -->
+    <ng-container matColumnDef="login-column">
+      <th mat-header-cell *matHeaderCellDef> Login </th>
+      <td mat-cell *matCellDef="let usuario">
+        <a>{{usuario.login}}</a>
+      </td>
+    </ng-container>
 
-  <!-- Telefones Column -->
-  <ng-container matColumnDef="telefone-column">
-    <th mat-header-cell *matHeaderCellDef>Telefone(s)</th>
-    <td mat-cell *matCellDef="let usuario">
-      <span *ngFor="let telefone of usuario.telefones">
-        ({{ telefone.ddd }}) {{ telefone.numero }}<br>
-      </span>
-    </td>
-  </ng-container>
+    <!-- CPF Column -->
+    <ng-container matColumnDef="cpf-column">
+      <th mat-header-cell *matHeaderCellDef> CPF </th>
+      <td mat-cell *matCellDef="let usuario">
+        <a>{{usuario.cpf}}</a>
+      </td>
+    </ng-container>
 
-  <!-- Enderecos Column -->
-  <ng-container matColumnDef="endereco-column">
-    <th mat-header-cell *matHeaderCellDef>Endereço(s)</th>
-    <td mat-cell *matCellDef="let usuario">
-      <span *ngFor="let endereco of usuario.enderecos">
-        <!-- <strong>Logradouro:</strong>
-        {{ endereco.logradouro }}
-        <br>
-        <strong>Número</strong>
-        {{ endereco.numero }}
-        <br>
-        <strong>Complemento:</strong>
-        {{ endereco.complemento }}
-        <br>
-        <strong>Bairro:</strong>
-        {{ endereco.bairro }}
-        <br>
-        <strong>CEP:</strong> -->
-        {{ endereco.cep }}
-      </span>
-    </td>
-  </ng-container>
+    <!-- Telefones Column -->
+    <ng-container matColumnDef="telefone-column">
+      <th mat-header-cell *matHeaderCellDef> Telefone(s) </th>
+      <td mat-cell *matCellDef="let usuario">
+        <span *ngFor="let telefone of usuario.telefones">
+          ({{ telefone.ddd }}) {{ telefone.numero }}<br>
+        </span>
+      </td>
+    </ng-container>
 
-  <ng-container matColumnDef="actions-column">
-    <th mat-header-cell *matHeaderCellDef>Ações</th>
-  </ng-container>
-  <tr mat-header-row *matHeaderRowDef="tableColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: tableColumns;"></tr>
-</table>
+    <!-- Enderecos Column -->
+    <ng-container matColumnDef="endereco-column">
+      <th mat-header-cell *matHeaderCellDef> Endereço(s) </th>
+      <td mat-cell *matCellDef="let usuario">
+        <span *ngFor="let endereco of usuario.enderecos">
+          {{ endereco.cep }}
+        </span>
+      </td>
+    </ng-container>
+
+    <!-- Ações Column -->
+    <ng-container matColumnDef="acoes-column">
+      <th mat-header-cell *matHeaderCellDef> Ações </th>
+      <td mat-cell *matCellDef="let usuario">
+        <button mat-icon-button color="primary" routerLink="/usuarios/edit/{{usuario.id}}">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" (click)="excluirUsuario(usuario)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="tableColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: tableColumns;"></tr>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">Nenhum dado correspondente à "{{input.value}}"</td>
+    </tr>
+  </table>
+  <mat-paginator [pageSizeOptions]="[2, 4, 8, 16]" [pageSize]="pageSize" [length]="totalRegistros"
+    (page)="paginar($event)">
+  </mat-paginator>
+</div>

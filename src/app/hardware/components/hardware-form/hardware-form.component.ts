@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Descricao } from 'src/app/models/descricao.model';
 import { Hardware } from 'src/app/models/hardware.model';
 import { Marca } from 'src/app/models/marca.model';
 import { HardwareService } from 'src/app/services/hardware.service';
@@ -24,13 +25,13 @@ export class HardwareFormComponent implements OnInit {
     const hardware: Hardware = this.activatedRoute.snapshot.data['hardware'];
 
     this.formGroup = formBuilder.group({
-      id: [null],
-      marca: [null, Validators.required],
-      nome: ['', Validators.required],
-      preco: ['', Validators.required],
-      estoque: ['', Validators.required],
-      modelo: ['', Validators.required],
-      lancamento: [(hardware && hardware.lancamento) ? new Date(hardware.lancamento) : Validators.required],
+      id        : [null],
+      marca     : [null, Validators.required],
+      nome      : ['', Validators.required],
+      preco     : ['', Validators.required],
+      estoque   : ['', Validators.required],
+      modelo    : ['', Validators.required],
+      lancamento: [(hardware && hardware.lancamento) ? new Date(hardware.lancamento) : Validators.required]
     });
   }
 
@@ -46,13 +47,13 @@ export class HardwareFormComponent implements OnInit {
     const marca = this.marcas.find(m => m.id === (hardware?.marca?.id || null));
 
     this.formGroup = this.formBuilder.group({
-      id: [(hardware && hardware.id) ? hardware.id : null],
-      marca: [marca],
-      nome: [(hardware && hardware.nome) ? hardware.nome : '', Validators.required],
-      preco: [(hardware && hardware.preco) ? hardware.preco : '', Validators.required],
-      estoque: [(hardware && hardware.estoque) ? hardware.estoque : '', Validators.required],
-      modelo: [(hardware && hardware.modelo) ? hardware.modelo : '', Validators.required],
-      lancamento: [(hardware && hardware.lancamento) ? new Date(hardware.lancamento) : Validators.required],
+      id        : [(hardware && hardware.id) ? hardware.id : null],
+      marca     : [marca],
+      nome      : [(hardware && hardware.nome) ? hardware.nome : '', Validators.required],
+      preco     : [(hardware && hardware.preco) ? hardware.preco : '', Validators.required],
+      estoque   : [(hardware && hardware.estoque) ? hardware.estoque : '', Validators.required],
+      modelo    : [(hardware && hardware.modelo) ? hardware.modelo : '', Validators.required],
+      lancamento: [(hardware && hardware.lancamento) ? new Date(hardware.lancamento) : Validators.required]
     });
 
     console.log(this.formGroup.value);

@@ -11,12 +11,26 @@ export class UsuarioService {
 
   constructor(private http: HttpClient) { }
 
-  findAll(): Observable<Usuario[]> {
-    return this.http.get<Usuario[]>(`${this.baseURL}/usuarios`);
+  findAll(page: number, pageSize: number): Observable<Usuario[]> {
+    const params = {
+      page: page.toString(),
+      pageSize: pageSize.toString()
+    }
+
+    return this.http.get<Usuario[]>(`${this.baseURL}/usuarios`, { params });
   }
 
   findById(id: string): Observable<Usuario> {
     return this.http.get<Usuario>(`${this.baseURL}/usuarios/${id}`);
+  }
+
+  findByNome(nome: string, page: number, pageSize: number): Observable<Usuario[]> {
+    const params = {
+      page: page.toString(),
+      pageSize: pageSize.toString()
+    }
+
+    return this.http.get<Usuario[]>(`${this.baseURL}/usuarios/search/${nome}`, { params });
   }
 
   save(usuario: Usuario): Observable<Usuario> {
@@ -39,5 +53,13 @@ export class UsuarioService {
   deletarEndereco(usuarioId: number, enderecoId: number) {
     const url = `${this.baseURL}/usuarios/${usuarioId}/enderecos/${enderecoId}`;
     return this.http.delete(url);
+  }
+
+  count(): Observable<number> {
+    return this.http.get<number>(`${this.baseURL}/usuarios/count`);
+  }
+
+  countByNome(nome: string): Observable<number> {
+    return this.http.get<number>(`${this.baseURL}/usuarios/search/${nome}/count`);
   }
 }

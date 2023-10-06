@@ -1,0 +1,34 @@
+<mat-toolbar class="centered-toolbar">Cadastro de Descrições</mat-toolbar>
+<div class="form-container">
+    <mat-card>
+        <mat-card-content>
+            <form [formGroup]="formGroup">
+                <mat-form-field appearance="outline">
+                    <mat-label for="hardware-id">Hardwares</mat-label>
+                    <mat-select formControlName="hardware" id="hardware-id">
+                        <mat-option *ngFor="let hardware of hardwares" [value]="hardware">
+                            {{hardware.nome}}, {{hardware.modelo}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="full-width-input">
+                    <mat-label>Conteúdo</mat-label>
+                    <input matInput type="text" formControlName="conteudo" />
+                    <mat-error *ngIf="formGroup.get('conteudo') &&
+                formGroup.get('conteudo')?.invalid &&
+                formGroup.get('conteudo')?.touched">
+                        Conteúdo é obrigatório.
+                    </mat-error>
+                </mat-form-field>
+            </form>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-flat-button color="primary" (click)="salvar()" [disabled]="formGroup.invalid">
+                Salvar
+            </button>
+            <button mat-button color="warn" routerLink="/descricoes/list">
+                Cancelar
+            </button>
+        </mat-card-actions>
+    </mat-card>
+</div>

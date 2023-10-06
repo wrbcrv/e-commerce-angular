@@ -1,4 +1,4 @@
-<mat-toolbar class="centered-toolbar">Cadastro de Usuario</mat-toolbar>
+<mat-toolbar class="centered-toolbar">Cadastro de Fornecedor</mat-toolbar>
 <div class="form-container">
     <mat-card>
         <mat-card-content>
@@ -12,64 +12,6 @@
                         Nome é obrigatório.
                     </mat-error>
                 </mat-form-field>
-                <mat-form-field appearance="outline" class="full-width-input">
-                    <mat-label>Nome de Usuário (Login)</mat-label>
-                    <input matInput type="text" formControlName="login" />
-                    <mat-error *ngIf="formGroup.get('login') &&
-                    formGroup.get('login')?.invalid &&
-                    formGroup.get('login')?.touched">
-                        Login é obrigatório.
-                    </mat-error>
-                </mat-form-field>
-                <mat-form-field appearance="outline" class="full-width-input">
-                    <mat-label>Senha</mat-label>
-                    <input matInput type="password" formControlName="senha" />
-                    <mat-error *ngIf="formGroup.get('senha') &&
-                    formGroup.get('senha')?.invalid &&
-                    formGroup.get('senha')?.touched">
-                        Senha é obrigatória.
-                    </mat-error>
-                </mat-form-field>
-                <mat-form-field appearance="outline" class="full-width-input">
-                    <mat-label>CPF</mat-label>
-                    <input matInput type="text" formControlName="cpf" />
-                    <mat-error *ngIf="formGroup.get('cpf') &&
-                    formGroup.get('cpf')?.invalid &&
-                    formGroup.get('cpf')?.touched">
-                        CPF é obrigatório.
-                    </mat-error>
-                </mat-form-field>
-                <div formArrayName="telefones">
-                    <div *ngFor="let telefoneGroup of telefones.controls; let i = index">
-                        <mat-card>
-                            <mat-card-content>
-                                <div [formGroupName]="i">
-                                    <mat-form-field appearance="outline" class="full-width-input">
-                                        <mat-label>DDD</mat-label>
-                                        <input matInput type="text" formControlName="ddd" />
-                                    </mat-form-field>
-                                    <mat-form-field appearance="outline" class="full-width-input">
-                                        <mat-label>Número</mat-label>
-                                        <input matInput type="text" formControlName="numero" />
-                                    </mat-form-field>
-                                </div>
-                            </mat-card-content>
-                            <mat-card-content>
-                                <button mat-icon-button color="warn" *ngIf="isNewRoute" (click)="removerTelefone(i)">
-                                    <mat-icon>close</mat-icon>
-                                </button>
-                                <button mat-icon-button color="warn" *ngIf="isEditRoute"
-                                    (click)="deletarTelefone(telefoneGroup.get('id')?.value)">
-                                    <mat-icon>delete</mat-icon>
-                                </button>
-                            </mat-card-content>
-                        </mat-card>
-                    </div>
-                </div>
-                <button mat-flat-button color="primary" (click)="adicionarTelefone()" class="full-width-button">
-                    <mat-icon>add</mat-icon>
-                    Adicionar Telefone
-                </button>
                 <div formArrayName="enderecos">
                     <div *ngFor="let enderecoGroup of enderecos.controls; let i = index">
                         <mat-card>
@@ -117,10 +59,10 @@
         </mat-card-content>
         <mat-card-content>
             <button mat-flat-button color="primary" (click)="salvar()"
-                [disabled]="telefones.length === 0 || enderecos.length === 0">
+                [disabled]="enderecos.length === 0 || enderecos.length === 0">
                 Salvar
             </button>
-            <button mat-flat-button routerLink="/usuarios/list">
+            <button mat-button color="warn" routerLink="/fornecedores/list">
                 Cancelar
             </button>
         </mat-card-content>

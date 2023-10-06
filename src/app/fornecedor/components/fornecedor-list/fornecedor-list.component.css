@@ -57,3 +57,8 @@ mat-icon {
 .demo-table {
     width: 100%;
 }
+
+.flex-td {
+    display: flex;
+    align-items: center;
+}

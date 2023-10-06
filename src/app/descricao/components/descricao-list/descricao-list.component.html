@@ -1,0 +1,64 @@
+<mat-toolbar>
+    <div class="flex-container">
+      <span class="toolbar-title"> Controle de Descrições </span>
+      <button mat-fab color="accent" routerLink="/descricoes/new">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+  </mat-toolbar>
+  
+  <div class="container">
+    <div class="input-container">
+      <mat-form-field appearance="outline" class="input-field">
+        <mat-label>Pesquisar</mat-label>
+        <input [(ngModel)]="filtro" matInput #input>
+      </mat-form-field>
+      <button mat-icon-button color="primary" class="search-button" (click)="aplicarFiltro()">
+        <mat-icon>search</mat-icon>
+      </button>
+    </div>
+  </div>
+  
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="descricoes" class="mat-elevation-z8">
+      <!-- Id Column -->
+      <ng-container matColumnDef="id-column">
+        <th mat-header-cell *matHeaderCellDef> # </th>
+        <td mat-cell *matCellDef="let descricao"> {{descricao.id}} </td>
+      </ng-container>
+
+      <!-- Hardware Column -->
+    <ng-container matColumnDef="hardware-column">
+      <th mat-header-cell *matHeaderCellDef> Produto </th>
+      <td mat-cell *matCellDef="let descricao"> {{descricao.hardware.nome}}</td>
+    </ng-container>
+  
+      <!-- Conteúdo Column -->
+      <ng-container matColumnDef="conteudo-column">
+        <th mat-header-cell *matHeaderCellDef> Conteúdo </th>
+        <td mat-cell *matCellDef="let descricao"> {{descricao.conteudo}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="acoes-column">
+        <th mat-header-cell *matHeaderCellDef> Ações </th>
+        <td mat-cell *matCellDef="let descricao" class="flex-td">
+          <button mat-icon-button color="primary" routerLink="/descricoes/edit/{{descricao.id}}">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="excluirDescricao(descricao)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="tableColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: tableColumns;"></tr>
+  
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">Nenhum dado correspodente à "{{input.value}}"</td>
+      </tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[2, 4, 8, 16]" [pageSize]="pageSize" [length]="totalRegistros"
+      (page)="paginar($event)">
+    </mat-paginator>
+  </div>

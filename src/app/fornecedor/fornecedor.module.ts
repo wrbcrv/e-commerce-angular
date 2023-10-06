@@ -3,9 +3,9 @@ import { NgModule } from '@angular/core';
 
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { UsuarioFormComponent } from './components/usuario-form/usuario-form.component';
-import { UsuarioListComponent } from './components/usuario-list/usuario-list.component';
-import { UsuarioRoutingModule } from './usuario-routing.module';
+import { FornecedorFormComponent } from './components/fornecedor-form/fornecedor-form.component';
+import { FornecedorListComponent } from './components/fornecedor-list/fornecedor-list.component';
+import { FornecedorRoutingModule } from './fornecedor-routing.module';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -18,12 +18,12 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
-    UsuarioListComponent,
-    UsuarioFormComponent
+    FornecedorListComponent,
+    FornecedorFormComponent
   ],
   imports: [
     CommonModule,
-    UsuarioRoutingModule,
+    FornecedorRoutingModule,
     MatTableModule,
     MatToolbarModule,
     ReactiveFormsModule,
@@ -37,4 +37,4 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     FormsModule
   ]
 })
-export class UsuarioModule { }
+export class FornecedorModule { }

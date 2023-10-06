@@ -36,6 +36,18 @@ const routes: Routes = [
     path: 'hardwares', loadChildren:
       () => import('./hardware/hardware.module')
         .then(m => m.HardwareModule)
+  },
+
+  {
+    path: 'fornecedores', loadChildren:
+      () => import('./fornecedor/fornecedor.module')
+        .then(m => m.FornecedorModule)
+  },
+
+  {
+    path: 'descricoes', loadChildren:
+      () => import('./descricao/descricao.module')
+        .then(m => m.DescricaoModule)
   }
 ];
 

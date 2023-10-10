@@ -1,22 +1,13 @@
-<mat-toolbar>
-  <div class="flex-container">
-    <span class="toolbar-title"> Controle de Cidades </span>
-    <button mat-fab color="accent" routerLink="/cidades/new">
-      <mat-icon>add</mat-icon>
-    </button>
+<div class="input-container">
+  <div class="input-field">
+    <input placeholder="Pesquisar..." [(ngModel)]="filtro" matInput #input>
   </div>
-</mat-toolbar>
-
-<div class="container">
-  <div class="input-container">
-    <mat-form-field appearance="outline" class="input-field">
-      <mat-label>Pesquisar</mat-label>
-      <input [(ngModel)]="filtro" matInput #input>
-    </mat-form-field>
-    <button mat-icon-button color="primary" class="search-button" (click)="aplicarFiltro()">
-      <mat-icon>search</mat-icon>
-    </button>
-  </div>
+  <button class="search-button" (click)="aplicarFiltro()">
+    <mat-icon>search</mat-icon>
+  </button>
+  <button class="add-button" routerLink="/cidades/new">
+    <mat-icon>add</mat-icon>
+  </button>
 </div>
 
 <div class="mat-elevation-z8">

@@ -1,21 +1,22 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 
-import { SharedRoutingModule } from './shared-routing.module';
-import { HeaderComponent } from './components/header/header.component';
-import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { HeaderComponent } from './components/header/header.component';
+import { TabsComponent } from './components/tabs/tabs.component';
+import { SharedRoutingModule } from './shared-routing.module';
 
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatListModule } from '@angular/material/list';
-import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 @NgModule({
     declarations: [
         HeaderComponent,
-        SidebarComponent,
+        TabsComponent,
         FooterComponent
     ],
     imports: [
@@ -25,12 +26,13 @@ import { MatButtonModule } from '@angular/material/button';
         MatSidenavModule,
         MatListModule,
         MatIconModule,
-        MatButtonModule
+        MatButtonModule,
+        MatTabsModule
 
     ],
     exports: [
         HeaderComponent,
-        SidebarComponent,
+        TabsComponent,
         FooterComponent
     ]
 })

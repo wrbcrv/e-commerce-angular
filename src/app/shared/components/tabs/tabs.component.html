@@ -1,0 +1,27 @@
+<nav class="navbar">
+    <a class="navbar-link" routerLink="/cidades/list" routerLinkActive="active">Controle de Cidade</a>
+    <a class="navbar-link" routerLink="/cupons/list" routerLinkActive="active">Controle de Cupom</a>
+    <a class="navbar-link" routerLink="/descricoes/list" routerLinkActive="active">Controle de Descrições</a>
+    <a class="navbar-link" routerLink="/estados/list" routerLinkActive="active">Controle de Estado</a>
+    <a class="navbar-link" routerLink="/fabricantes/list" routerLinkActive="active">Controle de Fabricante</a>
+    <a class="navbar-link" routerLink="/fornecedores/list" routerLinkActive="active">Controle de Fornecedor</a>
+    <a class="navbar-link" routerLink="/marcas/list" routerLinkActive="active">Controle de Marca</a>
+    <a class="navbar-link" routerLink="/hardwares/list" routerLinkActive="active">Controle de Produto</a>
+    <a class="navbar-link" routerLink="/usuarios/list" routerLinkActive="active">Controle de Usuário</a>
+</nav>
+<div class="bar"></div>
+<script>
+    let navbar = document.querySelector('.navbar');
+    let navbarLink = navbar.querySelectorAll('.navbar-link');
+
+    for (let link of navbarLink) {
+        link.addEventListener('click', () => {
+            let current = document.querySelectorAll('.active');
+            current[0].className = current[0].className.replace(' active', '');
+            link.className += ' active';
+        });
+    }
+</script>
+<div class="container">
+    <router-outlet></router-outlet>
+</div>

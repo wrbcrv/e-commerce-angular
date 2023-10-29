@@ -8,9 +8,21 @@ import { Fabricante } from '../models/fabricante.model';
 })
 
 export class FabricanteService {
-  private baseURL: string = 'http://localhost:8080';
+  private baseUrl: string = 'http://localhost:8080/fabricantes';
 
   constructor(private http: HttpClient) { }
+
+  create(fabricante: Fabricante): Observable<Fabricante> {
+    return this.http.post<Fabricante>(`${this.baseUrl}`, fabricante);
+  }
+
+  update(fabricante: Fabricante): Observable<Fabricante> {
+    return this.http.put<Fabricante>(`${this.baseUrl}/${fabricante.id}`, fabricante);
+  }
+
+  delete(fabricante: Fabricante): Observable<any> {
+    return this.http.delete<Fabricante>(`${this.baseUrl}/${fabricante.id}`);
+  }
 
   findAll(page: number, pageSize: number): Observable<Fabricante[]> {
     const params = {
@@ -18,11 +30,11 @@ export class FabricanteService {
       pageSize: pageSize.toString()
     }
 
-    return this.http.get<Fabricante[]>(`${this.baseURL}/fabricantes`, { params });
+    return this.http.get<Fabricante[]>(`${this.baseUrl}`, { params });
   }
 
   findById(id: string): Observable<Fabricante> {
-    return this.http.get<Fabricante>(`${this.baseURL}/fabricantes/${id}`);
+    return this.http.get<Fabricante>(`${this.baseUrl}/${id}`);
   }
 
 
@@ -32,26 +44,14 @@ export class FabricanteService {
       pageSize: pageSize.toString()
     }
 
-    return this.http.get<Fabricante[]>(`${this.baseURL}/fabricantes/search/${nome}`, { params });
+    return this.http.get<Fabricante[]>(`${this.baseUrl}/search/${nome}`, { params });
   }
 
   count(): Observable<number> {
-    return this.http.get<number>(`${this.baseURL}/fabricantes/count`);
+    return this.http.get<number>(`${this.baseUrl}/count`);
   }
 
   countByCodigo(nome: string): Observable<number> {
-    return this.http.get<number>(`${this.baseURL}/fabricantes/search/${nome}/count`);
-  }
-
-  save(fabricante: Fabricante): Observable<Fabricante> {
-    return this.http.post<Fabricante>(`${this.baseURL}/fabricantes`, fabricante);
-  }
-
-  update(fabricante: Fabricante): Observable<Fabricante> {
-    return this.http.put<Fabricante>(`${this.baseURL}/fabricantes/${fabricante.id}`, fabricante);
-  }
-
-  delete(fabricante: Fabricante): Observable<any> {
-    return this.http.delete<Fabricante>(`${this.baseURL}/fabricantes/${fabricante.id}`);
+    return this.http.get<number>(`${this.baseUrl}/search/${nome}/count`);
   }
 }

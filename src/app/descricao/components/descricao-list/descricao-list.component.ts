@@ -71,5 +71,5 @@ export class DescricaoListComponent implements OnInit {
         },
       });
     }
-  } 
+  }
 }

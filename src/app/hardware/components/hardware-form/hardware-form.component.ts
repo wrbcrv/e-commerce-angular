@@ -29,12 +29,12 @@ export class HardwareFormComponent implements OnInit {
     const hardware: Hardware = this.activatedRoute.snapshot.data['hardware'];
 
     this.formGroup = formBuilder.group({
-      id        : [null],
-      marca     : [null, Validators.required],
-      nome      : ['', Validators.required],
-      preco     : ['', Validators.required],
-      estoque   : ['', Validators.required],
-      modelo    : ['', Validators.required],
+      id: [null],
+      marca: [null, Validators.required],
+      nome: ['', Validators.required],
+      preco: ['', Validators.required],
+      estoque: ['', Validators.required],
+      modelo: ['', Validators.required],
       lancamento: [(hardware && hardware.lancamento) ? new Date(hardware.lancamento) : Validators.required],
       fabricante: [null]
     });
@@ -58,12 +58,12 @@ export class HardwareFormComponent implements OnInit {
     const fabricante = this.fabricantes.find(m => m.id === (hardware?.fabricante?.id || null));
 
     this.formGroup = this.formBuilder.group({
-      id        : [(hardware && hardware.id) ? hardware.id : null],
-      marca     : [marca],
-      nome      : [(hardware && hardware.nome) ? hardware.nome : '', Validators.required],
-      preco     : [(hardware && hardware.preco) ? hardware.preco : '', Validators.required],
-      estoque   : [(hardware && hardware.estoque) ? hardware.estoque : '', Validators.required],
-      modelo    : [(hardware && hardware.modelo) ? hardware.modelo : '', Validators.required],
+      id: [(hardware && hardware.id) ? hardware.id : null],
+      marca: [marca],
+      nome: [(hardware && hardware.nome) ? hardware.nome : '', Validators.required],
+      preco: [(hardware && hardware.preco) ? hardware.preco : '', Validators.required],
+      estoque: [(hardware && hardware.estoque) ? hardware.estoque : '', Validators.required],
+      modelo: [(hardware && hardware.modelo) ? hardware.modelo : '', Validators.required],
       lancamento: [(hardware && hardware.lancamento) ? new Date(hardware.lancamento) : Validators.required],
       fabricante: [fabricante]
     });
@@ -77,7 +77,7 @@ export class HardwareFormComponent implements OnInit {
 
       if (hardware.id == null) {
 
-        this.hardwareService.save(hardware).subscribe({
+        this.hardwareService.create(hardware).subscribe({
           next: (hardwareCadastrado) => {
             this.router.navigateByUrl('/hardwares/list');
           },

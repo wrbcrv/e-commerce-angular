@@ -10,7 +10,7 @@ import { HardwareService } from 'src/app/services/hardware.service';
 })
 export class HardwareListComponent implements OnInit {
 
-  tableColumns: string[] = ['id-column', 'marca-column', 'nome-column', 'preco-column', 'estoque-column', 'modelo-column', 'fabricante-column', 'lancamento-column', 'acoes-column'];
+  tableColumns: string[] = ['id-column', 'marca-column', 'nome-column', 'preco-column', 'estoque-column', 'modelo-column', 'fabricante-column', 'lancamento-column', 'integridade-column', 'categoria-column', 'acoes-column'];
   hardwares: Hardware[] = [];
   totalRegistros = 0;
   pageSize = 2;

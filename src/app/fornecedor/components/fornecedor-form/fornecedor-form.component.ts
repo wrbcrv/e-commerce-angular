@@ -39,7 +39,7 @@ export class FornecedorFormComponent implements OnInit {
 
     ngOnInit(): void {
         this.loadHardwares();
-        
+
         this.fornecedorService.findAll(0, 999).subscribe(data => {
             this.fornecedores = data;
             this.initializeForm();
@@ -56,38 +56,6 @@ export class FornecedorFormComponent implements OnInit {
         this.activatedRoute.url.subscribe(urlSegments => {
             this.isAssociateRoute = urlSegments.length > 0 && urlSegments[0].path === 'associate';
         });
-    }
-
-    loadHardwares() {
-        this.fornecedorService.getHardwares().subscribe(
-            (hardwares) => {
-                this.hardwares = hardwares;
-            },
-            (error) => {
-                console.log('Erro ao carregar hardwares: ' + JSON.stringify(error));
-            }
-        );
-    }
-
-    associarHardwares() {
-        const fornecedorId = this.formGroup.get('id')?.value;
-        const hardwareIds = this.formGroup.get('hardwares')?.value;
-
-        if (hardwareIds && hardwareIds.length > 0) {
-            for (const hardwareId of hardwareIds) {
-                this.fornecedorService.associateHardware(fornecedorId, hardwareId).subscribe(
-                    (hardware) => {
-                        console.log('Hardware associado com sucesso.' + JSON.stringify(hardware));
-                        this.router.navigateByUrl('/fornecedores/list');
-                    },
-                    (error) => {
-                        console.log('Erro ao associar hardware: ' + JSON.stringify(error));
-                    }
-                );
-            }
-        } else {
-            console.log('Selecione pelo menos um hardware antes de associar.');
-        }
     }
 
     initializeForm() {
@@ -125,7 +93,7 @@ export class FornecedorFormComponent implements OnInit {
             fornecedor.enderecos = this.enderecos.value;
 
             if (fornecedor.id == null) {
-                this.fornecedorService.save(fornecedor).subscribe({
+                this.fornecedorService.create(fornecedor).subscribe({
                     next: (fornecedorCadastrado) => {
                         console.log('Fornecedor cadastrado com sucesso' + JSON.stringify(fornecedorCadastrado));
                         this.router.navigateByUrl('/fornecedores/list');
@@ -160,6 +128,38 @@ export class FornecedorFormComponent implements OnInit {
                     console.log('Erro ao excluir' + JSON.stringify(err));
                 }
             });
+        }
+    }
+
+    loadHardwares() {
+        this.fornecedorService.getHardwares().subscribe(
+            (hardwares) => {
+                this.hardwares = hardwares;
+            },
+            (error) => {
+                console.log('Erro ao carregar hardwares: ' + JSON.stringify(error));
+            }
+        );
+    }
+
+    associarHardwares() {
+        const fornecedorId = this.formGroup.get('id')?.value;
+        const hardwareIds = this.formGroup.get('hardwares')?.value;
+
+        if (hardwareIds && hardwareIds.length > 0) {
+            for (const hardwareId of hardwareIds) {
+                this.fornecedorService.associateHardware(fornecedorId, hardwareId).subscribe(
+                    (hardware) => {
+                        console.log('Hardware associado com sucesso.' + JSON.stringify(hardware));
+                        this.router.navigateByUrl('/fornecedores/list');
+                    },
+                    (error) => {
+                        console.log('Erro ao associar hardware: ' + JSON.stringify(error));
+                    }
+                );
+            }
+        } else {
+            console.log('Selecione pelo menos um hardware antes de associar.');
         }
     }
 

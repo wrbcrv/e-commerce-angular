@@ -7,9 +7,21 @@ import { Telefone, Usuario } from '../models/usuario.model';
   providedIn: 'root'
 })
 export class UsuarioService {
-  private baseURL: string = 'http://localhost:8080';
+  private baseUrl: string = 'http://localhost:8080/usuarios';
 
   constructor(private http: HttpClient) { }
+
+  create(usuario: Usuario): Observable<Usuario> {
+    return this.http.post<Usuario>(`${this.baseUrl}`, usuario);
+  }
+
+  update(usuario: Usuario): Observable<Usuario> {
+    return this.http.put<Usuario>(`${this.baseUrl}/${usuario.id}`, usuario);
+  }
+
+  delete(usuario: Usuario): Observable<any> {
+    return this.http.delete<Usuario>(`${this.baseUrl}/${usuario.id}`);
+  }
 
   findAll(page: number, pageSize: number): Observable<Usuario[]> {
     const params = {
@@ -17,11 +29,11 @@ export class UsuarioService {
       pageSize: pageSize.toString()
     }
 
-    return this.http.get<Usuario[]>(`${this.baseURL}/usuarios`, { params });
+    return this.http.get<Usuario[]>(`${this.baseUrl}`, { params });
   }
 
   findById(id: string): Observable<Usuario> {
-    return this.http.get<Usuario>(`${this.baseURL}/usuarios/${id}`);
+    return this.http.get<Usuario>(`${this.baseUrl}/${id}`);
   }
 
   findByNome(nome: string, page: number, pageSize: number): Observable<Usuario[]> {
@@ -30,36 +42,24 @@ export class UsuarioService {
       pageSize: pageSize.toString()
     }
 
-    return this.http.get<Usuario[]>(`${this.baseURL}/usuarios/search/${nome}`, { params });
-  }
-
-  save(usuario: Usuario): Observable<Usuario> {
-    return this.http.post<Usuario>(`${this.baseURL}/usuarios`, usuario);
-  }
-
-  update(usuario: Usuario): Observable<Usuario> {
-    return this.http.put<Usuario>(`${this.baseURL}/usuarios/${usuario.id}`, usuario);
-  }
-
-  delete(usuario: Usuario): Observable<any> {
-    return this.http.delete<Usuario>(`${this.baseURL}/usuarios/${usuario.id}`);
+    return this.http.get<Usuario[]>(`${this.baseUrl}/search/${nome}`, { params });
   }
 
   deletarTelefone(usuarioId: number, telefoneId: number): Observable<any> {
-    const url = `${this.baseURL}/usuarios/${usuarioId}/telefones/${telefoneId}`;
+    const url = `${this.baseUrl}/${usuarioId}/telefones/${telefoneId}`;
     return this.http.delete(url);
   }
 
   deletarEndereco(usuarioId: number, enderecoId: number) {
-    const url = `${this.baseURL}/usuarios/${usuarioId}/enderecos/${enderecoId}`;
+    const url = `${this.baseUrl}/${usuarioId}/enderecos/${enderecoId}`;
     return this.http.delete(url);
   }
 
   count(): Observable<number> {
-    return this.http.get<number>(`${this.baseURL}/usuarios/count`);
+    return this.http.get<number>(`${this.baseUrl}/count`);
   }
 
   countByNome(nome: string): Observable<number> {
-    return this.http.get<number>(`${this.baseURL}/usuarios/search/${nome}/count`);
+    return this.http.get<number>(`${this.baseUrl}/search/${nome}/count`);
   }
 }

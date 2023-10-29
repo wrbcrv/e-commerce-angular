@@ -13,16 +13,16 @@ export class FabricanteFormComponent {
   formGroup: FormGroup;
 
   constructor(private formBuilder: FormBuilder,
-              private fabricanteService: FabricanteService,
-              private router: Router,
-              private activatedRoute: ActivatedRoute) {
+    private fabricanteService: FabricanteService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute) {
 
     const fabricante: Fabricante = this.activatedRoute.snapshot.data['fabricante'];
 
     this.formGroup = formBuilder.group({
-      id:[(fabricante && fabricante.id) ? fabricante.id : null],
-      nome:[(fabricante && fabricante.nome) ? fabricante.nome : '', Validators.required],
-      site:[(fabricante && fabricante.site) ? fabricante.site : '', Validators.required]
+      id: [(fabricante && fabricante.id) ? fabricante.id : null],
+      nome: [(fabricante && fabricante.nome) ? fabricante.nome : '', Validators.required],
+      site: [(fabricante && fabricante.site) ? fabricante.site : '', Validators.required]
     })
   }
 
@@ -30,7 +30,7 @@ export class FabricanteFormComponent {
     if (this.formGroup.valid) {
       const fabricante = this.formGroup.value;
       if (fabricante.id == null) {
-        this.fabricanteService.save(fabricante).subscribe({
+        this.fabricanteService.create(fabricante).subscribe({
           next: (fabricanteCadastrado) => {
             this.router.navigateByUrl('/fabricantes/list');
           },
@@ -46,7 +46,7 @@ export class FabricanteFormComponent {
           error: (err) => {
             console.log('Erro ao alterar' + JSON.stringify(err));
           }
-        });        
+        });
       }
     }
   }
@@ -62,6 +62,6 @@ export class FabricanteFormComponent {
           console.log('Erro ao excluir' + JSON.stringify(err));
         }
       });
-    }      
+    }
   }
 }

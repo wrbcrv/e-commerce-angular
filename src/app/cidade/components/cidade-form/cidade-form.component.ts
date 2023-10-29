@@ -23,9 +23,9 @@ export class CidadeFormComponent implements OnInit {
     private activatedRoute: ActivatedRoute) {
 
     this.formGroup = formBuilder.group({
-      id     : [null],
-      nome   : ['', Validators.required],
-      estado : [null]
+      id: [null],
+      nome: ['', Validators.required],
+      estado: [null]
     })
   }
 
@@ -41,9 +41,9 @@ export class CidadeFormComponent implements OnInit {
     const estado = this.estados.find(estado => estado.id === (cidade?.estado?.id || null))
 
     this.formGroup = this.formBuilder.group({
-      id     : [(cidade && cidade.id) ? cidade.id : null],
-      nome   : [(cidade  && cidade.nome) ? cidade.nome : '', Validators.required],
-      estado : [estado]
+      id: [(cidade && cidade.id) ? cidade.id : null],
+      nome: [(cidade && cidade.nome) ? cidade.nome : '', Validators.required],
+      estado: [estado]
     })
 
     console.log(this.formGroup.value)
@@ -52,9 +52,9 @@ export class CidadeFormComponent implements OnInit {
   salvar() {
     if (this.formGroup.valid) {
       const cidade = this.formGroup.value;
-      
+
       if (cidade.id == null) {
-        this.cidadeService.save(cidade).subscribe({
+        this.cidadeService.create(cidade).subscribe({
           next: (cidadeCadastrado) => {
             this.router.navigateByUrl('/cidades/list');
           },
@@ -68,7 +68,7 @@ export class CidadeFormComponent implements OnInit {
           next: (cidadeCadastrado) => {
             this.router.navigateByUrl('/cidades/list');
           },
-          
+
           error: (err) => {
             console.log('Erro ao alterar' + JSON.stringify(err));
           }

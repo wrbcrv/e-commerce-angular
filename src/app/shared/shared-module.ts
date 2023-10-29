@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
-import { TabsComponent } from './components/tabs/tabs.component';
+
 import { SharedRoutingModule } from './shared-routing.module';
 
 import { MatButtonModule } from '@angular/material/button';
@@ -12,11 +12,12 @@ import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MainComponent } from './components/main/main.component';
 
 @NgModule({
     declarations: [
         HeaderComponent,
-        TabsComponent,
+        MainComponent,
         FooterComponent
     ],
     imports: [
@@ -32,7 +33,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     ],
     exports: [
         HeaderComponent,
-        TabsComponent,
+        MainComponent,
         FooterComponent
     ]
 })

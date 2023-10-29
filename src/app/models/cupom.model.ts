@@ -1,13 +1,13 @@
 import { Hardware } from "./hardware.model";
 
 export class Cupom {
-    id       !: number;
+    id!: number;
     descricao!: string;
-    codigo   !: string;
-    inicio   !: Date;
-    termino  !: Date
-    desconto !: number;
-    hardwares : Hardware[] = [];
+    codigo!: string;
+    inicio!: Date;
+    termino!: Date
+    desconto!: number;
+    hardwares: Hardware[] = [];
 }
 
 export { Hardware }

@@ -13,16 +13,16 @@ export class EstadoFormComponent {
   formGroup: FormGroup;
 
   constructor(private formBuilder: FormBuilder,
-              private estadoService: EstadoService,
-              private router: Router,
-              private activatedRoute: ActivatedRoute) {
+    private estadoService: EstadoService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute) {
 
     const estado: Estado = this.activatedRoute.snapshot.data['estado'];
 
     this.formGroup = formBuilder.group({
-      id:[(estado && estado.id) ? estado.id : null],
-      nome:[(estado && estado.nome) ? estado.nome : '', Validators.required],
-      sigla:[(estado && estado.sigla) ? estado.sigla : '', Validators.required]
+      id: [(estado && estado.id) ? estado.id : null],
+      nome: [(estado && estado.nome) ? estado.nome : '', Validators.required],
+      sigla: [(estado && estado.sigla) ? estado.sigla : '', Validators.required]
     })
   }
 
@@ -30,7 +30,7 @@ export class EstadoFormComponent {
     if (this.formGroup.valid) {
       const estado = this.formGroup.value;
       if (estado.id == null) {
-        this.estadoService.save(estado).subscribe({
+        this.estadoService.create(estado).subscribe({
           next: (estadoCadastrado) => {
             this.router.navigateByUrl('/estados/list');
           },
@@ -46,7 +46,7 @@ export class EstadoFormComponent {
           error: (err) => {
             console.log('Erro ao alterar' + JSON.stringify(err));
           }
-        });        
+        });
       }
     }
   }
@@ -62,6 +62,6 @@ export class EstadoFormComponent {
           console.log('Erro ao excluir' + JSON.stringify(err));
         }
       });
-    }      
+    }
   }
 }

@@ -13,18 +13,18 @@ export class MarcaFormComponent {
   formGroup: FormGroup;
 
   constructor(private formBuilder: FormBuilder,
-              private marcaService: MarcaService,
-              private router: Router,
-              private activatedRoute: ActivatedRoute) {
+    private marcaService: MarcaService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute) {
 
     const marca: Marca = this.activatedRoute.snapshot.data['marca'];
 
     this.formGroup = formBuilder.group({
-      id:[(marca && marca.id) ? marca.id : null],
-      nome:[(marca && marca.nome) ? marca.nome : '', Validators.required],
-      site:[(marca && marca.site) ? marca.site : '', Validators.required],
-      fundacao:[(marca && marca.fundacao) ? new Date(marca.fundacao) : Validators.required],
-      sede:[(marca && marca.sede) ? marca.sede : '', Validators.required]
+      id: [(marca && marca.id) ? marca.id : null],
+      nome: [(marca && marca.nome) ? marca.nome : '', Validators.required],
+      site: [(marca && marca.site) ? marca.site : '', Validators.required],
+      fundacao: [(marca && marca.fundacao) ? new Date(marca.fundacao) : Validators.required],
+      sede: [(marca && marca.sede) ? marca.sede : '', Validators.required]
     })
   }
 
@@ -32,7 +32,7 @@ export class MarcaFormComponent {
     if (this.formGroup.valid) {
       const marca = this.formGroup.value;
       if (marca.id == null) {
-        this.marcaService.save(marca).subscribe({
+        this.marcaService.create(marca).subscribe({
           next: (marcaCadastrado) => {
             this.router.navigateByUrl('/marcas/list');
           },
@@ -48,7 +48,7 @@ export class MarcaFormComponent {
           error: (err) => {
             console.log('Erro ao alterar' + JSON.stringify(err));
           }
-        });        
+        });
       }
     }
   }
@@ -64,6 +64,6 @@ export class MarcaFormComponent {
           console.log('Erro ao excluir' + JSON.stringify(err));
         }
       });
-    }      
+    }
   }
 }

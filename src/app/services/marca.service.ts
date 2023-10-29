@@ -8,9 +8,21 @@ import { Marca } from '../models/marca.model';
 })
 
 export class MarcaService {
-    private baseURL: string = 'http://localhost:8080';
+    private baseUrl: string = 'http://localhost:8080/marcas';
 
     constructor(private http: HttpClient) { }
+
+    create(marca: Marca): Observable<Marca> {
+        return this.http.post<Marca>(`${this.baseUrl}`, marca);
+    }
+
+    update(marca: Marca): Observable<Marca> {
+        return this.http.put<Marca>(`${this.baseUrl}/${marca.id}`, marca);
+    }
+
+    delete(marca: Marca): Observable<any> {
+        return this.http.delete<Marca>(`${this.baseUrl}/${marca.id}`);
+    }
 
     findAll(page: number, pageSize: number): Observable<Marca[]> {
         const params = {
@@ -18,11 +30,11 @@ export class MarcaService {
             pageSize: pageSize.toString()
         }
 
-        return this.http.get<Marca[]>(`${this.baseURL}/marcas`, { params });
+        return this.http.get<Marca[]>(`${this.baseUrl}`, { params });
     }
 
     findById(id: string): Observable<Marca> {
-        return this.http.get<Marca>(`${this.baseURL}/marcas/${id}`);
+        return this.http.get<Marca>(`${this.baseUrl}/${id}`);
     }
 
     findByNome(nome: string, page: number, pageSize: number): Observable<Marca[]> {
@@ -31,26 +43,14 @@ export class MarcaService {
             pageSize: pageSize.toString()
         }
 
-        return this.http.get<Marca[]>(`${this.baseURL}/marcas/search/${nome}`, { params });
-    }
-
-    save(marca: Marca): Observable<Marca> {
-        return this.http.post<Marca>(`${this.baseURL}/marcas`, marca);
-    }
-
-    update(marca: Marca): Observable<Marca> {
-        return this.http.put<Marca>(`${this.baseURL}/marcas/${marca.id}`, marca);
-    }
-
-    delete(marca: Marca): Observable<any> {
-        return this.http.delete<Marca>(`${this.baseURL}/marcas/${marca.id}`);
+        return this.http.get<Marca[]>(`${this.baseUrl}/search/${nome}`, { params });
     }
 
     count(): Observable<number> {
-        return this.http.get<number>(`${this.baseURL}/marcas/count`);
+        return this.http.get<number>(`${this.baseUrl}/count`);
     }
 
     countByNome(nome: string): Observable<number> {
-        return this.http.get<number>(`${this.baseURL}/marcas/search/${nome}/count`);
+        return this.http.get<number>(`${this.baseUrl}/search/${nome}/count`);
     }
 }

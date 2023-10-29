@@ -8,9 +8,21 @@ import { Descricao } from '../models/descricao.model';
 })
 
 export class DescricaoService {
-  private baseURL: string = 'http://localhost:8080';
+  private baseUrl: string = 'http://localhost:8080/descricoes';
 
   constructor(private http: HttpClient) { }
+
+  create(descricao: Descricao): Observable<Descricao> {
+    return this.http.post<Descricao>(`${this.baseUrl}`, descricao);
+  }
+
+  update(descricao: Descricao): Observable<Descricao> {
+    return this.http.put<Descricao>(`${this.baseUrl}/${descricao.id}`, descricao);
+  }
+
+  delete(descricao: Descricao): Observable<any> {
+    return this.http.delete<Descricao>(`${this.baseUrl}/${descricao.id}`);
+  }
 
   findAll(page: number, pageSize: number): Observable<Descricao[]> {
     const params = {
@@ -18,11 +30,11 @@ export class DescricaoService {
       pageSize: pageSize.toString()
     }
 
-    return this.http.get<Descricao[]>(`${this.baseURL}/descricoes`, { params });
+    return this.http.get<Descricao[]>(`${this.baseUrl}`, { params });
   }
 
   findById(id: string): Observable<Descricao> {
-    return this.http.get<Descricao>(`${this.baseURL}/descricoes/${id}`);
+    return this.http.get<Descricao>(`${this.baseUrl}/${id}`);
   }
 
 
@@ -32,36 +44,14 @@ export class DescricaoService {
       pageSize: pageSize.toString()
     }
 
-    return this.http.get<Descricao[]>(`${this.baseURL}/descricoes/search/${nome}`, { params });
+    return this.http.get<Descricao[]>(`${this.baseUrl}/search/${nome}`, { params });
   }
 
   count(): Observable<number> {
-    return this.http.get<number>(`${this.baseURL}/descricoes/count`);
+    return this.http.get<number>(`${this.baseUrl}/count`);
   }
 
   countByConteudo(nome: string): Observable<number> {
-    return this.http.get<number>(`${this.baseURL}/descricoes/search/${nome}/count`);
-  }
-
-  save(descricao: Descricao): Observable<Descricao> {
-    const obj = {
-      idHardware: descricao.hardware.id,
-      conteudo: descricao.conteudo
-    }
-
-    return this.http.post<Descricao>(`${this.baseURL}/descricoes`, obj);
-  }
-
-  update(descricao: Descricao): Observable<Descricao> {
-    const obj = {
-      idHardware: descricao.hardware.id,
-      conteudo: descricao.conteudo
-    }
-
-    return this.http.put<Descricao>(`${this.baseURL}/descricoes/${descricao.id}`, obj);
-  }
-
-  delete(descricao: Descricao): Observable<any> {
-    return this.http.delete<Descricao>(`${this.baseURL}/descricoes/${descricao.id}`);
+    return this.http.get<number>(`${this.baseUrl}/search/${nome}/count`);
   }
 }

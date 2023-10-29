@@ -85,7 +85,7 @@ export class CupomFormComponent implements OnInit {
     if (this.formGroup.valid) {
       const cupom = this.formGroup.value;
       if (cupom.id == null) {
-        this.cupomService.save(cupom).subscribe({
+        this.cupomService.create(cupom).subscribe({
           next: (cupomCadastrado) => {
             console.log('Cupom cadastrado com sucesso' + JSON.stringify(cupomCadastrado));
             this.router.navigateByUrl('/cupons/list');

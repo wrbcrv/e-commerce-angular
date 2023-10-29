@@ -12,3 +12,39 @@
     font-size: 30px;
     color: #fff;
 }
+
+.container {
+    height: 100%;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    gap: 5px;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
+.navbar-link {
+    text-decoration: none;
+    padding: 10px 27px;
+    color: #4361EE;
+    border: 2px solid #4361EE;
+    border-radius: 10px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
+
+.active,
+.navbar-link:hover {
+    background-color: #4361EE;
+    color: #fff;
+}
+
+.bar {
+    background-color: #ddd;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 80%;
+    height: 1px;
+}

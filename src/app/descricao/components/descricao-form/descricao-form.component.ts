@@ -23,9 +23,9 @@ export class DescricaoFormComponent implements OnInit {
     private activatedRoute: ActivatedRoute) {
 
     this.formGroup = formBuilder.group({
-      id       : [null],
-      conteudo : ['', Validators.required],
-      hardware : [null]
+      id: [null],
+      conteudo: ['', Validators.required],
+      hardware: [null]
     })
   }
 
@@ -41,9 +41,9 @@ export class DescricaoFormComponent implements OnInit {
     const hardware = this.hardwares.find(hardware => hardware.id === (descricao?.hardware?.id || null))
 
     this.formGroup = this.formBuilder.group({
-      id       : [(descricao && descricao.id) ? descricao.id : null],
-      conteudo : [(descricao  && descricao.conteudo) ? descricao.conteudo : '', Validators.required],
-      hardware : [hardware]
+      id: [(descricao && descricao.id) ? descricao.id : null],
+      conteudo: [(descricao && descricao.conteudo) ? descricao.conteudo : '', Validators.required],
+      hardware: [hardware]
     })
 
     console.log(this.formGroup.value)
@@ -53,7 +53,7 @@ export class DescricaoFormComponent implements OnInit {
     if (this.formGroup.valid) {
       const descricao = this.formGroup.value;
       if (descricao.id == null) {
-        this.descricaoService.save(descricao).subscribe({
+        this.descricaoService.create(descricao).subscribe({
           next: (descricaoCadastrado) => {
             this.router.navigateByUrl('/descricoes/list');
           },

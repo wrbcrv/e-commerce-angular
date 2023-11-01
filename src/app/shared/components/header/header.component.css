@@ -26,8 +26,10 @@
 }
 
 .navbar-link {
+    width: -webkit-fill-available;
     text-decoration: none;
-    padding: 10px 27px;
+    text-align: center;
+    padding: 10px;
     color: #4361EE;
     border: 2px solid #4361EE;
     border-radius: 10px;

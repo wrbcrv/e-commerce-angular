@@ -13,11 +13,35 @@ export class HardwareService {
   constructor(private http: HttpClient) { }
 
   create(hardware: Hardware): Observable<Hardware> {
-    return this.http.post<Hardware>(`${this.baseUrl}`, hardware);
+    const obj = {
+      idMarca: hardware.marca.id,
+      nome: hardware.nome,
+      preco: hardware.preco,
+      estoque: hardware.estoque,
+      modelo: hardware.modelo,
+      idFabricante: hardware.fabricante.id,
+      lancamento: hardware.lancamento,
+      idCategoria: hardware.idCategoria,
+      idStatus: hardware.idStatus
+    }
+
+    return this.http.post<Hardware>(`${this.baseUrl}`, obj);
   }
 
   update(hardware: Hardware): Observable<Hardware> {
-    return this.http.put<Hardware>(`${this.baseUrl}/${hardware.id}`, hardware);
+    const obj = {
+      idMarca: hardware.marca.id,
+      nome: hardware.nome,
+      preco: hardware.preco,
+      estoque: hardware.estoque,
+      modelo: hardware.modelo,
+      idFabricante: hardware.fabricante.id,
+      lancamento: hardware.lancamento,
+      idCategoria: hardware.idCategoria,
+      idStatus: hardware.idStatus
+    }
+
+    return this.http.put<Hardware>(`${this.baseUrl}/${hardware.id}`, obj);
   }
 
   delete(hardware: Hardware): Observable<any> {

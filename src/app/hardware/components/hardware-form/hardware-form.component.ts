@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Descricao } from 'src/app/models/descricao.model';
+import { Categoria } from 'src/app/models/categoria.model';
 import { Fabricante } from 'src/app/models/fabricante.model';
 import { Hardware } from 'src/app/models/hardware.model';
 import { Marca } from 'src/app/models/marca.model';
+import { Status } from 'src/app/models/status.model';
 import { FabricanteService } from 'src/app/services/fabricante.service';
 import { HardwareService } from 'src/app/services/hardware.service';
 import { MarcaService } from 'src/app/services/marca.service';
@@ -18,6 +19,8 @@ export class HardwareFormComponent implements OnInit {
   formGroup: FormGroup;
   marcas: Marca[] = [];
   fabricantes: Fabricante[] = [];
+  categorias: Categoria[] = [{ id: 1, label: 'Entrada' }, { id: 2, label: 'Mid-End' }, { id: 3, label: 'High-End' }];
+  status: Status[] = [{ id: 1, label: 'Novo' }, { id: 2, label: 'Usado' }, { id: 3, label: 'Reparado' }];
 
   constructor(private formBuilder: FormBuilder,
     private hardwareService: HardwareService,
@@ -36,7 +39,9 @@ export class HardwareFormComponent implements OnInit {
       estoque: ['', Validators.required],
       modelo: ['', Validators.required],
       lancamento: [(hardware && hardware.lancamento) ? new Date(hardware.lancamento) : Validators.required],
-      fabricante: [null]
+      fabricante: [null, Validators.required],
+      idCategoria: [null, Validators.required],
+      idStatus: [null, Validators.required]
     });
   }
 
@@ -65,10 +70,10 @@ export class HardwareFormComponent implements OnInit {
       estoque: [(hardware && hardware.estoque) ? hardware.estoque : '', Validators.required],
       modelo: [(hardware && hardware.modelo) ? hardware.modelo : '', Validators.required],
       lancamento: [(hardware && hardware.lancamento) ? new Date(hardware.lancamento) : Validators.required],
-      fabricante: [fabricante]
+      fabricante: [fabricante],
+      idCategoria: [(hardware && hardware.idCategoria) ? hardware.idCategoria : null],
+      idStatus: [(hardware && hardware.idStatus) ? hardware.idStatus : null]
     });
-
-    console.log(this.formGroup.value);
   }
 
   salvar() {
@@ -76,7 +81,6 @@ export class HardwareFormComponent implements OnInit {
       const hardware = this.formGroup.value;
 
       if (hardware.id == null) {
-
         this.hardwareService.create(hardware).subscribe({
           next: (hardwareCadastrado) => {
             this.router.navigateByUrl('/hardwares/list');

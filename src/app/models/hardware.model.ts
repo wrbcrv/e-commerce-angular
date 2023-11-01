@@ -1,6 +1,4 @@
-import { Categoria } from "./categoria.model";
 import { Fabricante } from "./fabricante.model";
-import { Integridade } from "./integridade.model";
 import { Marca } from "./marca.model";
 
 export class Hardware {
@@ -12,6 +10,6 @@ export class Hardware {
     modelo!: string;
     fabricante!: Fabricante;
     lancamento!: Date;
-    integridade!: Integridade;
-    categoria!: Categoria;
+    idCategoria!: number;
+    idStatus!: number;
 }

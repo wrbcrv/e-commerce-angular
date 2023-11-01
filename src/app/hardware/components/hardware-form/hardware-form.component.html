@@ -66,6 +66,22 @@
                     <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
                 </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label for="categoria-id">Categoria</mat-label>
+                    <mat-select formControlName="idCategoria" id="categoria-id">
+                        <mat-option *ngFor="let categoria of categorias" [value]="categoria.id">
+                            {{categoria.label}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label for="status-id">Status</mat-label>
+                    <mat-select formControlName="idStatus" id="status-id">
+                        <mat-option *ngFor="let status of status" [value]="status.id">
+                            {{status.label}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
             </form>
         </mat-card-content>
         <mat-card-actions>

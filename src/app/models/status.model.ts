@@ -1,4 +1,4 @@
-export class Categoria {
+export class Status {
     id!: number;
     label!: string;
 

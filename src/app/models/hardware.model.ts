@@ -12,4 +12,5 @@ export class Hardware {
     lancamento!: Date;
     idCategoria!: number;
     idStatus!: number;
+    imageName!: string;
 }

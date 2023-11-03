@@ -1,0 +1,24 @@
+<div class="input-container">
+    <div class="input-field">
+        <input placeholder="Pesquisar..." [(ngModel)]="filter" matInput #input>
+    </div>
+    <button class="search-button" (click)="applyFilter()">
+        <mat-icon>search</mat-icon>
+    </button>
+</div>
+<mat-paginator [pageSizeOptions]="[2, 4, 8, 16]" [pageSize]="pageSize" [length]="totalRegistros"
+    (page)="paginate($event)">
+</mat-paginator>
+<div class="container">
+    <div class="responsive-grid">
+        <div class="card-container" *ngFor="let card of cards()">
+            <!-- <span class="category">{{card.categoria}}</span> -->
+            <!-- <span class="status">{{card.status}}</span> -->
+            <img [src]="card.imageUrl">
+            <strong class="description">{{card.modelo}}</strong>
+            <strong class="price">{{card.preco | currency: 'BRL'}}</strong>
+            <button class="button top">Ver mais...</button>
+            <button class="button bottom">Adicionar ao Carrinho</button>
+        </div>
+    </div>
+</div>

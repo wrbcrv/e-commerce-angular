@@ -71,11 +71,24 @@ export class HardwareService {
     return this.http.get<Hardware[]>(`${this.baseUrl}/search/${nome}`, { params });
   }
 
+  findByModelo(modelo: string, page: number, pageSize: number): Observable<Hardware[]> {
+    const params = {
+      page: page.toString(),
+      pageSize: pageSize.toString()
+    }
+
+    return this.http.get<Hardware[]>(`${this.baseUrl}/search/${modelo}`, { params });
+  }
+
   count(): Observable<number> {
     return this.http.get<number>(`${this.baseUrl}/count`);
   }
 
   countByNome(nome: string): Observable<number> {
     return this.http.get<number>(`${this.baseUrl}/search/${nome}/count`);
+  }
+
+  getImageUrl(imageName: string): string {
+    return `${this.baseUrl}/image/download/${imageName}`;
   }
 }

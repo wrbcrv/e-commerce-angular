@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+
+.input-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.input-field {
+    margin-right: 5px;
+}
+
+.input-field > input {
+    width: 500px;
+    border-radius: 10px;
+    padding: 12px;
+    border: 2px solid #ddd;
+    outline: none;
+}
+
+.input-field > input:focus {
+    border: 2px solid #4361EE;
+    outline: 2px solid #B5C1F8;
+}
+
+.search-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 43px;
+    height: 43px;
+    color: #fff;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
+
+.search-button {
+    background-color: #4361EE;
+    margin-right: 5px;
+}
+
+.container {
+    margin: 10px;
+}
+
+.responsive-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(256px, 1fr));
+}
+
+.card-container {
+    font-family: 'Lato', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    max-width: 256px;
+    box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+    border-radius: 10px;
+    position: relative;
+    user-select: none;
+}
+
+.category,
+.status {
+    position: absolute;
+    background-color: rgba(128, 128, 128, 0.5);
+    color: #fff;
+    font-size: 12px;
+    padding: 5px;
+    border-radius: 5px;
+    width: fit-content;
+}
+
+.category {
+    margin: 10px 0 0 10px;
+}
+
+.status {
+    margin: 10px 0 0 79px;
+}
+
+.card-container > img {
+    width: 256px;
+    height: auto;
+}
+
+.description,
+.price,
+.category {
+    display: block;
+}
+
+.description {
+    margin: 20px 10px;
+    text-align: center;
+}
+
+.price {
+    color: #4361EE;
+    margin: 0 10px 20px 10px;
+    font-size: 25px;
+}
+
+.button {
+    font-family: inherit;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin: 0 10px 0 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.top {
+    background-color: transparent;
+    color: #4361EE;
+    border: 1px solid #4361EE;
+}
+
+.bottom {
+    background-color: #4361EE;
+}

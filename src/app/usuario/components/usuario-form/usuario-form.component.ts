@@ -12,6 +12,7 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 
 export class UsuarioFormComponent implements OnInit {
   formGroup: FormGroup;
+  apiResponse: any = null;
   usuario: Usuario = new Usuario();
   usuarios: Usuario[] = [];
   isEditRoute: boolean = false;
@@ -105,8 +106,13 @@ export class UsuarioFormComponent implements OnInit {
             console.log('Usuario cadastrado com sucesso' + JSON.stringify(usuarioCadastrado));
             this.router.navigateByUrl('/usuarios/list');
           },
-          error: (err) => {
-            console.log('Erro ao incluir' + JSON.stringify(err));
+          error: (errorResponse) => {
+            this.apiResponse = errorResponse.error;
+
+            this.formGroup.get('nome')?.setErrors({ apiError: this.getErrorMessage('nome') });
+            this.formGroup.get('login')?.setErrors({ apiError: this.getErrorMessage('login') });
+
+            console.log('Erro ao incluir' + JSON.stringify(errorResponse));
           }
         });
       } else {
@@ -215,6 +221,11 @@ export class UsuarioFormComponent implements OnInit {
 
   removerEndereco(index: number) {
     this.enderecos.removeAt(index);
+  }
+
+  getErrorMessage(fieldName: string): string {
+    const error = this.apiResponse.errors.find((error: any) => error.fieldName === fieldName);
+    return error ? error.message : '';
   }
 
   get telefones() {

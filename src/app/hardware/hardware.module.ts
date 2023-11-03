@@ -17,6 +17,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { HardwareCardListComponent } from './components/hardware-card-list/hardware-card-list.component';
 
 @NgModule({
   providers: [
@@ -24,7 +25,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
   ],
   declarations: [
     HardwareListComponent,
-    HardwareFormComponent
+    HardwareFormComponent,
+    HardwareCardListComponent
   ],
   imports: [
     CommonModule,

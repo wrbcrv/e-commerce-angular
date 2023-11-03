@@ -11,6 +11,7 @@ import { EstadoService } from 'src/app/services/estado.service';
 })
 export class EstadoFormComponent {
   formGroup: FormGroup;
+  apiResponse: any = null;
 
   constructor(private formBuilder: FormBuilder,
     private estadoService: EstadoService,
@@ -29,13 +30,19 @@ export class EstadoFormComponent {
   salvar() {
     if (this.formGroup.valid) {
       const estado = this.formGroup.value;
+      
       if (estado.id == null) {
         this.estadoService.create(estado).subscribe({
           next: (estadoCadastrado) => {
             this.router.navigateByUrl('/estados/list');
           },
-          error: (err) => {
-            console.log('Erro ao incluir' + JSON.stringify(err));
+          error: (errorResponse) => {
+            this.apiResponse = errorResponse.error;
+
+            this.formGroup.get('nome')?.setErrors({ apiError: this.getErrorMessage('nome') });
+            this.formGroup.get('sigla')?.setErrors({ apiError: this.getErrorMessage('sigla') });
+
+            console.log('Erro ao incluir' + JSON.stringify(errorResponse));
           }
         });
       } else {
@@ -63,5 +70,10 @@ export class EstadoFormComponent {
         }
       });
     }
+  }
+
+  getErrorMessage(fieldName: string): string {
+    const error = this.apiResponse.errors.find((error: any) => error.fieldName === fieldName);
+    return error ? error.message : '';
   }
 }

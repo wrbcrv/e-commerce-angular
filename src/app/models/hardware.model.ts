@@ -1,5 +1,7 @@
+import { Categoria } from "./categoria.model";
 import { Fabricante } from "./fabricante.model";
 import { Marca } from "./marca.model";
+import { Status } from "./status.model";
 
 export class Hardware {
     id!: number;
@@ -12,5 +14,7 @@ export class Hardware {
     lancamento!: Date;
     idCategoria!: number;
     idStatus!: number;
+    categoria!: Categoria;
+    status!: Status;
     imageName!: string;
 }

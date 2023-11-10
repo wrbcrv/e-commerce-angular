@@ -62,18 +62,20 @@ export class HardwareFormComponent implements OnInit {
     const marca = this.marcas.find(m => m.id === (hardware?.marca?.id || null));
     const fabricante = this.fabricantes.find(m => m.id === (hardware?.fabricante?.id || null));
 
-    this.formGroup = this.formBuilder.group({
-      id: [(hardware && hardware.id) ? hardware.id : null],
-      marca: [marca],
-      nome: [(hardware && hardware.nome) ? hardware.nome : '', Validators.required],
-      preco: [(hardware && hardware.preco) ? hardware.preco : '', Validators.required],
-      estoque: [(hardware && hardware.estoque) ? hardware.estoque : '', Validators.required],
-      modelo: [(hardware && hardware.modelo) ? hardware.modelo : '', Validators.required],
-      lancamento: [(hardware && hardware.lancamento) ? new Date(hardware.lancamento) : Validators.required],
-      fabricante: [fabricante],
-      idCategoria: [(hardware && hardware.idCategoria) ? hardware.idCategoria : null],
-      idStatus: [(hardware && hardware.idStatus) ? hardware.idStatus : null]
-    });
+    const formValues = {
+      id: hardware?.id || null,
+      marca,
+      nome: [hardware?.nome || '', Validators.required],
+      preco: [hardware?.preco || '', Validators.required],
+      estoque: [hardware?.estoque || '', Validators.required],
+      modelo: [hardware?.modelo || '', Validators.required],
+      lancamento: [hardware?.lancamento ? new Date(hardware.lancamento) : '', Validators.required],
+      fabricante,
+      idCategoria: hardware?.idCategoria || null,
+      idStatus: hardware?.idStatus || null
+    };
+
+    this.formGroup = this.formBuilder.group(formValues);
   }
 
   salvar() {

@@ -27,9 +27,7 @@
     <!-- Nome Column -->
     <ng-container matColumnDef="nome-column">
       <th mat-header-cell *matHeaderCellDef> Nome </th>
-      <td mat-cell *matCellDef="let hardware">
-        <a routerLink="/hardwares/edit/{{hardware.id}}"> {{hardware.nome}} </a>
-      </td>
+      <td mat-cell *matCellDef="let hardware"> {{hardware.nome}} </td>
     </ng-container>
 
     <!-- Preço Column -->

@@ -4,8 +4,9 @@ import { Hardware } from 'src/app/models/hardware.model';
 import { HardwareService } from 'src/app/services/hardware.service';
 
 type Card = {
-  categoria: number;
-  status: number;
+  id: number;
+  categoria: string;
+  status: string;
   imageUrl: string;
   modelo: string;
   preco: number;
@@ -17,7 +18,6 @@ type Card = {
   styleUrls: ['./hardware-card-list.component.css']
 })
 export class HardwareCardListComponent implements OnInit {
-
   cards = signal<Card[]>([]);
   hardwares: Hardware[] = [];
   totalRegistros = 0;
@@ -34,11 +34,12 @@ export class HardwareCardListComponent implements OnInit {
 
   loadCards() {
     const cards: Card[] = [];
-
+    
     this.hardwares.forEach(hardware => {
       cards.push({
-        categoria: hardware.idCategoria,
-        status: hardware.idStatus,
+        id: hardware.id,
+        categoria: hardware.categoria.label,
+        status: hardware.status.label,
         imageUrl: this.hardwareService.getImageUrl(hardware.imageName),
         modelo: hardware.modelo,
         preco: hardware.preco
@@ -84,5 +85,10 @@ export class HardwareCardListComponent implements OnInit {
     this.loadCards();
     this.loadHardwares();
     this.loadTotal();
+  }
+
+  onKeyPress(event: KeyboardEvent) {
+    if (event.key === 'Enter')
+      this.applyFilter();
   }
 }

@@ -3,9 +3,9 @@ import { Telefone } from "./telefone.model";
 
 export class Usuario {
     id!: number;
-    nome!: string;
-    login!: string;
+    email!: string;
     senha!: string;
+    nome!: string;
     cpf!: string;
     telefones: Telefone[] = [];
     enderecos: Endereco[] = [];

@@ -28,7 +28,7 @@
                 </mat-form-field>
                 <mat-form-field appearance="outline" class="full-width-input">
                     <mat-label>CPF</mat-label>
-                    <input matInput type="text" formControlName="cpf" />
+                    <input matInput type="number" formControlName="cpf" />
                     <mat-error *ngIf="formGroup.get('cpf') &&
                     formGroup.get('cpf')?.invalid &&
                     formGroup.get('cpf')?.touched">

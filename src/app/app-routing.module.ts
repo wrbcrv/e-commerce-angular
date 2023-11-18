@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HardwareCardListComponent } from './hardware/components/hardware-card-list/hardware-card-list.component';
+import { LoginComponent } from './auth/components/login/login.component';
 
 const routes: Routes = [
   {
@@ -63,6 +64,11 @@ const routes: Routes = [
 
   {
     path: 'hardwares/card-list', component: HardwareCardListComponent
+  },
+
+  {
+    path: 'login', 
+    component: LoginComponent, 
   },
 ];
 

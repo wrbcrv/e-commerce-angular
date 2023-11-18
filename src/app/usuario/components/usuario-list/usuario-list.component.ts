@@ -10,7 +10,7 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 })
 export class UsuarioListComponent {
 
-  tableColumns: string[] = ['id-column', 'nome-column', 'login-column', 'cpf-column', 'telefone-column', 'endereco-column', 'acoes-column'];
+  tableColumns: string[] = ['id-column', 'email-column', 'nome-column', 'cpf-column', 'telefone-column', 'endereco-column', 'acoes-column'];
   usuarios: Usuario[] = [];
   totalRegistros = 0;
   pageSize = 2;

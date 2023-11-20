@@ -5,7 +5,6 @@ import { Categoria } from 'src/app/models/categoria.model';
 import { Fabricante } from 'src/app/models/fabricante.model';
 import { Hardware } from 'src/app/models/hardware.model';
 import { Marca } from 'src/app/models/marca.model';
-import { Status } from 'src/app/models/status.model';
 import { FabricanteService } from 'src/app/services/fabricante.service';
 import { HardwareService } from 'src/app/services/hardware.service';
 import { MarcaService } from 'src/app/services/marca.service';
@@ -19,8 +18,8 @@ export class HardwareFormComponent implements OnInit {
   formGroup: FormGroup;
   marcas: Marca[] = [];
   fabricantes: Fabricante[] = [];
-  categorias: Categoria[] = [{ id: 1, label: 'Entrada' }, { id: 2, label: 'Mid-End' }, { id: 3, label: 'High-End' }];
-  status: Status[] = [{ id: 1, label: 'Novo' }, { id: 2, label: 'Usado' }, { id: 3, label: 'Reparado' }];
+  categorias: Categoria[] = [];
+  status: Categoria[] = [];
 
   constructor(private formBuilder: FormBuilder,
     private hardwareService: HardwareService,
@@ -29,19 +28,17 @@ export class HardwareFormComponent implements OnInit {
     private router: Router,
     private activatedRoute: ActivatedRoute) {
 
-    const hardware: Hardware = this.activatedRoute.snapshot.data['hardware'];
-
     this.formGroup = formBuilder.group({
       id: [null],
-      marca: [null, Validators.required],
-      nome: ['', Validators.required],
-      preco: ['', Validators.required],
-      estoque: ['', Validators.required],
-      modelo: ['', Validators.required],
-      lancamento: [(hardware && hardware.lancamento) ? new Date(hardware.lancamento) : Validators.required],
-      fabricante: [null, Validators.required],
-      idCategoria: [null, Validators.required],
-      idStatus: [null, Validators.required]
+      marca: [null],
+      nome: [null],
+      preco: [null],
+      estoque: [null],
+      modelo: [null],
+      lancamento: [null],
+      fabricante: [null],
+      categoria: [null],
+      status: [null]
     });
   }
 
@@ -55,24 +52,36 @@ export class HardwareFormComponent implements OnInit {
       this.fabricantes = data;
       this.initializeForm();
     });
+
+    this.hardwareService.getCategorias().subscribe(data => {
+      this.categorias = data;
+      this.initializeForm();
+    });
+
+    this.hardwareService.getStatus().subscribe(data => {
+      this.status = data;
+      this.initializeForm();
+    });
   }
 
   initializeForm() {
     const hardware: Hardware = this.activatedRoute.snapshot.data['hardware'];
-    const marca = this.marcas.find(m => m.id === (hardware?.marca?.id || null));
-    const fabricante = this.fabricantes.find(m => m.id === (hardware?.fabricante?.id || null));
+    const marca = this.marcas.find(marca => marca.id === (hardware?.marca?.id || null));
+    const fabricante = this.fabricantes.find(fabricante => fabricante.id === (hardware?.fabricante?.id || null));
+    const categoria = this.categorias.find(categoria => categoria.id === (hardware?.categoria?.id || null));
+    const status = this.status.find(status => status.id === (hardware?.status?.id || null));
 
     const formValues = {
-      id: hardware?.id || null,
-      marca,
+      id: [hardware?.id || null],
+      marca: [marca],
       nome: [hardware?.nome || '', Validators.required],
       preco: [hardware?.preco || '', Validators.required],
       estoque: [hardware?.estoque || '', Validators.required],
       modelo: [hardware?.modelo || '', Validators.required],
       lancamento: [hardware?.lancamento ? new Date(hardware.lancamento) : '', Validators.required],
-      fabricante,
-      idCategoria: hardware?.idCategoria || null,
-      idStatus: hardware?.idStatus || null
+      fabricante: [fabricante],
+      categoria: [categoria],
+      status: [status]
     };
 
     this.formGroup = this.formBuilder.group(formValues);
@@ -84,20 +93,20 @@ export class HardwareFormComponent implements OnInit {
 
       if (hardware.id == null) {
         this.hardwareService.create(hardware).subscribe({
-          next: (hardwareCadastrado) => {
+          next: (response) => {
             this.router.navigateByUrl('/hardwares/list');
           },
-          error: (err) => {
-            console.log('Erro ao incluir' + JSON.stringify(err));
+          error: (error) => {
+            console.log('Erro ao incluir' + JSON.stringify(error));
           }
         });
       } else {
         this.hardwareService.update(hardware).subscribe({
-          next: (hardwareCadastrado) => {
+          next: (response) => {
             this.router.navigateByUrl('/hardwares/list');
           },
-          error: (err) => {
-            console.log('Erro ao alterar' + JSON.stringify(err));
+          error: (error) => {
+            console.log('Erro ao alterar' + JSON.stringify(error));
           }
         });
       }
@@ -108,11 +117,11 @@ export class HardwareFormComponent implements OnInit {
     const hardware = this.formGroup.value;
     if (hardware.id != null) {
       this.hardwareService.delete(hardware).subscribe({
-        next: (e) => {
+        next: (response) => {
           this.router.navigateByUrl('/hardwares/list');
         },
-        error: (err) => {
-          console.log('Erro ao excluir' + JSON.stringify(err));
+        error: (error) => {
+          console.log('Erro ao excluir' + JSON.stringify(error));
         }
       });
     }

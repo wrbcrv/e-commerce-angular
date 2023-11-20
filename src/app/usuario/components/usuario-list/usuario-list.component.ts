@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { NgIfContext } from '@angular/common';
+import { Component, TemplateRef } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { Usuario } from 'src/app/models/usuario.model';
 import { UsuarioService } from 'src/app/services/usuario.service';
@@ -10,12 +11,13 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 })
 export class UsuarioListComponent {
 
-  tableColumns: string[] = ['id-column', 'email-column', 'nome-column', 'cpf-column', 'telefone-column', 'endereco-column', 'acoes-column'];
+  tableColumns: string[] = ['id-column', 'nome-column', 'sobrenome-column', 'cpf-column', 'rg-column', 'login-column', 'telefone-column', 'endereco-column', 'acoes-column'];
   usuarios: Usuario[] = [];
   totalRegistros = 0;
   pageSize = 2;
   page = 0;
   filtro: string = "";
+  empty: TemplateRef<NgIfContext<any>> | null = null;
 
   constructor(private usuarioService: UsuarioService) { }
 

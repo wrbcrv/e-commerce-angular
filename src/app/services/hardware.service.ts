@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Hardware } from '../models/hardware.model';
+import { Categoria } from '../models/categoria.model';
+import { Status } from '../models/status.model';
 
 @Injectable({
   providedIn: 'root'
@@ -21,8 +23,8 @@ export class HardwareService {
       modelo: hardware.modelo,
       idFabricante: hardware.fabricante.id,
       lancamento: hardware.lancamento,
-      idCategoria: hardware.idCategoria,
-      idStatus: hardware.idStatus
+      idCategoria: hardware.categoria.id,
+      idStatus: hardware.status.id
     }
 
     return this.http.post<Hardware>(`${this.baseUrl}`, obj);
@@ -37,8 +39,8 @@ export class HardwareService {
       modelo: hardware.modelo,
       idFabricante: hardware.fabricante.id,
       lancamento: hardware.lancamento,
-      idCategoria: hardware.idCategoria,
-      idStatus: hardware.idStatus
+      idCategoria: hardware.categoria.id,
+      idStatus: hardware.status.id
     }
 
     return this.http.put<Hardware>(`${this.baseUrl}/${hardware.id}`, obj);
@@ -90,5 +92,13 @@ export class HardwareService {
 
   getImageUrl(imageName: string): string {
     return `${this.baseUrl}/image/download/${imageName}`;
+  }
+
+  getCategorias(): Observable<Categoria[]> {
+    return this.http.get<Categoria[]>(`${this.baseUrl}/categorias`);
+  }
+
+  getStatus(): Observable<Status[]> {
+    return this.http.get<Status[]>(`${this.baseUrl}/status`);
   }
 }

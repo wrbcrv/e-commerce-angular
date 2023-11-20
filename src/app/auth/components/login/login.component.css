@@ -1,17 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Sulphur+Point&display=swap');
+
 .login-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    background: linear-gradient(to right, #6E45E2, #FF6636);
+    height: 100vh;
+    background: hsl(218deg 50% 91%);
 }
 
 .login-box {
-    background: #fff;
+    background: #f1f7fe;
+    color: #5e5e5e;
     padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    box-shadow: 0 0 2em #e6e9f9;
     text-align: center;
+}
+
+.login-box > .logo {
+    font-family: 'Sulphur Point', sans-serif;
+    font-size: 64px;
+    color: #4361EE;
 }
 
 .login-icon {
@@ -21,27 +30,33 @@
     display: block;
 }
 
-
-
 .login-title {
     font-size: 24px;
-    margin: 10px 0;
     color: #333;
 }
 
 .login-input {
     width: 100%;
-    margin: 10px 0;
+}
+
+.button {
+    width: 100%;
+    margin-top: 10px;
+    padding: 1em;
+    border: none;
+    color: #fff;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    text-transform: uppercase;
 }
 
 .login-button {
-    width: 100%;
-    margin-top: 20px;
-    background: #FF6636;
-    color: #fff;
-    transition: background 0.3s;
+    background-color: #4361EE;
+    margin-bottom: 5px;
 }
 
-.login-button:hover {
-    background: #FF5722;
+.register-button {
+    margin-top: 5px;
+    background-color: #169873;
 }

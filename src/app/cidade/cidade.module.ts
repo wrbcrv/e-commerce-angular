@@ -39,5 +39,4 @@ import { MatSelectModule } from '@angular/material/select';
     FormsModule
   ]
 })
-
 export class CidadeModule { }

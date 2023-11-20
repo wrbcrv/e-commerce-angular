@@ -12,8 +12,6 @@ export class Hardware {
     modelo!: string;
     fabricante!: Fabricante;
     lancamento!: Date;
-    idCategoria!: number;
-    idStatus!: number;
     categoria!: Categoria;
     status!: Status;
     imageName!: string;

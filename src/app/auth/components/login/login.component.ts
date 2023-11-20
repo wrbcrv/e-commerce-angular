@@ -28,6 +28,7 @@ export class LoginComponent implements OnInit {
     if (this.formGroup.valid) {
       const email = this.formGroup.get('email')!.value;
       const senha = this.formGroup.get('senha')!.value;
+      
       this.authService.login(email, senha).subscribe({
         next: () => {
           this.router.navigateByUrl('/hardwares/card-list');
@@ -39,10 +40,6 @@ export class LoginComponent implements OnInit {
     } else {
       this.showSnackbarTopPosition("Dados inválidos", 'Fechar', 2000);
     }
-  }
-
-  onRegister() {
-
   }
 
   showSnackbarTopPosition(content: any, action: any, duration: any) {

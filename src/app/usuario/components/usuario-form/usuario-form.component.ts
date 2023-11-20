@@ -25,7 +25,7 @@ export class UsuarioFormComponent implements OnInit {
 
     this.formGroup = formBuilder.group({
       id: [null],
-      email: ['', Validators.required],
+      login: ['', Validators.required],
       senha: ['', Validators.required],
       nome: ['', Validators.required],
       cpf: ['', Validators.required],
@@ -55,10 +55,12 @@ export class UsuarioFormComponent implements OnInit {
 
     this.formGroup = this.formBuilder.group({
       id: [(usuario && usuario.id) ? usuario.id : null],
-      email: [(usuario && usuario.email) ? usuario.email : '', Validators.required],
-      senha: [(usuario && usuario.senha) ? usuario.senha : '', Validators.required],
       nome: [(usuario && usuario.nome) ? usuario.nome : '', Validators.required],
+      sobrenome: [(usuario && usuario.sobrenome) ? usuario.sobrenome : '', Validators.required],
       cpf: [(usuario && usuario.cpf) ? usuario.cpf : '', Validators.required],
+      rg: [(usuario && usuario.rg) ? usuario.rg : '', Validators.required],
+      login: [(usuario && usuario.login) ? usuario.login : '', Validators.required],
+      senha: [(usuario && usuario.senha) ? usuario.senha : '', Validators.required],
       telefones: this.formBuilder.array([]),
       enderecos: this.formBuilder.array([])
     });

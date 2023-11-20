@@ -1,0 +1,46 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-container {
+  display: flex;
+  gap: 22px;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.button {
+  width: 100%;
+  padding: 1em;
+  border: none;
+  color: #fff;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.create-account {
+  background-color: #4361EE;
+  margin-bottom: 10px;
+}
+
+.back-to-login {
+  background-color: #169873;
+}

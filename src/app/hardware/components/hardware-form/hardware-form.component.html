@@ -68,16 +68,16 @@
                 </mat-form-field>
                 <mat-form-field appearance="outline">
                     <mat-label for="categoria-id">Categoria</mat-label>
-                    <mat-select formControlName="idCategoria" id="categoria-id">
-                        <mat-option *ngFor="let categoria of categorias" [value]="categoria.id">
+                    <mat-select formControlName="categoria" id="categoria-id">
+                        <mat-option *ngFor="let categoria of categorias" [value]="categoria">
                             {{categoria.label}}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
                 <mat-form-field appearance="outline">
                     <mat-label for="status-id">Status</mat-label>
-                    <mat-select formControlName="idStatus" id="status-id">
-                        <mat-option *ngFor="let status of status" [value]="status.id">
+                    <mat-select formControlName="status" id="status-id">
+                        <mat-option *ngFor="let status of status" [value]="status">
                             {{status.label}}
                         </mat-option>
                     </mat-select>

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Telefone, Usuario } from '../models/usuario.model';
+import { Perfil } from '../models/perfil.modal';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,17 @@ export class UsuarioService {
   constructor(private http: HttpClient) { }
 
   create(usuario: Usuario): Observable<Usuario> {
-    return this.http.post<Usuario>(`${this.baseUrl}`, usuario);
+    const obj = {
+      nome: usuario.nome,
+      sobrenome: usuario.sobrenome,
+      cpf: usuario.cpf,
+      rg: usuario.rg,
+      login: usuario.login,
+      senha: usuario.senha,
+      idPerfis: usuario.perfil.id
+    }
+
+    return this.http.post<Usuario>(`${this.baseUrl}`, obj);
   }
 
   update(usuario: Usuario): Observable<Usuario> {
@@ -61,5 +72,9 @@ export class UsuarioService {
 
   countByNome(nome: string): Observable<number> {
     return this.http.get<number>(`${this.baseUrl}/search/${nome}/count`);
+  }
+
+  getPerfis(): Observable<Perfil[]> {
+    return this.http.get<Perfil[]>(`${this.baseUrl}/perfis`);
   }
 }

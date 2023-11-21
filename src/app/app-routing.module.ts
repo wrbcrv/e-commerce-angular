@@ -2,12 +2,11 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './auth/components/login/login.component';
 import { HardwareCardListComponent } from './hardware/components/hardware-card-list/hardware-card-list.component';
-import { CadastroComponent } from './cadastro/components/cadastro/cadastro.component';
 
 const routes: Routes = [
-  {
-    path: 'cadastro', component: CadastroComponent
-  },
+  /*   {
+      path: 'register', component: CadastroComponent
+    }, */
 
   {
     path: 'cidades', loadChildren: () => import('./cidade/cidade.module').then(m => m.CidadeModule)
@@ -49,9 +48,9 @@ const routes: Routes = [
     path: 'marcas', loadChildren: () => import('./marca/marca.module').then(m => m.MarcaModule)
   },
 
-  {
-    path: '', loadChildren: () => import('./cadastro/cadastro.module').then(m => m.CadastroModule)
-  },
+  /*   {
+      path: '', loadChildren: () => import('./cadastro/cadastro.module').then(m => m.CadastroModule)
+    }, */
 
   {
     path: '', redirectTo: 'hardwares/card-list', pathMatch: 'full'

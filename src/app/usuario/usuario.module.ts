@@ -15,6 +15,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatIconModule,
     MatExpansionModule,
     MatPaginatorModule,
+    MatSelectModule,
     FormsModule
   ]
 })

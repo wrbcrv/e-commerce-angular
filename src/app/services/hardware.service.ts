@@ -94,6 +94,15 @@ export class HardwareService {
     return `${this.baseUrl}/image/download/${imageName}`;
   }
 
+  uploadImage(id: number, imageName: string, image: File): Observable<any> {
+    const formData: FormData = new FormData();
+    formData.append('id', id.toString());
+    formData.append('imageName', image.name);
+    formData.append('image', image, image.name);
+
+    return this.http.patch<Hardware>(`${this.baseUrl}/image/upload`, formData);
+  }
+
   getCategorias(): Observable<Categoria[]> {
     return this.http.get<Categoria[]>(`${this.baseUrl}/categorias`);
   }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Perfil } from 'src/app/models/perfil.modal';
 import { Usuario, Telefone, Endereco } from 'src/app/models/usuario.model';
 import { UsuarioService } from 'src/app/services/usuario.service';
 
@@ -15,6 +16,7 @@ export class UsuarioFormComponent implements OnInit {
   apiResponse: any = null;
   usuario: Usuario = new Usuario();
   usuarios: Usuario[] = [];
+  perfis: Perfil[] = [];
   isEditRoute: boolean = false;
   isNewRoute: boolean = false;
 
@@ -25,12 +27,15 @@ export class UsuarioFormComponent implements OnInit {
 
     this.formGroup = formBuilder.group({
       id: [null],
+      nome: ['', Validators.required],
+      sobrenome: ['', Validators.required],
+      cpf: ['', Validators.required],
+      rg: ['', Validators.required],
       login: ['', Validators.required],
       senha: ['', Validators.required],
-      nome: ['', Validators.required],
-      cpf: ['', Validators.required],
       telefones: formBuilder.array([]),
-      enderecos: formBuilder.array([])
+      enderecos: formBuilder.array([]),
+      perfil: [null]
     });
   }
 
@@ -39,6 +44,11 @@ export class UsuarioFormComponent implements OnInit {
       this.usuarios = data;
       this.initializeForm();
     });
+
+    this.usuarioService.getPerfis().subscribe(data => {
+      this.perfis = data;
+      this.initializeForm();
+    })
 
     this.activatedRoute.url.subscribe(urlSegments => {
       this.isEditRoute = urlSegments.length > 0 && urlSegments[0].path === 'edit';
@@ -51,7 +61,7 @@ export class UsuarioFormComponent implements OnInit {
 
   initializeForm() {
     const usuario: Usuario = this.activatedRoute.snapshot.data['usuario'];
-    this.usuario = usuario;
+    const perfil = this.perfis.find(perfis => perfis.id === (usuario?.perfil?.id || null));
 
     this.formGroup = this.formBuilder.group({
       id: [(usuario && usuario.id) ? usuario.id : null],
@@ -62,7 +72,8 @@ export class UsuarioFormComponent implements OnInit {
       login: [(usuario && usuario.login) ? usuario.login : '', Validators.required],
       senha: [(usuario && usuario.senha) ? usuario.senha : '', Validators.required],
       telefones: this.formBuilder.array([]),
-      enderecos: this.formBuilder.array([])
+      enderecos: this.formBuilder.array([]),
+      perfil: [perfil]
     });
 
     if (usuario && usuario.telefones) {

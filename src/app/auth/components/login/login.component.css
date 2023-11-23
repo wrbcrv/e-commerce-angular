@@ -133,6 +133,20 @@ mat-form-field {
   transition: transform 0.6s ease-in-out;
 }
 
+.ghost {
+  appearance: none;
+  border: none;
+  background-color: transparent;
+  color: #fff;
+  font-weight: 600;
+  font-size: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+
 .overlay-left {
   transform: translateX(-20%);
 }
@@ -163,7 +177,7 @@ mat-form-field {
   display: inline-block;
   font-family: Inter, -apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif;
   font-size: 15px;
-  font-weight: 500;
+  font-weight: 600;
   height: 56px;
   letter-spacing: normal;
   line-height: 1.5;

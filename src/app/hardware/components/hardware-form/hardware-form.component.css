@@ -16,6 +16,11 @@ mat-card-actions {
     padding: 2rem;
 }
 
+.flex-container {
+  display: flex;
+  gap: 22px;
+}
+
 .centered-toolbar {
     display: flex;
     justify-content: center;
@@ -29,4 +34,16 @@ button[mat-button] {
 
 button[mat-flat-button]:not(:last-child) {
     margin-right: 1rem;
+}
+
+.image-container {
+  margin: auto;
+  border: 2px dashed #000;
+  border-radius: 10px;
+  width: fit-content;
+}
+
+.image-container > img {
+  width: 256px;
+  height: auto;
 }

@@ -20,8 +20,13 @@ export class HardwareFormComponent implements OnInit {
   fabricantes: Fabricante[] = [];
   categorias: Categoria[] = [];
   status: Categoria[] = [];
+  apiResponse: any = null;
+  fileName: string = '';
+  selectedFile: File | null = null;
+  imagePreview: string | ArrayBuffer | null = null;
 
-  constructor(private formBuilder: FormBuilder,
+  constructor(
+    private formBuilder: FormBuilder,
     private hardwareService: HardwareService,
     private marcaService: MarcaService,
     private fabricanteService: FabricanteService,
@@ -43,12 +48,12 @@ export class HardwareFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.marcaService.findAll(0, 999).subscribe(data => {
+    this.marcaService.findAll(0, 16).subscribe(data => {
       this.marcas = data;
       this.initializeForm();
     });
 
-    this.fabricanteService.findAll(0, 999).subscribe(data => {
+    this.fabricanteService.findAll(0, 16).subscribe(data => {
       this.fabricantes = data;
       this.initializeForm();
     });
@@ -71,20 +76,23 @@ export class HardwareFormComponent implements OnInit {
     const categoria = this.categorias.find(categoria => categoria.id === (hardware?.categoria?.id || null));
     const status = this.status.find(status => status.id === (hardware?.status?.id || null));
 
-    const formValues = {
+    if (hardware && hardware.imageName) {
+      this.imagePreview = this.hardwareService.getImageUrl(hardware.imageName);
+      this.fileName = hardware.imageName;
+    }
+
+    this.formGroup = this.formBuilder.group({
       id: [hardware?.id || null],
       marca: [marca],
-      nome: [hardware?.nome || '', Validators.required],
-      preco: [hardware?.preco || '', Validators.required],
-      estoque: [hardware?.estoque || '', Validators.required],
-      modelo: [hardware?.modelo || '', Validators.required],
-      lancamento: [hardware?.lancamento ? new Date(hardware.lancamento) : '', Validators.required],
+      nome: [hardware?.nome || null],
+      preco: [hardware?.preco || null],
+      estoque: [hardware?.estoque || null],
+      modelo: [hardware?.modelo || null],
+      lancamento: [hardware?.lancamento ? new Date(hardware.lancamento) : null],
       fabricante: [fabricante],
       categoria: [categoria],
       status: [status]
-    };
-
-    this.formGroup = this.formBuilder.group(formValues);
+    });
   }
 
   salvar() {
@@ -93,21 +101,37 @@ export class HardwareFormComponent implements OnInit {
 
       if (hardware.id == null) {
         this.hardwareService.create(hardware).subscribe({
-          next: (response) => {
-            this.router.navigateByUrl('/hardwares/list');
-          },
-          error: (error) => {
-            console.log('Erro ao incluir' + JSON.stringify(error));
-          }
+          next:
+            (response) => {
+              this.uploadImage(response.id);
+            },
+          error:
+            (error) => {
+              this.apiResponse = error.error;
+
+              this.formGroup.get('marca')?.setErrors({ apiError: this.getErrorMessage('marca') });
+              this.formGroup.get('nome')?.setErrors({ apiError: this.getErrorMessage('nome') });
+              this.formGroup.get('preco')?.setErrors({ apiError: this.getErrorMessage('preco') });
+              this.formGroup.get('estoque')?.setErrors({ apiError: this.getErrorMessage('estoque') });
+              this.formGroup.get('modelo')?.setErrors({ apiError: this.getErrorMessage('modelo') });
+              this.formGroup.get('lancamento')?.setErrors({ apiError: this.getErrorMessage('lancamento') });
+              this.formGroup.get('fabricante')?.setErrors({ apiError: this.getErrorMessage('fabricante') });
+              this.formGroup.get('categoria')?.setErrors({ apiError: this.getErrorMessage('categoria') });
+              this.formGroup.get('status')?.setErrors({ apiError: this.getErrorMessage('status') });
+
+              console.log('Erro ao incluir' + JSON.stringify(error));
+            }
         });
       } else {
         this.hardwareService.update(hardware).subscribe({
-          next: (response) => {
-            this.router.navigateByUrl('/hardwares/list');
-          },
-          error: (error) => {
-            console.log('Erro ao alterar' + JSON.stringify(error));
-          }
+          next:
+            (response) => {
+              this.uploadImage(response.id)
+            },
+          error:
+            (error) => {
+              console.log('Erro ao alterar' + JSON.stringify(error));
+            }
         });
       }
     }
@@ -117,13 +141,49 @@ export class HardwareFormComponent implements OnInit {
     const hardware = this.formGroup.value;
     if (hardware.id != null) {
       this.hardwareService.delete(hardware).subscribe({
-        next: (response) => {
-          this.router.navigateByUrl('/hardwares/list');
-        },
-        error: (error) => {
-          console.log('Erro ao excluir' + JSON.stringify(error));
-        }
+        next:
+          () => {
+            this.router.navigateByUrl('/hardwares/list');
+          },
+        error:
+          (error) => {
+            console.log('Erro ao excluir' + JSON.stringify(error));
+          }
       });
     }
+  }
+
+  loadSelectedImage(event: any) {
+    this.selectedFile = event.target.files[0];
+
+    if (this.selectedFile) {
+      this.fileName = this.selectedFile.name;
+
+      const fileReader = new FileReader();
+      fileReader.onload = e => this.imagePreview = fileReader.result;
+      fileReader.readAsDataURL(this.selectedFile);
+    }
+  }
+
+  uploadImage(hardwareId: number) {
+    if (this.selectedFile) {
+      this.hardwareService.uploadImage(hardwareId, this.selectedFile.name, this.selectedFile).subscribe({
+        next:
+          () => {
+            this.router.navigateByUrl('/hardwares/list')
+          },
+        error:
+          (error) => {
+            console.log('Erro ao fazer upload da imagem');
+          }
+      })
+    } else {
+      this.router.navigateByUrl('/hardwares/list');
+    }
+  }
+
+  getErrorMessage(field: string): string {
+    const error = this.apiResponse.errors.find((error: any) => error.field === field);
+    return error ? error.message : '';
   }
 }

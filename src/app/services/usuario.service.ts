@@ -20,7 +20,7 @@ export class UsuarioService {
       rg: usuario.rg,
       login: usuario.login,
       senha: usuario.senha,
-      idPerfis: usuario.perfil.id
+      idPerfil: usuario.perfil.id
     }
 
     return this.http.post<Usuario>(`${this.baseUrl}`, obj);

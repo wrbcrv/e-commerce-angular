@@ -2,11 +2,12 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './auth/components/login/login.component';
 import { HardwareCardListComponent } from './hardware/components/hardware-card-list/hardware-card-list.component';
+import { CarrinhoComponent } from './pedido/components/carrinho/carrinho.component';
 
 const routes: Routes = [
-  /*   {
-      path: 'register', component: CadastroComponent
-    }, */
+  {
+    path: 'carrinho', component: CarrinhoComponent
+  },
 
   {
     path: 'cidades', loadChildren: () => import('./cidade/cidade.module').then(m => m.CidadeModule)

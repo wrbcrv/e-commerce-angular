@@ -16,6 +16,7 @@ import { AuthInterceptor } from './auth/interceptors/auth.interceptor';
 import { ErrorInterceptor } from './auth/interceptors/error.interceptor';
 import { AdminComponent } from './shared/components/admin/admin.component';
 import { UserComponent } from './shared/components/user/user.component';
+import { PedidoModule } from './pedido/pedido.module';
 
 registerLocaleData(localePt);
 
@@ -38,7 +39,8 @@ registerLocaleData(localePt);
     HttpClientModule,
     BrowserAnimationsModule,
     SharedModule,
-    AuthModule
+    AuthModule,
+    PedidoModule
   ],
   providers: [
     JwtHelperService,

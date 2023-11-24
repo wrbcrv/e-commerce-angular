@@ -1,0 +1,14 @@
+<ng-container *ngIf="itens.length > 0; else empty">
+  <div *ngFor="let item of itens">
+    <h3>{{ item.nome }}</h3>
+    <p>Preço: {{ item.preco }}</p>
+    <p>Quantidade: {{ item.quantidade }}</p>
+    <p>Total: {{ item.quantidade * item.preco }}</p>
+    <button (click)="removeItem(item)">Remover do Carrinho</button>
+  </div>
+  <p>Total do Carrinho: {{ calculateTotal() }}</p>
+  <button>Finalizar Compra</button>
+</ng-container>
+<ng-template #empty>
+  <p>O carrinho está vazio.</p>
+</ng-template>

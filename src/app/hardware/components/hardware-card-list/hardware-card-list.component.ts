@@ -1,6 +1,7 @@
 import { Component, OnInit, signal } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { Hardware } from 'src/app/models/hardware.model';
+import { CarrinhoService } from 'src/app/services/carrinho.service';
 import { HardwareService } from 'src/app/services/hardware.service';
 
 type Card = {
@@ -25,7 +26,9 @@ export class HardwareCardListComponent implements OnInit {
   page = 0;
   filter: string = '';
 
-  constructor(private hardwareService: HardwareService) { }
+  constructor(
+    private hardwareService: HardwareService,
+    private carrinhoService: CarrinhoService) { }
 
   ngOnInit(): void {
     this.loadHardwares();
@@ -90,5 +93,15 @@ export class HardwareCardListComponent implements OnInit {
   onKeyPress(event: KeyboardEvent) {
     if (event.key === 'Enter')
       this.applyFilter();
+  }
+
+  addToCarrinho(card: Card) {
+    alert('Produto adicionado ao carrinho')
+    this.carrinhoService.add({
+      id: card.id,
+      nome: card.modelo,
+      preco: card.preco,
+      quantidade: 1
+    });
   }
 }

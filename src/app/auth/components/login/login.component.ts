@@ -57,7 +57,12 @@ export class LoginComponent implements OnInit {
 
       this.authService.login(email, senha).subscribe({
         next: (response) => {
-          this.router.navigateByUrl('/hardwares/card-list');
+          const role = this.authService.getUserRole();
+
+          if (role === 'Admin')
+            this.router.navigateByUrl('/admin/cidades/list');
+          else
+            this.router.navigateByUrl('/produtos');
         },
         error: (error) => {
           this.showSnackbarTopPosition("Usuário ou senha Inválidos", 'Fechar', 2000);

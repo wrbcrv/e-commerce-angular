@@ -1,3 +1,54 @@
-<app-header></app-header>
-<app-main></app-main>
-<app-footer></app-footer>
+<link rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+<aside>
+  <img class="logo" src="/assets/GLWareAdmin.svg" alt="">
+  <div class="aside-menu">
+    <a class="aside-menu-link" routerLink="/admin" routerLinkActive="active">
+      <span class="material-symbols-outlined">dashboard</span>
+      Dashboard
+    </a>
+    <a class="aside-menu-link" routerLink="cidades/list" routerLinkActive="active">
+      <span class="material-symbols-outlined">apartment</span>
+      Controle de Cidade</a>
+    <a class="aside-menu-link" routerLink="cupons/list" routerLinkActive="active">
+      <span class="material-symbols-outlined">percent</span>
+      Controle de Cupom
+    </a>
+    <a class="aside-menu-link" routerLink="descricoes/list" routerLinkActive="active">
+      <span class="material-symbols-outlined">description</span>
+      Controle de Descrição
+    </a>
+    <a class="aside-menu-link" routerLink="estados/list" routerLinkActive="active">
+      <span class="material-symbols-outlined">flag</span>
+      Controle de Estado
+    </a>
+    <a class="aside-menu-link" routerLink="fabricantes/list" routerLinkActive="active">
+      <span class="material-symbols-outlined">factory</span>
+      Controle de Fabricante
+    </a>
+    <a class="aside-menu-link" routerLink="fornecedores/list" routerLinkActive="active">
+      <span class="material-symbols-outlined">local_shipping</span>
+      Controle de Fornecedor
+    </a>
+    <a class="aside-menu-link" routerLink="marcas/list" routerLinkActive="active">
+      <span class="material-symbols-outlined">shoppingmode</span>
+      Controle de Marca</a>
+    <a class="aside-menu-link" routerLink="hardwares/list" routerLinkActive="active">
+      <span class="material-symbols-outlined">inventory_2</span>
+      Controle de Produto
+    </a>
+    <a class="aside-menu-link" routerLink="usuarios/list" routerLinkActive="active">
+      <span class="material-symbols-outlined">group</span>
+      Controle de Usuário
+    </a>
+  </div>
+</aside>
+<header>
+  <div class="user-info">
+    <span>Olá, {{usuario?.login}}!</span>
+    <div class="profile-image-container"></div>
+  </div>
+</header>
+<main>
+  <router-outlet></router-outlet>
+</main>

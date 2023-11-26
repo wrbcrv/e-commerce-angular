@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Telefone, Usuario } from '../models/usuario.model';
 import { Perfil } from '../models/perfil.modal';
@@ -76,5 +76,15 @@ export class UsuarioService {
 
   getPerfis(): Observable<Perfil[]> {
     return this.http.get<Perfil[]>(`${this.baseUrl}/perfis`);
+  }
+
+  private apiUrl = 'http://localhost:8080/logged';
+
+  getLoggedUser(): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+
+    return this.http.get(`${this.apiUrl}`, { headers });
   }
 }

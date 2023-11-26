@@ -8,8 +8,7 @@ import { HardwareCardListComponent } from './components/hardware-card-list/hardw
 const routes: Routes = [
   { path: 'list', component: HardwareListComponent },
   { path: 'new', component: HardwareFormComponent },
-  { path: 'edit/:id', component: HardwareFormComponent, resolve: { hardware: hardwareResolver } },
-  { path: 'card-list', component: HardwareCardListComponent }
+  { path: 'edit/:id', component: HardwareFormComponent, resolve: { hardware: hardwareResolver } }
 ];
 
 @NgModule({

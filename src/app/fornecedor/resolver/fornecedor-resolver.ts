@@ -3,7 +3,7 @@ import { ActivatedRoute, ActivatedRouteSnapshot, ResolveFn, RouterStateSnapshot 
 import { Fornecedor } from "src/app/models/fornecedor.model";
 import { FornecedorService } from "src/app/services/fornecedor.service";
 
-export const fornecedorResolver: ResolveFn<Fornecedor> = 
-    (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
-        return inject(FornecedorService).findById(route.paramMap.get('id')!);
-    };
+export const fornecedorResolver: ResolveFn<Fornecedor> =
+  (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
+    return inject(FornecedorService).findById(route.paramMap.get('id')!);
+  };

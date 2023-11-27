@@ -54,8 +54,8 @@ export class DescricaoFormComponent implements OnInit {
       const descricao = this.formGroup.value;
       if (descricao.id == null) {
         this.descricaoService.create(descricao).subscribe({
-          next: (descricaoCadastrado) => {
-            this.router.navigateByUrl('/descricoes/list');
+          next: (response) => {
+            this.router.navigateByUrl('/admin/descricoes/list');
           },
           error: (err) => {
             console.log('Erro ao incluir' + JSON.stringify(err));
@@ -63,8 +63,8 @@ export class DescricaoFormComponent implements OnInit {
         });
       } else {
         this.descricaoService.update(descricao).subscribe({
-          next: (descricaoCadastrado) => {
-            this.router.navigateByUrl('/descricoes/list');
+          next: (response) => {
+            this.router.navigateByUrl('/admin/descricoes/list');
           },
           error: (err) => {
             console.log('Erro ao alterar' + JSON.stringify(err));
@@ -78,8 +78,8 @@ export class DescricaoFormComponent implements OnInit {
     const descricao = this.formGroup.value;
     if (descricao.id != null) {
       this.descricaoService.delete(descricao).subscribe({
-        next: (e) => {
-          this.router.navigateByUrl('/descricoes/list');
+        next: (response) => {
+          this.router.navigateByUrl('/admin/descricoes/list');
         },
         error: (err) => {
           console.log('Erro ao excluir' + JSON.stringify(err));

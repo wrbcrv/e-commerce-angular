@@ -13,13 +13,13 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 export class UsuarioListComponent {
 
   tableColumns: string[] = [
-    'id-column', 
-    'nome-column', 
-    'sobrenome-column', 
-    'cpf-column', 
-    'rg-column', 
-    'login-column', 
-    'telefone-column', 
+    'id-column',
+    'nome-column',
+    'sobrenome-column',
+    'cpf-column',
+    'rg-column',
+    'login-column',
+    'telefone-column',
     'endereco-column',
     'perfil-column',
     'acoes-column'];

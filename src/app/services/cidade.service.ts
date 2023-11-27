@@ -13,11 +13,21 @@ export class CidadeService {
   constructor(private http: HttpClient) { }
 
   create(cidade: Cidade): Observable<Cidade> {
-    return this.http.post<Cidade>(`${this.baseUrl}`, cidade);
+    const obj = {
+      nome: cidade.nome,
+      idEstado: cidade.estado.id
+    }
+
+    return this.http.post<Cidade>(`${this.baseUrl}`, obj);
   }
 
   update(cidade: Cidade): Observable<Cidade> {
-    return this.http.put<Cidade>(`${this.baseUrl}/${cidade.id}`, cidade);
+    const obj = {
+      nome: cidade.nome,
+      idEstado: cidade.estado.id
+    }
+
+    return this.http.put<Cidade>(`${this.baseUrl}/${cidade.id}`, obj);
   }
 
   delete(cidade: Cidade): Observable<any> {

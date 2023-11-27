@@ -31,20 +31,20 @@ export class FabricanteFormComponent {
       const fabricante = this.formGroup.value;
       if (fabricante.id == null) {
         this.fabricanteService.create(fabricante).subscribe({
-          next: (fabricanteCadastrado) => {
-            this.router.navigateByUrl('/fabricantes/list');
+          next: (response) => {
+            this.router.navigateByUrl('/admin/fabricantes/list');
           },
-          error: (err) => {
-            console.log('Erro ao incluir' + JSON.stringify(err));
+          error: (error) => {
+            console.log('Erro ao incluir' + JSON.stringify(error));
           }
         });
       } else {
         this.fabricanteService.update(fabricante).subscribe({
-          next: (fabricanteCadastrado) => {
-            this.router.navigateByUrl('/fabricantes/list');
+          next: (response) => {
+            this.router.navigateByUrl('/admin/fabricantes/list');
           },
-          error: (err) => {
-            console.log('Erro ao alterar' + JSON.stringify(err));
+          error: (error) => {
+            console.log('Erro ao alterar' + JSON.stringify(error));
           }
         });
       }
@@ -55,11 +55,11 @@ export class FabricanteFormComponent {
     const fabricante = this.formGroup.value;
     if (fabricante.id != null) {
       this.fabricanteService.delete(fabricante).subscribe({
-        next: (e) => {
-          this.router.navigateByUrl('/fabricantes/list');
+        next: (response) => {
+          this.router.navigateByUrl('/admin/fabricantes/list');
         },
-        error: (err) => {
-          console.log('Erro ao excluir' + JSON.stringify(err));
+        error: (error) => {
+          console.log('Erro ao excluir' + JSON.stringify(error));
         }
       });
     }

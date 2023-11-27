@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { SharedModule } from './shared/shared-module';
+import { TemplateModule } from './template/template-module';
 
 import { Overlay } from '@angular/cdk/overlay';
 import { registerLocaleData } from '@angular/common';
@@ -19,8 +19,8 @@ import { AuthInterceptor } from './auth/interceptors/auth.interceptor';
 import { ErrorInterceptor } from './auth/interceptors/error.interceptor';
 import { HardwareCardListComponent } from './hardware/components/hardware-card-list/hardware-card-list.component';
 import { PedidoModule } from './pedido/pedido.module';
-import { AdminComponent } from './shared/components/admin/admin.component';
-import { UserComponent } from './shared/components/user/user.component';
+import { AdminComponent } from './template/components/admin/admin.component';
+import { UserComponent } from './template/components/user/user.component';
 
 registerLocaleData(localePt);
 
@@ -42,7 +42,7 @@ registerLocaleData(localePt);
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    SharedModule,
+    TemplateModule,
     AuthModule,
     PedidoModule
   ],

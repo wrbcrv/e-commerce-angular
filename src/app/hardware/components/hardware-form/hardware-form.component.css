@@ -1,19 +1,19 @@
 .full-width-input {
-    width: 100%;
+  width: 100%;
 }
 
 mat-card {
-    max-width: 800px;
-    margin: 2rem auto;
+  max-width: 800px;
+  margin: 2rem auto;
 }
 
 mat-card-actions {
-    display: flex;
-    justify-content: flex-end;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .form-container {
-    padding: 2rem;
+  padding: 2rem;
 }
 
 .flex-container {
@@ -22,18 +22,18 @@ mat-card-actions {
 }
 
 .centered-toolbar {
-    display: flex;
-    justify-content: center;
-    font-size: x-large;
+  display: flex;
+  justify-content: center;
+  font-size: x-large;
 }
 
 button[mat-flat-button],
 button[mat-button] {
-    width: 120px;
+  width: 120px;
 }
 
 button[mat-flat-button]:not(:last-child) {
-    margin-right: 1rem;
+  margin-right: 1rem;
 }
 
 .image-container {
@@ -43,7 +43,7 @@ button[mat-flat-button]:not(:last-child) {
   width: fit-content;
 }
 
-.image-container > img {
+.image-container>img {
   width: 256px;
   height: auto;
 }

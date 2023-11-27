@@ -10,8 +10,8 @@ const routes: Routes = [
   { path: 'list', component: FornecedorListComponent },
   { path: 'new', component: FornecedorFormComponent },
   { path: 'edit/:id', component: FornecedorFormComponent, resolve: { fornecedor: fornecedorResolver } },
-  { path: 'associate/:id', component: FornecedorFormComponent, resolve: { fornecedor: fornecedorResolver } } 
-  
+  { path: 'associate/:id', component: FornecedorFormComponent, resolve: { fornecedor: fornecedorResolver } }
+
 ];
 
 @NgModule({

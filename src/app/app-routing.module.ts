@@ -3,8 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './auth/components/login/login.component';
 import { HardwareCardListComponent } from './hardware/components/hardware-card-list/hardware-card-list.component';
 import { CarrinhoComponent } from './pedido/components/carrinho/carrinho.component';
-import { AdminComponent } from './shared/components/admin/admin.component';
-import { UserComponent } from './shared/components/user/user.component';
+import { AdminComponent } from './template/components/admin/admin.component';
+import { UserComponent } from './template/components/user/user.component';
 import { MAT_TOOLTIP_SCROLL_STRATEGY, MatTooltipModule } from '@angular/material/tooltip';
 
 const routes: Routes = [

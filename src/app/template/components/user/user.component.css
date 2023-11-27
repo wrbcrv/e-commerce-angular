@@ -1,0 +1,35 @@
+header {
+  padding: 10px 20px;
+  background-color: #4361EE;
+  color: #fff;
+  box-sizing: border-box;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  margin-bottom: 20px;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.profile-image-container {
+  background-color: #fff;
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+}
+
+.loggout-button {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  font-size: smaller;
+  color: #fff;
+  cursor: pointer;
+}
+
+.loggout-button>.loggout {
+  font-size: large;
+}

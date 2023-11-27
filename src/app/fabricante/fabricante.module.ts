@@ -14,23 +14,23 @@ import { FabricanteListComponent } from './components/fabricante-list/fabricante
 import { FabricanteRoutingModule } from './fabricante-routing.module';
 
 @NgModule({
-    declarations: [
-        FabricanteListComponent,
-        FabricanteFormComponent
-    ],
-    imports: [
-        CommonModule,
-        MatTableModule,
-        MatToolbarModule,
-        ReactiveFormsModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatButtonModule,
-        MatCardModule,
-        MatIconModule,
-        MatPaginatorModule,
-        FormsModule,
-        FabricanteRoutingModule
-    ]
+  declarations: [
+    FabricanteListComponent,
+    FabricanteFormComponent
+  ],
+  imports: [
+    CommonModule,
+    MatTableModule,
+    MatToolbarModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatCardModule,
+    MatIconModule,
+    MatPaginatorModule,
+    FormsModule,
+    FabricanteRoutingModule
+  ]
 })
 export class FabricanteModule { }

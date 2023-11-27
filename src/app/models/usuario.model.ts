@@ -3,16 +3,16 @@ import { Perfil } from "./perfil.modal";
 import { Telefone } from "./telefone.model";
 
 export class Usuario {
-    id!: number;
-    nome!: string;
-    sobrenome!: string;
-    cpf!: string;
-    rg!: string;
-    login!: string;
-    senha!: string;
-    telefones: Telefone[] = [];
-    enderecos: Endereco[] = [];
-    perfil!: Perfil;
+  id!: number;
+  nome!: string;
+  sobrenome!: string;
+  cpf!: string;
+  rg!: string;
+  login!: string;
+  senha!: string;
+  telefones: Telefone[] = [];
+  enderecos: Endereco[] = [];
+  perfil!: Perfil;
 }
 
 export { Telefone }

@@ -5,7 +5,7 @@
   <button class="search-button" (click)="aplicarFiltro()">
     <mat-icon>search</mat-icon>
   </button>
-  <button class="add-button" routerLink="/descricoes/new">
+  <button class="add-button" routerLink="/admin/descricoes/new">
     <mat-icon>add</mat-icon>
   </button>
 </div>
@@ -33,7 +33,7 @@
       <ng-container matColumnDef="acoes-column">
         <th mat-header-cell *matHeaderCellDef> Ações </th>
         <td mat-cell *matCellDef="let descricao" class="flex-td">
-          <button mat-icon-button color="primary" routerLink="/descricoes/edit/{{descricao.id}}">
+          <button mat-icon-button color="primary" routerLink="/admin/descricoes/edit/{{descricao.id}}">
             <mat-icon>edit</mat-icon>
           </button>
           <button mat-icon-button color="warn" (click)="excluirDescricao(descricao)">

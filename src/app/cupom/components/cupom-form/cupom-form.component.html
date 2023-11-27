@@ -1,91 +1,83 @@
 <mat-toolbar class="centered-toolbar">Cadastro de Cupom</mat-toolbar>
 <div class="form-container">
-    <mat-card>
-        <mat-card-content>
-            <form [formGroup]="formGroup">
-                <mat-form-field appearance="outline" class="full-width-input">
-                    <mat-label>Descrição</mat-label>
-                    <input matInput type="text" formControlName="descricao" />
-                    <mat-error *ngIf="formGroup.get('descricao') &&
+  <mat-card>
+    <mat-card-content>
+      <form [formGroup]="formGroup">
+        <mat-form-field appearance="outline" class="full-width-input">
+          <mat-label>Descrição</mat-label>
+          <input matInput type="text" formControlName="descricao" />
+          <mat-error *ngIf="formGroup.get('descricao') &&
                 formGroup.get('descricao')?.invalid &&
                 formGroup.get('descricao')?.touched">
-                        Descrição é obrigatório.
-                    </mat-error>
-                </mat-form-field>
-                <mat-form-field appearance="outline" class="full-width-input">
-                    <mat-label>Código</mat-label>
-                    <input matInput type="text" formControlName="codigo" />
-                    <mat-error *ngIf="formGroup.get('codigo') &&
+            Descrição é obrigatório.
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="full-width-input">
+          <mat-label>Código</mat-label>
+          <input matInput type="text" formControlName="codigo" />
+          <mat-error *ngIf="formGroup.get('codigo') &&
                 formGroup.get('codigo')?.invalid &&
                 formGroup.get('codigo')?.touched">
-                        Código é obrigatório.
-                    </mat-error>
-                </mat-form-field>
-                <mat-form-field appearance="outline" class="full-width-input">
-                    <mat-label>Data de Início</mat-label>
-                    <input matInput [matDatepicker]="inicioPicker" formControlName="inicio" />
-                    <mat-error *ngIf="formGroup.get('inicio') &&
+            Código é obrigatório.
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="full-width-input">
+          <mat-label>Data de Início</mat-label>
+          <input matInput [matDatepicker]="inicioPicker" formControlName="inicio" />
+          <mat-error *ngIf="formGroup.get('inicio') &&
                               formGroup.get('inicio')?.invalid &&
                               formGroup.get('inicio')?.touched">
-                        Data de Início é obrigatório.
-                    </mat-error>
-                    <mat-datepicker-toggle matIconSuffix [for]="inicioPicker"></mat-datepicker-toggle>
-                    <mat-datepicker #inicioPicker></mat-datepicker>
-                </mat-form-field>
-                <mat-form-field appearance="outline" class="full-width-input">
-                    <mat-label>Data de Término</mat-label>
-                    <input matInput [matDatepicker]="terminoPicker" formControlName="termino" />
-                    <mat-error *ngIf="formGroup.get('termino') &&
+            Data de Início é obrigatório.
+          </mat-error>
+          <mat-datepicker-toggle matIconSuffix [for]="inicioPicker"></mat-datepicker-toggle>
+          <mat-datepicker #inicioPicker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="full-width-input">
+          <mat-label>Data de Término</mat-label>
+          <input matInput [matDatepicker]="terminoPicker" formControlName="termino" />
+          <mat-error *ngIf="formGroup.get('termino') &&
                               formGroup.get('termino')?.invalid &&
                               formGroup.get('termino')?.touched">
-                        Data de Término é obrigatório.
-                    </mat-error>
-                    <mat-datepicker-toggle matIconSuffix [for]="terminoPicker"></mat-datepicker-toggle>
-                    <mat-datepicker #terminoPicker></mat-datepicker>
-                </mat-form-field>
-                <mat-form-field appearance="outline" class="full-width-input">
-                    <mat-label>Desconto</mat-label>
-                    <input matInput type="text" formControlName="desconto" />
-                    <mat-error *ngIf="formGroup.get('desconto') &&
+            Data de Término é obrigatório.
+          </mat-error>
+          <mat-datepicker-toggle matIconSuffix [for]="terminoPicker"></mat-datepicker-toggle>
+          <mat-datepicker #terminoPicker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="full-width-input">
+          <mat-label>Desconto</mat-label>
+          <input matInput type="text" formControlName="desconto" />
+          <mat-error *ngIf="formGroup.get('desconto') &&
                 formGroup.get('desconto')?.invalid &&
                 formGroup.get('desconto')?.touched">
-                        Desconto é obrigatório.
-                    </mat-error>
-                </mat-form-field>
-                <mat-form-field appearance="outline" class="full-width-input" *ngIf="isAssociateRoute">
-                    <mat-label>Hardwares</mat-label>
-                    <mat-select formControlName="hardwares" multiple>
-                        <mat-option *ngFor="let hardware of hardwares" [value]="hardware.id">
-                            {{ hardware.nome }}
-                        </mat-option>
-                    </mat-select>
-                    <mat-error *ngIf="formGroup.get('hardwares')?.hasError('required') 
+            Desconto é obrigatório.
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="full-width-input" *ngIf="isAssociateRoute">
+          <mat-label>Hardwares</mat-label>
+          <mat-select formControlName="hardwares" multiple>
+            <mat-option *ngFor="let hardware of hardwares" [value]="hardware.id">
+              {{ hardware.nome }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="formGroup.get('hardwares')?.hasError('required') 
                 && formGroup.get('hardwares')?.touched">
-                        Selecione pelo menos um hardware.
-                    </mat-error>
-                </mat-form-field>
-            </form>
-        </mat-card-content>
-        <mat-card-actions>
-            <button 
-                    mat-flat-button 
-                    color="primary" 
-                    (click)="salvar()" 
-                    [disabled]="formGroup.invalid" 
-                    *ngIf="!isAssociateRoute">
-                Salvar
-            </button>
-            <button 
-                    mat-flat-button 
-                    color="primary" 
-                    (click)="associarHardwares()" 
-                    [disabled]="formGroup.invalid" 
-                    *ngIf="isAssociateRoute">
-                Associar
-            </button>
-            <button mat-button color="warn" routerLink="/cupons/list">
-                Cancelar
-            </button>
-        </mat-card-actions>
-    </mat-card>
+            Selecione pelo menos um hardware.
+          </mat-error>
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-flat-button color="primary" (click)="salvar()" [disabled]="formGroup.invalid"
+        *ngIf="!isAssociateRoute">
+        Salvar
+      </button>
+      <button mat-flat-button color="primary" (click)="associarHardwares()" [disabled]="formGroup.invalid"
+        *ngIf="isAssociateRoute">
+        Associar
+      </button>
+      <button mat-button color="warn" routerLink="/admin/cupons/list">
+        Cancelar
+      </button>
+    </mat-card-actions>
+  </mat-card>
 </div>

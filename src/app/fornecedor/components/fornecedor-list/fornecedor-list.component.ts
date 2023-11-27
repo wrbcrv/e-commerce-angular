@@ -62,12 +62,12 @@ export class FornecedorListComponent {
   excluirFornecedor(fornecedor: Fornecedor): void {
     if (confirm(`Deseja realmente excluir o fornecedor ${fornecedor.nome}?`)) {
       this.fornecedorService.delete(fornecedor).subscribe({
-        next: () => {
+        next: (response) => {
           console.log('Fornecedor excluído com sucesso');
           this.carregarFornecedors();
         },
-        error: (err) => {
-          console.log('Erro ao excluir fornecedor: ' + JSON.stringify(err));
+        error: (error) => {
+          console.log('Erro ao excluir fornecedor: ' + JSON.stringify(error));
         },
       });
     }

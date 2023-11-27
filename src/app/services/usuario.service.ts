@@ -78,13 +78,11 @@ export class UsuarioService {
     return this.http.get<Perfil[]>(`${this.baseUrl}/perfis`);
   }
 
-  private apiUrl = 'http://localhost:8080/logged';
-
   getLoggedUser(): Observable<any> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
     });
 
-    return this.http.get(`${this.apiUrl}`, { headers });
+    return this.http.get(`${this.baseUrl}`.replace('usuarios', 'logged'), { headers });
   }
 }

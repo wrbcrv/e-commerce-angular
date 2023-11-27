@@ -33,20 +33,20 @@ export class MarcaFormComponent {
       const marca = this.formGroup.value;
       if (marca.id == null) {
         this.marcaService.create(marca).subscribe({
-          next: (marcaCadastrado) => {
-            this.router.navigateByUrl('/marcas/list');
+          next: (response) => {
+            this.router.navigateByUrl('/admin/marcas/list');
           },
-          error: (err) => {
-            console.log('Erro ao incluir' + JSON.stringify(err));
+          error: (error) => {
+            console.log('Erro ao incluir' + JSON.stringify(error));
           }
         });
       } else {
         this.marcaService.update(marca).subscribe({
-          next: (marcaCadastrado) => {
-            this.router.navigateByUrl('/marcas/list');
+          next: (response) => {
+            this.router.navigateByUrl('/admin/marcas/list');
           },
-          error: (err) => {
-            console.log('Erro ao alterar' + JSON.stringify(err));
+          error: (error) => {
+            console.log('Erro ao alterar' + JSON.stringify(error));
           }
         });
       }
@@ -57,11 +57,11 @@ export class MarcaFormComponent {
     const marca = this.formGroup.value;
     if (marca.id != null) {
       this.marcaService.delete(marca).subscribe({
-        next: (e) => {
-          this.router.navigateByUrl('/marcas/list');
+        next: (response) => {
+          this.router.navigateByUrl('/admin/marcas/list');
         },
-        error: (err) => {
-          console.log('Erro ao excluir' + JSON.stringify(err));
+        error: (error) => {
+          console.log('Erro ao excluir' + JSON.stringify(error));
         }
       });
     }

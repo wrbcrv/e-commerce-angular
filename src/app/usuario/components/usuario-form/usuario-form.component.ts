@@ -115,27 +115,27 @@ export class UsuarioFormComponent implements OnInit {
 
       if (usuario.id == null) {
         this.usuarioService.create(usuario).subscribe({
-          next: (usuarioCadastrado) => {
-            console.log('Usuario cadastrado com sucesso' + JSON.stringify(usuarioCadastrado));
-            this.router.navigateByUrl('/usuarios/list');
+          next: (response) => {
+            console.log('Usuario cadastrado com sucesso' + JSON.stringify(response));
+            this.router.navigateByUrl('/admin/usuarios/list');
           },
-          error: (errorResponse) => {
-            this.apiResponse = errorResponse.error;
+          error: (error) => {
+            this.apiResponse = error.error;
 
             this.formGroup.get('nome')?.setErrors({ apiError: this.getErrorMessage('nome') });
             this.formGroup.get('login')?.setErrors({ apiError: this.getErrorMessage('login') });
 
-            console.log('Erro ao incluir' + JSON.stringify(errorResponse));
+            console.log('Erro ao incluir' + JSON.stringify(error));
           }
         });
       } else {
         this.usuarioService.update(usuario).subscribe({
-          next: (usuarioCadastrado) => {
-            console.log('Usuario atualizado com sucesso' + JSON.stringify(usuarioCadastrado));
-            this.router.navigateByUrl('/usuarios/list');
+          next: (response) => {
+            console.log('Usuario atualizado com sucesso' + JSON.stringify(response));
+            this.router.navigateByUrl('/admin/usuarios/list');
           },
-          error: (err) => {
-            console.log('Erro ao alterar' + JSON.stringify(err));
+          error: (error) => {
+            console.log('Erro ao alterar' + JSON.stringify(error));
           }
         });
       }
@@ -146,9 +146,9 @@ export class UsuarioFormComponent implements OnInit {
     const usuario = this.formGroup.value;
     if (usuario.id != null) {
       this.usuarioService.delete(usuario).subscribe({
-        next: (e) => {
-          console.log('Usuario excluido com sucesso' + JSON.stringify(e));
-          this.router.navigateByUrl('/usuarios/list');
+        next: (response) => {
+          console.log('Usuario excluido com sucesso' + JSON.stringify(response));
+          this.router.navigateByUrl('/admin/usuarios/list');
         },
         error: (err) => {
           console.log('Erro ao excluir' + JSON.stringify(err));
@@ -172,7 +172,7 @@ export class UsuarioFormComponent implements OnInit {
 
     if (usuario.id != null) {
       this.usuarioService.deletarTelefone(usuario.id, telefoneId).subscribe({
-        next: () => {
+        next: (response) => {
           const telefonesFormArray = this.formGroup.get('telefones') as FormArray;
 
           const telefoneIndex = telefonesFormArray.controls.findIndex(
@@ -184,8 +184,8 @@ export class UsuarioFormComponent implements OnInit {
             telefonesFormArray.removeAt(telefoneIndex);
           }
         },
-        error: (err) => {
-          console.log('Erro ao deletar telefone: ' + JSON.stringify(err));
+        error: (error) => {
+          console.log('Erro ao deletar telefone: ' + JSON.stringify(error));
         }
       });
     }
@@ -213,7 +213,7 @@ export class UsuarioFormComponent implements OnInit {
 
     if (usuario.id != null) {
       this.usuarioService.deletarEndereco(usuario.id, enderecoId).subscribe({
-        next: () => {
+        next: (response) => {
           const enderecosFormArray = this.formGroup.get('enderecos') as FormArray;
 
           const enderecoIndex = enderecosFormArray.controls.findIndex(
@@ -225,8 +225,8 @@ export class UsuarioFormComponent implements OnInit {
             enderecosFormArray.removeAt(enderecoIndex);
           }
         },
-        error: (err) => {
-          console.log('Erro ao deletar endereco: ' + JSON.stringify(err));
+        error: (error) => {
+          console.log('Erro ao deletar endereco: ' + JSON.stringify(error));
         }
       });
     }

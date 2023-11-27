@@ -71,5 +71,5 @@ export class FabricanteListComponent implements OnInit {
         },
       });
     }
-  } 
+  }
 }

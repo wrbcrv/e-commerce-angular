@@ -71,5 +71,5 @@ export class EstadoListComponent implements OnInit {
         },
       });
     }
-  } 
+  }
 }

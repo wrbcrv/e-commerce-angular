@@ -5,7 +5,7 @@
   <button class="search-button" (click)="aplicarFiltro()">
     <mat-icon>search</mat-icon>
   </button>
-  <button class="add-button" routerLink="/cupons/new">
+  <button class="add-button" routerLink="/admin/cupons/new">
     <mat-icon>add</mat-icon>
   </button>
 </div>
@@ -62,10 +62,10 @@
     <ng-container matColumnDef="acoes-column">
       <th mat-header-cell *matHeaderCellDef> Ações </th>
       <td mat-cell *matCellDef="let cupom" class="flex-td">
-        <button mat-button color="primary" routerLink="/cupons/associate/{{cupom.id}}">
+        <button mat-button color="primary" routerLink="/admin/cupons/associate/{{cupom.id}}">
           Associar
         </button>
-        <button mat-icon-button color="primary" routerLink="/cupons/edit/{{cupom.id}}">
+        <button mat-icon-button color="primary" routerLink="/admin/cupons/edit/{{cupom.id}}">
           <mat-icon>edit</mat-icon>
         </button>
         <button mat-icon-button color="warn" (click)="excluirCupom(cupom)">

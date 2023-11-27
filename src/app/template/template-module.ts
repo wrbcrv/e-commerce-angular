@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { SharedRoutingModule } from './shared-routing.module';
+import { TemplateRoutingModule } from './template-routing.module';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -14,7 +14,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
   declarations: [],
   imports: [
     CommonModule,
-    SharedRoutingModule,
+    TemplateRoutingModule,
     MatToolbarModule,
     MatSidenavModule,
     MatListModule,
@@ -24,4 +24,4 @@ import { MatToolbarModule } from '@angular/material/toolbar';
   ],
   exports: []
 })
-export class SharedModule { }
+export class TemplateModule { }

@@ -32,7 +32,8 @@
     </a>
     <a class="aside-menu-link" routerLink="marcas/list" routerLinkActive="active">
       <span class="material-symbols-outlined">shoppingmode</span>
-      Controle de Marca</a>
+      Controle de Marca
+    </a>
     <a class="aside-menu-link" routerLink="hardwares/list" routerLinkActive="active">
       <span class="material-symbols-outlined">inventory_2</span>
       Controle de Produto
@@ -47,6 +48,10 @@
   <div class="user-info">
     <span>Olá, {{usuario?.login}}!</span>
     <div class="profile-image-container"></div>
+    <span (click)="loggout()" class="loggout-button">
+      Sair
+      <span class="material-symbols-outlined loggout">logout</span>
+    </span>
   </div>
 </header>
 <main>

@@ -50,14 +50,14 @@ export class CupomFormComponent implements OnInit {
   }
 
   loadHardwares() {
-    this.cupomService.getHardwares().subscribe(
-      (hardwares) => {
-        this.hardwares = hardwares;
+    this.cupomService.getHardwares().subscribe({
+      next: (response) => {
+        this.hardwares = response;
       },
-      (error) => {
+      error: (error) => {
         console.log('Erro ao carregar hardwares: ' + JSON.stringify(error));
       }
-    );
+    });
   }
 
   associarHardwares() {
@@ -67,9 +67,9 @@ export class CupomFormComponent implements OnInit {
     if (hardwareIds && hardwareIds.length > 0) {
       for (const hardwareId of hardwareIds) {
         this.cupomService.associateHardware(cupomId, hardwareId).subscribe(
-          (hardware) => {
-            console.log('Hardware associado com sucesso.' + JSON.stringify(hardware));
-            this.router.navigateByUrl('/cupons/list');
+          (response) => {
+            console.log('Hardware associado com sucesso.' + JSON.stringify(response));
+            this.router.navigateByUrl('/admin/cupons/list');
           },
           (error) => {
             console.log('Erro ao associar hardware: ' + JSON.stringify(error));
@@ -86,21 +86,21 @@ export class CupomFormComponent implements OnInit {
       const cupom = this.formGroup.value;
       if (cupom.id == null) {
         this.cupomService.create(cupom).subscribe({
-          next: (cupomCadastrado) => {
-            console.log('Cupom cadastrado com sucesso' + JSON.stringify(cupomCadastrado));
-            this.router.navigateByUrl('/cupons/list');
+          next: (response) => {
+            console.log('Cupom cadastrado com sucesso' + JSON.stringify(response));
+            this.router.navigateByUrl('/admin/cupons/list');
           },
-          error: (err) => {
-            console.log('Erro ao incluir' + JSON.stringify(err));
+          error: (error) => {
+            console.log('Erro ao incluir' + JSON.stringify(error));
           }
         });
       } else {
         this.cupomService.update(cupom).subscribe({
-          next: (cupomCadastrado) => {
-            this.router.navigateByUrl('/cupons/list');
+          next: (response) => {
+            this.router.navigateByUrl('/admin/cupons/list');
           },
-          error: (err) => {
-            console.log('Erro ao alterar' + JSON.stringify(err));
+          error: (error) => {
+            console.log('Erro ao alterar' + JSON.stringify(error));
           }
         });
       }

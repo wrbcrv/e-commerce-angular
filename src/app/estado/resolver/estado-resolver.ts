@@ -4,6 +4,6 @@ import { Estado } from "src/app/models/estado.model";
 import { EstadoService } from "src/app/services/estado.service";
 
 export const estadoResolver: ResolveFn<Estado> =
-    (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
-        return inject(EstadoService).findById(route.paramMap.get('id')!);
-    };
+  (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
+    return inject(EstadoService).findById(route.paramMap.get('id')!);
+  };

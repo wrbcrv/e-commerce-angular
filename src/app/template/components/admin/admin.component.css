@@ -30,7 +30,7 @@ aside {
   gap: 10px;
   font-size: smaller;
   text-decoration: none;
-  color: #fff;
+  color: #A1B1F7;
   padding: 15px 10px;
   border-radius: 10px;
   font-weight: 500;
@@ -41,9 +41,8 @@ aside {
 }
 
 .aside-menu-link:hover {
-  background-color: #5773EF;
+  color: #fff;
 }
-
 
 .logo {
   padding-bottom: 20px;
@@ -52,7 +51,7 @@ aside {
 
 header {
   margin-left: 250px;
-  padding: 10px 10px 10px 20px;
+  padding: 10px 20px;
   background-color: #fff;
   color: #000;
   box-sizing: border-box;
@@ -71,6 +70,19 @@ header {
   width: 40px;
   height: 40px;
   border-radius: 100%;
+}
+
+.loggout-button {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  font-size: smaller;
+  color: red;
+  cursor: pointer;
+}
+
+.loggout-button > .loggout {
+  font-size: large;
 }
 
 main {

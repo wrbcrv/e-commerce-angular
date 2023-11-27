@@ -5,7 +5,7 @@
   <button class="search-button" (click)="aplicarFiltro()">
     <mat-icon>search</mat-icon>
   </button>
-  <button class="add-button" routerLink="/hardwares/new">
+  <button class="add-button" routerLink="/admin/hardwares/new">
     <mat-icon>add</mat-icon>
   </button>
 </div>
@@ -76,7 +76,7 @@
     <ng-container matColumnDef="acoes-column">
       <th mat-header-cell *matHeaderCellDef> Ações </th>
       <td mat-cell *matCellDef="let hardware">
-        <button mat-icon-button color="primary" routerLink="/hardwares/edit/{{hardware.id}}">
+        <button mat-icon-button color="primary" routerLink="/admin/hardwares/edit/{{hardware.id}}">
           <mat-icon>edit</mat-icon>
         </button>
         <button mat-icon-button color="warn" (click)="excluirHardware(hardware)">

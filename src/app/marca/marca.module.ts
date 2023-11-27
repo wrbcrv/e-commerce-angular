@@ -45,5 +45,4 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     FormsModule
   ]
 })
-
 export class MarcaModule { }

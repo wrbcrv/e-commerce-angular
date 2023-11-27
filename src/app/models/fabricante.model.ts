@@ -1,5 +1,5 @@
 export class Fabricante {
-    id!: number;
-    nome!: string;
-    site!: string;
+  id!: number;
+  nome!: string;
+  site!: string;
 }

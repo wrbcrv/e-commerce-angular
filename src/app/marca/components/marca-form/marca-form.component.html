@@ -1,56 +1,56 @@
 <mat-toolbar class="centered-toolbar">Cadastro de Marca</mat-toolbar>
 <div class="form-container">
-    <mat-card>
-        <mat-card-content>
-            <form [formGroup]="formGroup">
-                <mat-form-field appearance="outline" class="full-width-input">
-                    <mat-label>Nome</mat-label>
-                    <input matInput type="text" formControlName="nome" />
-                    <mat-error *ngIf="formGroup.get('nome') &&
+  <mat-card>
+    <mat-card-content>
+      <form [formGroup]="formGroup">
+        <mat-form-field appearance="outline" class="full-width-input">
+          <mat-label>Nome</mat-label>
+          <input matInput type="text" formControlName="nome" />
+          <mat-error *ngIf="formGroup.get('nome') &&
                 formGroup.get('nome')?.invalid &&
                 formGroup.get('nome')?.touched">
-                        Nome é obrigatório.
-                    </mat-error>
-                </mat-form-field>
-                <mat-form-field appearance="outline" class="full-width-input">
-                    <mat-label>Site</mat-label>
-                    <input matInput type="text" formControlName="site" />
-                    <mat-error *ngIf="formGroup.get('site') &&
+            Nome é obrigatório.
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="full-width-input">
+          <mat-label>Site</mat-label>
+          <input matInput type="text" formControlName="site" />
+          <mat-error *ngIf="formGroup.get('site') &&
                 formGroup.get('site')?.invalid &&
                 formGroup.get('site')?.touched">
-                        Site é obrigatório.
-                    </mat-error>
-                </mat-form-field>
-                <mat-form-field appearance="outline" class="full-width-input">
-                    <mat-label>Data de Fundação</mat-label>
-                    <input matInput [matDatepicker]="picker" formControlName="fundacao">
-                    <mat-error *ngIf="formGroup.get('fundacao') &&
+            Site é obrigatório.
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="full-width-input">
+          <mat-label>Data de Fundação</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="fundacao">
+          <mat-error *ngIf="formGroup.get('fundacao') &&
                 formGroup.get('fundacao')?.invalid &&
                 formGroup.get('fundacao')?.touched">
-                        Data de Fundação é obrigatório.
-                    </mat-error>
-                    <mat-hint>DD/MM/YYYY</mat-hint>
-                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-datepicker #picker></mat-datepicker>
-                </mat-form-field>
-                <mat-form-field appearance="outline" class="full-width-input">
-                    <mat-label>Sede</mat-label>
-                    <input matInput type="text" formControlName="sede" />
-                    <mat-error *ngIf="formGroup.get('sede') &&
+            Data de Fundação é obrigatório.
+          </mat-error>
+          <mat-hint>DD/MM/YYYY</mat-hint>
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="full-width-input">
+          <mat-label>Sede</mat-label>
+          <input matInput type="text" formControlName="sede" />
+          <mat-error *ngIf="formGroup.get('sede') &&
                 formGroup.get('sede')?.invalid &&
                 formGroup.get('sede')?.touched">
-                        Sede é obrigatória.
-                    </mat-error>
-                </mat-form-field>
-            </form>
-        </mat-card-content>
-        <mat-card-actions>
-            <button mat-flat-button color="primary" (click)="salvar()" [disabled]="formGroup.invalid">
-                Salvar
-            </button>
-            <button mat-button color="warn" routerLink="/marcas/list">
-                Cancelar
-            </button>
-        </mat-card-actions>
-    </mat-card>
+            Sede é obrigatória.
+          </mat-error>
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-flat-button color="primary" (click)="salvar()" [disabled]="formGroup.invalid">
+        Salvar
+      </button>
+      <button mat-button color="warn" routerLink="/admin/marcas/list">
+        Cancelar
+      </button>
+    </mat-card-actions>
+  </mat-card>
 </div>

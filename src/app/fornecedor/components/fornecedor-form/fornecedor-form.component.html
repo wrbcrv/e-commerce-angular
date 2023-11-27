@@ -1,94 +1,87 @@
 <mat-toolbar class="centered-toolbar">Cadastro de Fornecedor</mat-toolbar>
 <div class="form-container">
-    <mat-card>
-        <mat-card-content>
-            <form [formGroup]="formGroup">
-                <mat-form-field appearance="outline" class="full-width-input" *ngIf="!isAssociateRoute"> 
-                    <mat-label>Nome</mat-label>
-                    <input matInput type="text" formControlName="nome" />
-                    <mat-error *ngIf="formGroup.get('nome') &&
+  <mat-card>
+    <mat-card-content>
+      <form [formGroup]="formGroup">
+        <mat-form-field appearance="outline" class="full-width-input" *ngIf="!isAssociateRoute">
+          <mat-label>Nome</mat-label>
+          <input matInput type="text" formControlName="nome" />
+          <mat-error *ngIf="formGroup.get('nome') &&
                     formGroup.get('nome')?.invalid &&
                     formGroup.get('nome')?.touched">
-                        Nome é obrigatório.
-                    </mat-error>
-                </mat-form-field>
-                <div formArrayName="enderecos" *ngIf="!isAssociateRoute">
-                    <div *ngFor="let enderecoGroup of enderecos.controls; let i = index">
-                        <mat-card>
-                            <mat-card-content>
-                                <div [formGroupName]="i">
-                                    <mat-form-field appearance="outline" class="full-width-input">
-                                        <mat-label>Logradouro</mat-label>
-                                        <input matInput type="text" formControlName="logradouro" />
-                                    </mat-form-field>
-                                    <mat-form-field appearance="outline" class="full-width-input">
-                                        <mat-label>Número</mat-label>
-                                        <input matInput type="text" formControlName="numero" />
-                                    </mat-form-field>
-                                    <mat-form-field appearance="outline" class="full-width-input">
-                                        <mat-label>Complemento</mat-label>
-                                        <input matInput type="text" formControlName="complemento" />
-                                    </mat-form-field>
-                                    <mat-form-field appearance="outline" class="full-width-input">
-                                        <mat-label>Bairro</mat-label>
-                                        <input matInput type="text" formControlName="bairro" />
-                                    </mat-form-field>
-                                    <mat-form-field appearance="outline" class="full-width-input">
-                                        <mat-label>CEP</mat-label>
-                                        <input matInput type="text" formControlName="cep" />
-                                    </mat-form-field>
-                                </div>
-                            </mat-card-content>
-                            <mat-card-content>
-                                <button mat-icon-button color="warn" *ngIf="isNewRoute" (click)="removerEndereco(i)">
-                                    <mat-icon>close</mat-icon>
-                                </button>
-                                <button mat-icon-button color="warn" *ngIf="isEditRoute"
-                                    (click)="deletarEndereco(enderecoGroup.get('id')?.value)">
-                                    <mat-icon>delete</mat-icon>
-                                </button>
-                            </mat-card-content>
-                        </mat-card>
-                    </div>
+            Nome é obrigatório.
+          </mat-error>
+        </mat-form-field>
+        <div formArrayName="enderecos" *ngIf="!isAssociateRoute">
+          <div *ngFor="let enderecoGroup of enderecos.controls; let i = index">
+            <mat-card>
+              <mat-card-content>
+                <div [formGroupName]="i">
+                  <mat-form-field appearance="outline" class="full-width-input">
+                    <mat-label>Logradouro</mat-label>
+                    <input matInput type="text" formControlName="logradouro" />
+                  </mat-form-field>
+                  <mat-form-field appearance="outline" class="full-width-input">
+                    <mat-label>Número</mat-label>
+                    <input matInput type="text" formControlName="numero" />
+                  </mat-form-field>
+                  <mat-form-field appearance="outline" class="full-width-input">
+                    <mat-label>Complemento</mat-label>
+                    <input matInput type="text" formControlName="complemento" />
+                  </mat-form-field>
+                  <mat-form-field appearance="outline" class="full-width-input">
+                    <mat-label>Bairro</mat-label>
+                    <input matInput type="text" formControlName="bairro" />
+                  </mat-form-field>
+                  <mat-form-field appearance="outline" class="full-width-input">
+                    <mat-label>CEP</mat-label>
+                    <input matInput type="text" formControlName="cep" />
+                  </mat-form-field>
                 </div>
-                <button mat-flat-button color="primary" (click)="adicionarEndereco()" class="full-width-button" *ngIf="!isAssociateRoute">
-                    <mat-icon>add</mat-icon>
-                    Adicionar Endereço
+              </mat-card-content>
+              <mat-card-content>
+                <button mat-icon-button color="warn" *ngIf="isNewRoute" (click)="removerEndereco(i)">
+                  <mat-icon>close</mat-icon>
                 </button>
-                <mat-form-field appearance="outline" class="full-width-input" *ngIf="isAssociateRoute">
-                    <mat-label>Hardwares</mat-label>
-                    <mat-select formControlName="hardwares" multiple>
-                        <mat-option *ngFor="let hardware of hardwares" [value]="hardware.id">
-                            {{ hardware.nome }}
-                        </mat-option>
-                    </mat-select>
-                    <mat-error *ngIf="formGroup.get('hardwares')?.hasError('required') 
+                <button mat-icon-button color="warn" *ngIf="isEditRoute"
+                  (click)="deletarEndereco(enderecoGroup.get('id')?.value)">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </mat-card-content>
+            </mat-card>
+          </div>
+        </div>
+        <button mat-flat-button color="primary" (click)="adicionarEndereco()" class="full-width-button"
+          *ngIf="!isAssociateRoute">
+          <mat-icon>add</mat-icon>
+          Adicionar Endereço
+        </button>
+        <mat-form-field appearance="outline" class="full-width-input" *ngIf="isAssociateRoute">
+          <mat-label>Hardwares</mat-label>
+          <mat-select formControlName="hardwares" multiple>
+            <mat-option *ngFor="let hardware of hardwares" [value]="hardware.id">
+              {{ hardware.nome }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="formGroup.get('hardwares')?.hasError('required') 
                 && formGroup.get('hardwares')?.touched">
-                        Selecione pelo menos um hardware.
-                    </mat-error>
-                </mat-form-field>
-            </form>
-        </mat-card-content>
-        <mat-card-content>
-            <button 
-                    mat-flat-button color="primary" 
-                    (click)="salvar()"
-                    [disabled]="enderecos.length === 0 || enderecos.length === 0" 
-                    *ngIf="!isAssociateRoute">
-                Salvar
-            </button>
-            <button 
-                    mat-flat-button color="primary" 
-                    (click)="associarHardwares()" 
-                    [disabled]="formGroup.invalid" 
-                    *ngIf="isAssociateRoute">
-                Associar
-            </button>
-            <button 
-                    mat-button color="warn" 
-                    routerLink="/fornecedores/list">
-                Cancelar
-            </button>
-        </mat-card-content>
-    </mat-card>
+            Selecione pelo menos um hardware.
+          </mat-error>
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+    <mat-card-content>
+      <button mat-flat-button color="primary" (click)="salvar()"
+        [disabled]="enderecos.length === 0 || enderecos.length === 0" *ngIf="!isAssociateRoute">
+        Salvar
+      </button>
+      <button mat-flat-button color="primary" (click)="associarHardwares()" [disabled]="formGroup.invalid"
+        *ngIf="isAssociateRoute">
+        Associar
+      </button>
+      <button mat-button color="warn" routerLink="/admin/fornecedores/list">
+        Cancelar
+      </button>
+    </mat-card-content>
+  </mat-card>
 </div>

@@ -143,7 +143,7 @@ export class HardwareFormComponent implements OnInit {
       this.hardwareService.delete(hardware).subscribe({
         next:
           () => {
-            this.router.navigateByUrl('/hardwares/list');
+            this.router.navigateByUrl('/admin/hardwares/list');
           },
         error:
           (error) => {
@@ -170,7 +170,7 @@ export class HardwareFormComponent implements OnInit {
       this.hardwareService.uploadImage(hardwareId, this.selectedFile.name, this.selectedFile).subscribe({
         next:
           () => {
-            this.router.navigateByUrl('/hardwares/list')
+            this.router.navigateByUrl('/admin/hardwares/list')
           },
         error:
           (error) => {
@@ -178,7 +178,7 @@ export class HardwareFormComponent implements OnInit {
           }
       })
     } else {
-      this.router.navigateByUrl('/hardwares/list');
+      this.router.navigateByUrl('/admin/hardwares/list');
     }
   }
 

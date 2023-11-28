@@ -47,7 +47,9 @@
 <header>
   <div class="user-info">
     <span>Olá, {{usuario?.login}}!</span>
-    <div class="profile-image-container"></div>
+    <div class="profile-image-container">
+      <img [src]="getImageUrl(usuario?.imageName)">
+    </div>
     <span (click)="loggout()" class="loggout-button">
       Sair
       <span class="material-symbols-outlined loggout">logout</span>

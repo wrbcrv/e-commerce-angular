@@ -10,7 +10,7 @@ import { UsuarioService } from 'src/app/services/usuario.service';
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent implements OnInit {
-  usuario: Usuario | undefined;
+  usuario: any;
 
   constructor(
     private usuarioService: UsuarioService,
@@ -32,5 +32,9 @@ export class AdminComponent implements OnInit {
   loggout() {
     this.authService.removeToken();
     this.router.navigateByUrl('/login');
+  }
+
+  getImageUrl(imageName: string): string {
+    return this.usuarioService.getImageUrl(imageName);
   }
 }

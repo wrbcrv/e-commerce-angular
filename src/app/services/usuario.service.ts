@@ -74,6 +74,19 @@ export class UsuarioService {
     return this.http.get<number>(`${this.baseUrl}/search/${nome}/count`);
   }
 
+  getImageUrl(imageName: string): string {
+    return `${this.baseUrl}/image/download/${imageName}`;
+  }
+
+  uploadImage(id: number, imageName: string, image: File): Observable<any> {
+    const formData: FormData = new FormData();
+    formData.append('id', id.toString());
+    formData.append('imageName', image.name);
+    formData.append('image', image, image.name);
+
+    return this.http.patch<Usuario>(`${this.baseUrl}/image/upload`, formData);
+  }
+
   getPerfis(): Observable<Perfil[]> {
     return this.http.get<Perfil[]>(`${this.baseUrl}/perfis`);
   }

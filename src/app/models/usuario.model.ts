@@ -13,6 +13,7 @@ export class Usuario {
   telefones: Telefone[] = [];
   enderecos: Endereco[] = [];
   perfil!: Perfil;
+  imageName!: string;
 }
 
 export { Telefone }

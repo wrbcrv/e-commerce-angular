@@ -66,10 +66,16 @@ header {
 }
 
 .profile-image-container {
-  background-color: #4361EE;
+  background-color: transparent;
   width: 40px;
   height: 40px;
+  overflow: hidden;
   border-radius: 100%;
+}
+
+.profile-image-container>img {
+  max-width: 40px;
+  max-height: 40px;
 }
 
 .loggout-button {
@@ -81,7 +87,7 @@ header {
   cursor: pointer;
 }
 
-.loggout-button > .loggout {
+.loggout-button>.loggout {
   font-size: large;
 }
 

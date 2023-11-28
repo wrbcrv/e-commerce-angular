@@ -1,4 +1,12 @@
-header {
+.material-symbols-outlined {
+  font-variation-settings:
+    'FILL' 1,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24
+}
+
+.page-header {
   padding: 10px 20px;
   background-color: #4361EE;
   color: #fff;
@@ -7,18 +15,39 @@ header {
   margin-bottom: 20px;
 }
 
-.user-info {
+.container {
   display: flex;
   align-items: center;
   justify-content: flex-end;
   gap: 10px;
+  margin: auto;
+  width: 80%;
 }
 
-.profile-image-container {
-  background-color: #fff;
+.favorite,
+.profile,
+.cart {
   width: 40px;
   height: 40px;
   border-radius: 100%;
+}
+
+.profile > img {
+  max-width: 40px;
+  max-height: 40px;
+}
+
+.cart,
+.favorite {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.cart:hover,
+.favorite:hover {
+  background-color: #5773EF;
 }
 
 .loggout-button {

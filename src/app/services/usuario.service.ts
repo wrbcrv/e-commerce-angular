@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Telefone, Usuario } from '../models/usuario.model';
+import { Endereco, Telefone, Usuario } from '../models/usuario.model';
 import { Perfil } from '../models/perfil.modal';
 
 @Injectable({
@@ -56,9 +56,8 @@ export class UsuarioService {
     return this.http.get<Usuario[]>(`${this.baseUrl}/search/${nome}`, { params });
   }
 
-  deletarTelefone(usuarioId: number, telefoneId: number): Observable<any> {
-    const url = `${this.baseUrl}/${usuarioId}/telefones/${telefoneId}`;
-    return this.http.delete(url);
+  getEnderecos(id: number): Observable<Endereco[]> {
+    return this.http.get<Endereco[]>(`${this.baseUrl}/enderecos/${id}`);
   }
 
   deletarEndereco(usuarioId: number, enderecoId: number) {

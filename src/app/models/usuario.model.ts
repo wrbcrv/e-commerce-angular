@@ -10,7 +10,6 @@ export class Usuario {
   rg!: string;
   login!: string;
   senha!: string;
-  telefones: Telefone[] = [];
   enderecos: Endereco[] = [];
   perfil!: Perfil;
   imageName!: string;

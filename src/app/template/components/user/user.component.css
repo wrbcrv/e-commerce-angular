@@ -38,6 +38,7 @@
 }
 
 .cart,
+.profile,
 .favorite {
   display: flex;
   align-items: center;

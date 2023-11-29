@@ -8,8 +8,8 @@
     <div routerLink="/carrinho" class="cart">
       <span class="material-symbols-outlined">shopping_cart</span>
     </div>
-    <span>Olá, {{usuario?.login}}!</span>
-    <img class="profile" [src]="getImageUrl(usuario?.imageName)">
+    <span>Olá, {{usuario?.nome}}!</span>
+    <img routerLink="/conta" class="profile" [src]="getImageUrl(usuario?.imageName)">
     <span (click)="loggout()" class="loggout-button">
       <span>Sair</span>
       <span class="material-symbols-outlined loggout">logout</span>

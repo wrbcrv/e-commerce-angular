@@ -21,6 +21,7 @@ import { HardwareCardListComponent } from './hardware/components/hardware-card-l
 import { PedidoModule } from './pedido/pedido.module';
 import { AdminComponent } from './template/components/admin/admin.component';
 import { UserComponent } from './template/components/user/user.component';
+import { ContaModule } from './conta/conta.module';
 
 registerLocaleData(localePt);
 
@@ -44,7 +45,8 @@ registerLocaleData(localePt);
     BrowserAnimationsModule,
     TemplateModule,
     AuthModule,
-    PedidoModule
+    PedidoModule,
+    ContaModule
   ],
   providers: [
     JwtHelperService,

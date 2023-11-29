@@ -1,0 +1,23 @@
+<link rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0" />
+<div class="container">
+  <div class="profile">
+    <img [src]="getImageUrl(usuario?.imageName)">
+    <span class="text">{{usuario?.nome}} {{usuario?.sobrenome}}</span>
+    <span class="text">{{usuario?.login}}</span>
+  </div>
+  <strong class="title">
+    <span class="material-symbols-outlined">location_on</span>
+    <span>Endereços Cadastrados</span>
+  </strong>
+  <div class="adresses">
+    <section *ngFor="let endereco of usuario?.enderecos">
+      <span>{{endereco.nome}} {{endereco.sobrenome}}</span>
+      <span>{{endereco.endereco}}, {{endereco.numero}}</span>
+      <span>{{endereco.bairro}}</span>
+      <span>{{endereco.complemento}}</span>
+      <span>{{endereco.cidade.nome}}, {{endereco.cidade.estado.sigla}} - {{endereco.cep}}</span>
+      <span>{{endereco.telefone}}</span>
+    </section>
+  </div>
+</div>

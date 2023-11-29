@@ -1,13 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './auth/components/login/login.component';
+import { ContaComponent } from './conta/conta/conta.component';
 import { HardwareCardListComponent } from './hardware/components/hardware-card-list/hardware-card-list.component';
 import { CarrinhoComponent } from './pedido/components/carrinho/carrinho.component';
 import { AdminComponent } from './template/components/admin/admin.component';
 import { UserComponent } from './template/components/user/user.component';
-import { MAT_TOOLTIP_SCROLL_STRATEGY, MatTooltipModule } from '@angular/material/tooltip';
 
 const routes: Routes = [
+  { path: 'login', component: LoginComponent },
+
   {
     path: 'admin',
     component: AdminComponent,
@@ -28,13 +30,11 @@ const routes: Routes = [
     path: '',
     component: UserComponent,
     children: [
+      { path: 'conta', component: ContaComponent },
       { path: 'carrinho', component: CarrinhoComponent },
       { path: 'produtos', component: HardwareCardListComponent },
     ]
   },
-
-  
-  { path: 'login', component: LoginComponent }
 ];
 
 @NgModule({

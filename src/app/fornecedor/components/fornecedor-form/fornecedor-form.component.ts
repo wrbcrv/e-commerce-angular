@@ -75,7 +75,7 @@ export class FornecedorFormComponent implements OnInit {
         enderecosFormArray.push(
           this.formBuilder.group({
             id: [(endereco && endereco.id) ? endereco.id : null],
-            logradouro: [(endereco && endereco.logradouro) ? endereco.logradouro : '', Validators.required],
+            endereco: [(endereco && endereco.endereco) ? endereco.endereco : '', Validators.required],
             numero: [(endereco && endereco.numero) ? endereco.numero : '', Validators.required],
             complemento: [(endereco && endereco.complemento) ? endereco.complemento : null],
             bairro: [(endereco && endereco.bairro) ? endereco.bairro : '', Validators.required],
@@ -166,7 +166,7 @@ export class FornecedorFormComponent implements OnInit {
   adicionarEndereco() {
     const enderecoFormGroup = this.formBuilder.group({
       id: [null],
-      logradouro: ['', Validators.required],
+      endereco: ['', Validators.required],
       numero: ['', Validators.required],
       complemento: ['', Validators.required],
       bairro: ['', Validators.required],

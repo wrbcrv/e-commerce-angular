@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Perfil } from 'src/app/models/perfil.modal';
-import { Usuario, Telefone, Endereco } from 'src/app/models/usuario.model';
+import { Usuario, Endereco } from 'src/app/models/usuario.model';
 import { UsuarioService } from 'src/app/services/usuario.service';
 
 @Component({
@@ -33,7 +33,6 @@ export class UsuarioFormComponent implements OnInit {
       rg: ['', Validators.required],
       login: ['', Validators.required],
       senha: ['', Validators.required],
-      telefones: formBuilder.array([]),
       enderecos: formBuilder.array([]),
       perfil: [null]
     });
@@ -71,23 +70,9 @@ export class UsuarioFormComponent implements OnInit {
       rg: [(usuario && usuario.rg) ? usuario.rg : '', Validators.required],
       login: [(usuario && usuario.login) ? usuario.login : '', Validators.required],
       senha: [(usuario && usuario.senha) ? usuario.senha : '', Validators.required],
-      telefones: this.formBuilder.array([]),
       enderecos: this.formBuilder.array([]),
       perfil: [perfil]
     });
-
-    if (usuario && usuario.telefones) {
-      const telefonesFormArray = this.formGroup.get('telefones') as FormArray;
-      usuario.telefones.forEach((telefone: Telefone) => {
-        telefonesFormArray.push(
-          this.formBuilder.group({
-            id: [(telefone && telefone.id) ? telefone.id : null],
-            ddd: [(telefone && telefone.ddd) ? telefone.ddd : '', Validators.required],
-            numero: [(telefone && telefone.numero) ? telefone.numero : '', Validators.required]
-          })
-        );
-      });
-    }
 
     if (usuario && usuario.enderecos) {
       const enderecosFormArray = this.formGroup.get('enderecos') as FormArray;
@@ -95,7 +80,7 @@ export class UsuarioFormComponent implements OnInit {
         enderecosFormArray.push(
           this.formBuilder.group({
             id: [(endereco && endereco.id) ? endereco.id : null],
-            logradouro: [(endereco && endereco.logradouro) ? endereco.logradouro : '', Validators.required],
+            endereco: [(endereco && endereco.endereco) ? endereco.endereco : '', Validators.required],
             numero: [(endereco && endereco.numero) ? endereco.numero : '', Validators.required],
             complemento: [(endereco && endereco.complemento) ? endereco.complemento : null],
             bairro: [(endereco && endereco.bairro) ? endereco.bairro : '', Validators.required],
@@ -110,7 +95,6 @@ export class UsuarioFormComponent implements OnInit {
     if (this.formGroup.valid) {
       const usuario = this.formGroup.value as Usuario;
 
-      usuario.telefones = this.telefones.value;
       usuario.enderecos = this.enderecos.value;
 
       if (usuario.id == null) {
@@ -157,48 +141,10 @@ export class UsuarioFormComponent implements OnInit {
     }
   }
 
-  adicionarTelefone() {
-    const telefoneFormGroup = this.formBuilder.group({
-      id: [null],
-      ddd: ['', Validators.required],
-      numero: ['', Validators.required]
-    });
-
-    this.telefones.push(telefoneFormGroup);
-  }
-
-  deletarTelefone(telefoneId: number) {
-    const usuario = this.formGroup.value as Usuario;
-
-    if (usuario.id != null) {
-      this.usuarioService.deletarTelefone(usuario.id, telefoneId).subscribe({
-        next: (response) => {
-          const telefonesFormArray = this.formGroup.get('telefones') as FormArray;
-
-          const telefoneIndex = telefonesFormArray.controls.findIndex(
-            (telefoneControl: AbstractControl) =>
-              telefoneControl.get('id')?.value === telefoneId
-          );
-
-          if (telefoneIndex !== -1) {
-            telefonesFormArray.removeAt(telefoneIndex);
-          }
-        },
-        error: (error) => {
-          console.log('Erro ao deletar telefone: ' + JSON.stringify(error));
-        }
-      });
-    }
-  }
-
-  removerTelefone(index: number) {
-    this.telefones.removeAt(index);
-  }
-
   adicionarEndereco() {
     const enderecoFormGroup = this.formBuilder.group({
       id: [null],
-      logradouro: ['', Validators.required],
+      endereco: ['', Validators.required],
       numero: ['', Validators.required],
       complemento: ['', Validators.required],
       bairro: ['', Validators.required],
@@ -240,11 +186,7 @@ export class UsuarioFormComponent implements OnInit {
     const error = this.apiResponse.errors.find((error: any) => error.fieldName === fieldName);
     return error ? error.message : '';
   }
-
-  get telefones() {
-    return this.formGroup.get('telefones') as FormArray;
-  }
-
+  
   get enderecos() {
     return this.formGroup.get('enderecos') as FormArray;
   }

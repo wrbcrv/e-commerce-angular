@@ -1,0 +1,75 @@
+<link rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0" />
+<div class="container">
+  <div class="profile-container">
+    <div class="profile">
+      <img [src]="getImageUrl(usuario?.imageName)">
+      <span class="text">{{usuario?.nome}} {{usuario?.sobrenome}}</span>
+      <span class="text">{{usuario?.login}}</span>
+      <nav>
+        <span>
+          <span class="material-symbols-outlined">location_on</span>
+          Meus Endereços
+        </span>
+        <span>
+          <span class="material-symbols-outlined">receipt</span>
+          Meus Pedidos
+        </span>
+        <span>
+          <span class="material-symbols-outlined">settings</span>
+          Meus Dados
+        </span>
+      </nav>
+    </div>
+  </div>
+  <div class="sumary-container">
+    <strong class="title">
+      <div class="flex-container">
+        <span class="material-symbols-outlined">location_on</span>
+        <span>Meus Endereços</span>
+      </div>
+      <span class="material-symbols-outlined">arrow_forward</span>
+    </strong>
+    <div class="adress">
+      <div *ngFor="let endereco of usuario?.enderecos">
+        <strong>{{endereco.nome}} {{endereco.sobrenome}}</strong>
+        <span>{{endereco.endereco}}, {{endereco.numero}}</span>
+        <span>{{endereco.bairro}}</span>
+        <span>{{endereco.complemento}}</span>
+        <span>{{endereco.cidade.nome}}, {{endereco.cidade.estado.sigla}} - {{endereco.cep}}</span>
+        <span>Tel: {{endereco.telefone}}</span>
+      </div>
+    </div>
+    <strong class="title orders">
+      <div class="flex-container">
+        <span class="material-symbols-outlined">receipt</span>
+        <span>Meus Pedidos</span>
+      </div>
+      <span class="material-symbols-outlined">arrow_forward</span>
+    </strong>
+    <div class="order-container">
+      <div class="orders-table">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Data</th>
+              <th>Método</th>
+              <th>Valor Total</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>29/11/2023 23:59:59</td>
+              <td></td>
+              <td>R$ 1199,90</td>
+              <td>Confirmado</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

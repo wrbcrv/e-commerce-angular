@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
+import { ContaComponent } from './components/conta/conta.component';
 import { ContaRoutingModule } from './conta-routing.module';
-import { ContaComponent } from './conta/conta.component';
 
 @NgModule({
   declarations: [

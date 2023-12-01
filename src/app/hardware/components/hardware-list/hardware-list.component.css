@@ -23,7 +23,8 @@
 }
 
 .search-button,
-.add-button {
+.add-button,
+.report-button {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -43,6 +44,11 @@
 
 .add-button {
   background-color: #35CE8D;
+  margin-right: 5px;
+}
+
+.report-button {
+  color: #000;
 }
 
 mat-icon {

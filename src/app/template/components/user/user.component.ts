@@ -21,7 +21,6 @@ export class UserComponent {
     this.usuarioService.getLoggedUser().subscribe({
       next: (data) => {
         this.usuario = data;
-        console.log('Usuário:', this.usuario);
       },
       error: (error) => {
         console.error('Erro ao obter usuário:', error);

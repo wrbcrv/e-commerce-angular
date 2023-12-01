@@ -1,12 +1,15 @@
 <div class="input-container">
   <div class="input-field">
-    <input placeholder="Pesquisar..." [(ngModel)]="filtro" matInput #input>
+    <input placeholder="Pesquisar..." [(ngModel)]="filter" matInput #input>
   </div>
   <button class="search-button" (click)="aplicarFiltro()">
     <mat-icon>search</mat-icon>
   </button>
   <button class="add-button" routerLink="/admin/hardwares/new">
     <mat-icon>add</mat-icon>
+  </button>
+  <button class="report-button" (click)="abrirRelatorioPDF()">
+    <mat-icon>description</mat-icon>
   </button>
 </div>
 

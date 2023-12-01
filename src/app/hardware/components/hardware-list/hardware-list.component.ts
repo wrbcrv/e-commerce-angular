@@ -27,7 +27,8 @@ export class HardwareListComponent implements OnInit {
   totalRegistros = 0;
   pageSize = 2;
   page = 0;
-  filtro: string = "";
+  filter: string = '';
+  pdfData: any;
 
   constructor(private hardwareService: HardwareService) { }
 
@@ -37,8 +38,8 @@ export class HardwareListComponent implements OnInit {
   }
 
   carregarHardwares() {
-    if (this.filtro) {
-      this.hardwareService.findByNome(this.filtro, this.page, this.pageSize).subscribe(data => {
+    if (this.filter) {
+      this.hardwareService.findByNome(this.filter, this.page, this.pageSize).subscribe(data => {
         this.hardwares = data;
       });
     } else {
@@ -49,8 +50,8 @@ export class HardwareListComponent implements OnInit {
   }
 
   carregarTotalRegistros() {
-    if (this.filtro) {
-      this.hardwareService.countByNome(this.filtro).subscribe(data => {
+    if (this.filter) {
+      this.hardwareService.countByNome(this.filter).subscribe(data => {
         this.totalRegistros = data;
       });
     } else {
@@ -83,5 +84,15 @@ export class HardwareListComponent implements OnInit {
         },
       });
     }
+  }
+
+  abrirRelatorioPDF(): void {
+    const filter = this.filter;
+    
+    this.hardwareService.generatePdfReports(filter).subscribe((data: Blob) => {
+      const file = new Blob([data], { type: 'application/pdf' });
+      const fileURL = URL.createObjectURL(file);
+      window.open(fileURL, '_blank');
+    });
   }
 }

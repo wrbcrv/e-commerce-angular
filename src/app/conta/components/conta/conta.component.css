@@ -13,7 +13,7 @@
 .profile-container,
 .sumary-container {
   background-color: #E9ECEF;
-  padding: 10px;
+  padding: 20px;
   border-radius: 10px;
 }
 
@@ -23,7 +23,7 @@ nav > span,
 .title,
 .flex-container,
 .adress,
-.adress>div {
+.adress > div {
   display: flex;
 }
 
@@ -51,7 +51,7 @@ nav > span:hover {
   background-color: #DEE2E6;
 }
 
-nav > span >.material-symbols-outlined {
+nav > span > .material-symbols-outlined {
   font-size: 16px;
 }
 
@@ -99,7 +99,7 @@ img {
 
 .adress {
   width: 100%;
-  gap: 10px;
+  gap: 20px;
 }
 
 .adress > div > strong {
@@ -110,7 +110,7 @@ img {
   background-color: #fff;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
   font-size: 15px;
-  padding: 10px;
+  padding: 20px;
   border-radius: 10px;
   flex-direction: column;
   width: 100%;
@@ -130,8 +130,9 @@ thead {
   color: #000;
 }
 
-th, td {
-  padding: 10px;
+th,
+td {
+  padding: 20px;
   text-align: left;
 }
 

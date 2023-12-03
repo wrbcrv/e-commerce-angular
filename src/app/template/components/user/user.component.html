@@ -1,6 +1,7 @@
 <link rel="stylesheet"
   href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <header class="page-header">
+  <img class="logo" src="/assets/GLWare.svg" routerLink="produtos">
   <div class="container">
     <div class="favorite">
       <span class="material-symbols-outlined">favorite</span>
@@ -10,7 +11,7 @@
     </div>
     <span>Olá, {{usuario?.nome}}!</span>
     <img routerLink="/conta" class="profile" [src]="getImageUrl(usuario?.imageName)">
-    <span (click)="loggout()" class="loggout-button">
+    <span (click)="logout()" class="loggout-button">
       <span>Sair</span>
       <span class="material-symbols-outlined loggout">logout</span>
     </span>

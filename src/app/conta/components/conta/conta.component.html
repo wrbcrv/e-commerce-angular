@@ -31,7 +31,7 @@
       <span class="material-symbols-outlined">arrow_forward</span>
     </strong>
     <div class="adress">
-      <div *ngFor="let endereco of usuario?.enderecos">
+      <div *ngFor="let endereco of usuario?.enderecos; let i = index">
         <strong>{{endereco.nome}} {{endereco.sobrenome}}</strong>
         <span>{{endereco.endereco}}, {{endereco.numero}}</span>
         <span>{{endereco.bairro}}</span>
@@ -60,13 +60,15 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>29/11/2023 23:59:59</td>
-              <td></td>
-              <td>R$ 1199,90</td>
-              <td>Confirmado</td>
-            </tr>
+            <ng-container *ngFor="let pedido of pedidos; let i = index">
+              <tr *ngIf="i < 2">
+                <td>{{pedido?.id}}</td>
+                <td>{{pedido?.data}}</td>
+                <td></td>
+                <td>{{pedido?.total | currency: 'BRL'}}</td>
+                <td></td>
+              </tr>
+            </ng-container>
           </tbody>
         </table>
       </div>

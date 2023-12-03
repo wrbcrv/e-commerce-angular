@@ -28,7 +28,7 @@ export class UserComponent {
     });
   }
 
-  loggout() {
+  logout() {
     this.authService.removeToken();
     this.router.navigateByUrl('/login');
   }

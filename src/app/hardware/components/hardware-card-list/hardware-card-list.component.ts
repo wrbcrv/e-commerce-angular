@@ -96,7 +96,6 @@ export class HardwareCardListComponent implements OnInit {
   }
 
   addToCarrinho(card: Card) {
-    alert('Produto adicionado ao carrinho')
     this.carrinhoService.add({
       id: card.id,
       nome: card.modelo,

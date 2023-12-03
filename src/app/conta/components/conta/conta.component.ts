@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PedidoService } from 'src/app/services/pedido.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 
 @Component({
@@ -8,8 +9,11 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 })
 export class ContaComponent implements OnInit {
   usuario: any;
+  pedidos: any;
 
-  constructor(private usuarioService: UsuarioService) { }
+  constructor(
+    private pedidoService: PedidoService,
+    private usuarioService: UsuarioService) { }
 
   ngOnInit(): void {
     this.usuarioService.getLoggedUser().subscribe({
@@ -20,6 +24,12 @@ export class ContaComponent implements OnInit {
         console.error('Erro ao obter usuário:', error);
       }
     });
+
+    this.pedidoService.get().subscribe({
+      next: (data) => {
+        this.pedidos = data;
+      }
+    })
   }
 
   getImageUrl(imageName: string): string {

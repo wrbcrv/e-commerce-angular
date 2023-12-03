@@ -7,7 +7,10 @@
 }
 
 .page-header {
-  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 200px;
   background-color: #4361EE;
   color: #fff;
   box-sizing: border-box;
@@ -15,13 +18,16 @@
   margin-bottom: 20px;
 }
 
+.logo {
+  cursor: pointer;
+}
+
 .container {
   display: flex;
   align-items: center;
   justify-content: flex-end;
   gap: 10px;
-  margin: auto;
-  width: 80%;
+
 }
 
 .favorite,

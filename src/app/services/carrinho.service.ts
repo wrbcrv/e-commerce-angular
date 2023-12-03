@@ -1,13 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { LocalStorageService } from './local-storage-service';
-
-export interface Item {
-  id: number;
-  nome: string;
-  quantidade: number;
-  preco: number;
-}
+import { Item } from '../models/item.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -42,11 +36,22 @@ export class CarrinhoService {
     this.updateLocalStorage();
   }
 
+  removeAll() {
+    this.localStorageService.removeItem('carrinho');
+    window.location.reload();
+  }
+
   get(): Item[] {
     return this.carrinhoSubject.value;
   }
 
   private updateLocalStorage(): void {
     localStorage.setItem('carrinho', JSON.stringify(this.carrinhoSubject.value));
+  }
+
+  clearCart(): void {
+    const emptyCart: Item[] = [];
+    this.carrinhoSubject.next(emptyCart);
+    this.updateLocalStorage();
   }
 }

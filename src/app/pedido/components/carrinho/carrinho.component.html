@@ -1,14 +1,33 @@
-<ng-container *ngIf="itens.length > 0; else empty">
-  <div *ngFor="let item of itens">
-    <h3>{{ item.nome }}</h3>
-    <p>Preço: {{ item.preco }}</p>
-    <p>Quantidade: {{ item.quantidade }}</p>
-    <p>Total: {{ item.quantidade * item.preco }}</p>
-    <button (click)="removeItem(item)">Remover do Carrinho</button>
-  </div>
-  <p>Total do Carrinho: {{ calculateTotal() }}</p>
-  <button>Finalizar Compra</button>
-</ng-container>
-<ng-template #empty>
-  <p>Nenhum produto no seu carrinho.</p>
-</ng-template>
+<link rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0" />
+<main class="container">
+  <ng-container *ngIf="items.length > 0; else empty">
+    <table>
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Quantidade</th>
+          <th>Preço</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of items">
+          <td>{{ item.nome }}</td>
+          <td>{{ item.quantidade }}</td>
+          <td>{{ item.preco | currency: 'BRL' }}</td>
+          <td>
+            <div class="remove-button">
+              <span (click)="removeItem(item)" class="material-symbols-outlined">delete</span>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <p>Total: {{ calculateTotal() | currency: 'BRL' }}</p>
+    <button (click)="finishOrder()">Finalizar Compra</button>
+  </ng-container>
+  <ng-template #empty>
+    <p>Nenhum produto no seu carrinho.</p>
+  </ng-template>
+</main>

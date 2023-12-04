@@ -100,7 +100,8 @@ export class HardwareCardListComponent implements OnInit {
       id: card.id,
       nome: card.modelo,
       preco: card.preco,
-      quantidade: 1
+      quantidade: 1,
+      imageUrl: ''
     });
   }
 }

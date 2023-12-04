@@ -141,7 +141,7 @@ th,
   font-weight: 500;
 }
 
-tbody tr {
+tbody tr:nth-child(even) {
   background-color: #fff;
 }
 

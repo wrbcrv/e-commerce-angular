@@ -3,15 +3,19 @@ import { CommonModule } from '@angular/common';
 
 import { PedidoRoutingModule } from './pedido-routing.module';
 import { CarrinhoComponent } from './components/carrinho/carrinho.component';
+import { CheckoutComponent } from './components/checkout/checkout.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
   declarations: [
-    CarrinhoComponent
+    CarrinhoComponent,
+    CheckoutComponent
   ],
   imports: [
     CommonModule,
-    PedidoRoutingModule
+    PedidoRoutingModule,
+    FormsModule
   ]
 })
 export class PedidoModule { }

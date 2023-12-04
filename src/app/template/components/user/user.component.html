@@ -8,6 +8,7 @@
     </div>
     <div routerLink="/carrinho" class="cart">
       <span class="material-symbols-outlined">shopping_cart</span>
+      <div class="circle">{{itemCount}}</div>
     </div>
     <span>Olá, {{usuario?.nome}}!</span>
     <img routerLink="/conta" class="profile" [src]="getImageUrl(usuario?.imageName)">

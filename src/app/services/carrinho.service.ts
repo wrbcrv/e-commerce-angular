@@ -54,4 +54,26 @@ export class CarrinhoService {
     this.carrinhoSubject.next(emptyCart);
     this.updateLocalStorage();
   }
+
+  increase(item: Item): void {
+    const currentCarrinho = this.carrinhoSubject.value;
+    const existingItem = currentCarrinho.find(carrinhoItem => carrinhoItem.id === item.id);
+
+    if (existingItem) {
+      existingItem.quantidade += 1;
+      this.carrinhoSubject.next(currentCarrinho);
+      this.updateLocalStorage();
+    }
+  }
+
+  decrease(item: Item): void {
+    const currentCarrinho = this.carrinhoSubject.value;
+    const existingItem = currentCarrinho.find(carrinhoItem => carrinhoItem.id === item.id);
+
+    if (existingItem && existingItem.quantidade > 1) {
+      existingItem.quantidade -= 1;
+      this.carrinhoSubject.next(currentCarrinho);
+      this.updateLocalStorage();
+    }
+  }
 }

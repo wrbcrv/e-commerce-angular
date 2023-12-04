@@ -6,6 +6,7 @@ import { HardwareCardListComponent } from './hardware/components/hardware-card-l
 import { CarrinhoComponent } from './pedido/components/carrinho/carrinho.component';
 import { AdminComponent } from './template/components/admin/admin.component';
 import { UserComponent } from './template/components/user/user.component';
+import { CheckoutComponent } from './pedido/components/checkout/checkout.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -31,6 +32,7 @@ const routes: Routes = [
     component: UserComponent,
     children: [
       { path: 'conta', component: ContaComponent },
+      { path: 'checkout', component: CheckoutComponent },
       { path: 'carrinho', component: CarrinhoComponent },
       { path: 'produtos', component: HardwareCardListComponent },
     ]

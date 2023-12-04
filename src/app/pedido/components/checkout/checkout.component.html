@@ -1,0 +1,22 @@
+<link rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0" />
+<div class="container">
+  <div class="title">
+    <span class="material-symbols-outlined">home</span>
+    Endereço de Entrega
+  </div>
+  <div *ngFor="let endereco of usuario?.enderecos; let i = index">
+    <label class="flex-container">
+      <input type="radio" [value]="i + 1" name="selected" [(ngModel)]="idEndereco">
+      <div class="content">
+        <strong>{{ endereco.nome }} {{ endereco.sobrenome }}</strong>
+        <span>{{ endereco.endereco }} {{ endereco.numero }}</span>
+        <span>{{ endereco.bairro }}</span>
+        <span>{{ endereco.complemento }}</span>
+        <span>{{ endereco.cidade.nome }}, {{ endereco.cidade.estado.sigla }} - {{ endereco.cep }}</span>
+      </div>
+    </label>
+  </div>
+  <button class="button" (click)="finishOrder()">Prosseguir</button>
+  <button class="button" routerLink="/carrinho">Voltar Para o Carrinho</button>
+</div>

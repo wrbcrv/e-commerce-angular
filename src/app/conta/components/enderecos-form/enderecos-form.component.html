@@ -1,0 +1,91 @@
+<div class="container">
+  <strong class="title">
+    <span class="material-symbols-outlined">location_on</span>
+    <span>Novo Endereço</span>
+  </strong>
+  <form [formGroup]="formGroup">
+    <div class="flex-container">
+      <!-- Nome -->
+      <mat-form-field appearance="outline">
+        <mat-label>Nome</mat-label>
+        <input matInput type="text" formControlName="nome" />
+        <mat-error *ngIf="formGroup.get('nome')?.hasError('required')">Nome é obrigatório</mat-error>
+      </mat-form-field>
+      <!-- Sobrenome -->
+      <mat-form-field appearance="outline">
+        <mat-label>Sobrenome</mat-label>
+        <input matInput type="text" formControlName="sobrenome" />
+        <mat-error *ngIf="formGroup.get('sobrenome')?.hasError('required')">Sobrenome é obrigatório</mat-error>
+      </mat-form-field>
+    </div>
+    <!-- CEP -->
+    <mat-form-field appearance="outline">
+      <mat-label>CEP</mat-label>
+      <input matInput type="number" formControlName="cep" />
+      <mat-error *ngIf="formGroup.get('cep')?.hasError('required')">CEP é obrigatório</mat-error>
+    </mat-form-field>
+
+    <div class="flex-container">
+      <!-- Endereço -->
+      <mat-form-field appearance="outline">
+        <mat-label>Endereço</mat-label>
+        <input matInput type="text" formControlName="endereco" />
+        <mat-error *ngIf="formGroup.get('endereco')?.hasError('required')">Endereço é obrigatório</mat-error>
+      </mat-form-field>
+
+      <!-- Número -->
+      <mat-form-field appearance="outline">
+        <mat-label>Número</mat-label>
+        <input matInput type="number" formControlName="numero" />
+        <mat-error *ngIf="formGroup.get('numero')?.hasError('required')">Número é obrigatório</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="flex-container">
+      <!-- Bairro -->
+      <mat-form-field appearance="outline">
+        <mat-label>Bairro</mat-label>
+        <input matInput type="text" formControlName="bairro" />
+        <mat-error *ngIf="formGroup.get('bairro')?.hasError('required')">Bairro é obrigatório</mat-error>
+      </mat-form-field>
+
+      <!-- Complemento -->
+      <mat-form-field appearance="outline">
+        <mat-label>Complemento</mat-label>
+        <input matInput type="text" formControlName="complemento" />
+        <mat-error *ngIf="formGroup.get('complemento')?.hasError('required')">Complemento é obrigatório</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="flex-container">
+      <mat-form-field appearance="outline">
+        <mat-label>Estado</mat-label>
+        <mat-select [disabled]="true">
+          <mat-option *ngFor="let estado of estados" [value]="estado">{{ estado.nome }}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="formGroup.get('cidade')?.hasError('required')">Cidade é obrigatória</mat-error>
+      </mat-form-field>
+
+      <!-- Cidade -->
+      <mat-form-field appearance="outline">
+        <mat-label>Cidade</mat-label>
+        <mat-select formControlName="cidade">
+          <mat-option *ngFor="let cidade of cidades" [value]="cidade">{{ cidade.nome }}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="formGroup.get('cidade')?.hasError('required')">Cidade é obrigatória</mat-error>
+      </mat-form-field>
+    </div>
+
+    <!-- Telefone -->
+    <mat-form-field appearance="outline">
+      <mat-label>Telefone</mat-label>
+      <input matInput type="text" formControlName="telefone" />
+      <mat-error *ngIf="formGroup.get('telefone')?.hasError('required')">Telefone é obrigatório</mat-error>
+    </mat-form-field>
+
+    <button class="button" (click)="save()">
+      <mat-icon>save</mat-icon>
+      Salvar Endereço
+    </button>
+  </form>
+</div>

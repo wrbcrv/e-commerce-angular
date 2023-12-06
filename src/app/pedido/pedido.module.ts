@@ -5,12 +5,13 @@ import { PedidoRoutingModule } from './pedido-routing.module';
 import { CarrinhoComponent } from './components/carrinho/carrinho.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { FormsModule } from '@angular/forms';
-
+import { HardwareDetailsComponent } from './components/hardware-details/hardware-details.component';
 
 @NgModule({
   declarations: [
     CarrinhoComponent,
-    CheckoutComponent
+    CheckoutComponent,
+    HardwareDetailsComponent
   ],
   imports: [
     CommonModule,

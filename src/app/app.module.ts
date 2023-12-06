@@ -17,7 +17,7 @@ import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
 import { AuthModule } from './auth/auth.module';
 import { AuthInterceptor } from './auth/interceptors/auth.interceptor';
 import { ErrorInterceptor } from './auth/interceptors/error.interceptor';
-import { HardwareCardListComponent } from './hardware/components/hardware-card-list/hardware-card-list.component';
+import { HardwareCardListComponent } from './pedido/components/hardware-card-list/hardware-card-list.component';
 import { PedidoModule } from './pedido/pedido.module';
 import { AdminComponent } from './template/components/admin/admin.component';
 import { UserComponent } from './template/components/user/user.component';

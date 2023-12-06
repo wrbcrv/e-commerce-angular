@@ -20,7 +20,7 @@
       <strong class="description">{{ card.modelo }}</strong>
       <strong class="price">{{ card.preco | currency: 'BRL'}}</strong>
       <div class="button-container">
-        <button class="button view-details">Ver mais...</button>
+        <button class="button view-details" routerLink="{{card.id}}">Ver mais...</button>
         <button class="button add-to-cart" (click)="addToCarrinho(card)">Adicionar ao Carrinho</button>
       </div>
     </div>

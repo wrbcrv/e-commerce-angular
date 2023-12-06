@@ -56,13 +56,44 @@ export class UsuarioService {
     return this.http.get<Usuario[]>(`${this.baseUrl}/search/${nome}`, { params });
   }
 
-  getEnderecos(id: number): Observable<Endereco[]> {
-    return this.http.get<Endereco[]>(`${this.baseUrl}/enderecos/${id}`);
+  findEnderecoByUsuarioId(usuarioId: string, enderecoId: string): Observable<Endereco> {
+    return this.http.get<Endereco>(`${this.baseUrl}/${usuarioId}/enderecos/${enderecoId}`);
   }
 
-  deletarEndereco(usuarioId: number, enderecoId: number) {
-    const url = `${this.baseUrl}/${usuarioId}/enderecos/${enderecoId}`;
-    return this.http.delete(url);
+  createEnderecos(usuarioId: number, enderecos: Endereco[]): Observable<Endereco[]> {
+    const object = enderecos.map(endereco => ({
+      nome: endereco.nome,
+      sobrenome: endereco.sobrenome,
+      cep: endereco.cep,
+      endereco: endereco.endereco,
+      numero: endereco.numero,
+      bairro: endereco.bairro,
+      complemento: endereco.complemento,
+      cidade: endereco.cidade,
+      telefone: endereco.telefone
+    }))
+
+    return this.http.post<Endereco[]>(`${this.baseUrl}/${usuarioId}/enderecos`, object);
+  }
+
+  updateEnderecos(usuarioId: number, enderecoId: number, endereco: Endereco): Observable<Endereco[]> {
+    const object = {
+      nome: endereco.nome,
+      sobrenome: endereco.sobrenome,
+      cep: endereco.cep,
+      endereco: endereco.endereco,
+      numero: endereco.numero,
+      bairro: endereco.bairro,
+      complemento: endereco.complemento,
+      cidade: endereco.cidade,
+      telefone: endereco.telefone
+    };
+
+    return this.http.put<Endereco[]>(`${this.baseUrl}/${usuarioId}/enderecos/${enderecoId}`, object);
+  }
+
+  deletarEndereco(usuarioId: number, enderecoId: number): Observable<any> {
+    return this.http.delete<any>(`${this.baseUrl}/${usuarioId}/enderecos/${enderecoId}`);
   }
 
   count(): Observable<number> {

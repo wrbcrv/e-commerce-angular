@@ -7,7 +7,7 @@
       <span class="text">{{usuario?.nome}} {{usuario?.sobrenome}}</span>
       <span class="text">{{usuario?.login}}</span>
       <nav>
-        <span>
+        <span routerLink="enderecos">
           <span class="material-symbols-outlined">location_on</span>
           Meus Endereços
         </span>
@@ -28,16 +28,18 @@
         <span class="material-symbols-outlined">location_on</span>
         <span>Meus Endereços</span>
       </div>
-      <span class="material-symbols-outlined">arrow_forward</span>
+      <span routerLink="enderecos" class="material-symbols-outlined">arrow_forward</span>
     </strong>
-    <div class="adress">
-      <div *ngFor="let endereco of usuario?.enderecos; let i = index">
-        <strong>{{endereco.nome}} {{endereco.sobrenome}}</strong>
-        <span>{{endereco.endereco}}, {{endereco.numero}}</span>
-        <span>{{endereco.bairro}}</span>
-        <span>{{endereco.complemento}}</span>
-        <span>{{endereco.cidade.nome}}, {{endereco.cidade.estado.sigla}} - {{endereco.cep}}</span>
-        <span>Tel: {{endereco.telefone}}</span>
+    <div class="adress-container">
+      <div class="adress" *ngFor="let endereco of usuario?.enderecos.slice(0, 2)">
+        <div>
+          <strong>{{endereco.nome}} {{endereco.sobrenome}}</strong>
+          <span>{{endereco.endereco}}, {{endereco.numero}}</span>
+          <span>{{endereco.bairro}}</span>
+          <span>{{endereco.complemento}}</span>
+          <span>{{endereco.cidade.nome}}, {{endereco.cidade.estado.sigla}} - {{endereco.cep}}</span>
+          <span>Tel: {{endereco.telefone}}</span>
+        </div>
       </div>
     </div>
     <strong class="title orders">

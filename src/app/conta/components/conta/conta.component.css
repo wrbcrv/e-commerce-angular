@@ -22,7 +22,7 @@ nav,
 nav > span,
 .title,
 .flex-container,
-.adress,
+.adress-container,
 .adress > div {
   display: flex;
 }
@@ -97,7 +97,12 @@ img {
   margin-bottom: 20px;
 }
 
+.adress-container {
+  gap: 20px;
+}
+
 .adress {
+  display: flex;
   width: 100%;
   gap: 20px;
 }

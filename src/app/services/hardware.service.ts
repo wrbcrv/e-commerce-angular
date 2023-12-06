@@ -8,7 +8,6 @@ import { Status } from '../models/status.model';
 @Injectable({
   providedIn: 'root'
 })
-
 export class HardwareService {
   private baseUrl: string = 'http://localhost:8080/hardwares';
 

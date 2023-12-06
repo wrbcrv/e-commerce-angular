@@ -1,0 +1,63 @@
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+.flex-container {
+  display: flex;
+  align-items: center;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 20px;
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+.container {
+  width: 80%;
+  margin: auto;
+}
+
+.adress-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.grid-container {
+  position: relative;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.actions-container {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.content > span {
+  display: block;
+}
+
+.add-address-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 112px;
+  border: 2px dashed #ccc;
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.add-address-button {
+  background-color: white;
+  border: none;
+}
+

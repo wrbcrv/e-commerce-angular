@@ -8,6 +8,14 @@ Este projeto foi gerado com [Angular CLI](https://github.com/angular/angular-cli
 
 Este projeto é a interface de usuário do GLWare, construída com o framework Angular. O front-end interage com o back-end para fornecer uma experiência de compra intuitiva e amigável para os usuários. O Angular é uma estrutura robusta que permite criar aplicativos web escaláveis e de alto desempenho.
 
+## Requisitos
+
+Antes de iniciar, certifique-se de ter as seguintes ferramentas instaladas:
+
+- Node.js;
+- npm (Node Package Manager);
+- Angular CLI.
+
 ## Servidor de Desenvolvimento
 
 Execute `ng serve` para iniciar um servidor de desenvolvimento. Acesse `http://localhost:4200/`. A aplicação será recarregada automaticamente se você alterar qualquer um dos arquivos fonte.

@@ -6,7 +6,7 @@ Este projeto foi gerado com [Angular CLI](https://github.com/angular/angular-cli
 
 ## Descrição
 
-Este projeto é a interface de usuário do GLWare, construída com o framework Angular. O front-end interage com o back-end para fornecer uma experiência de compra intuitiva e amigável para os usuários. O Angular é uma estrutura robusta que permite criar aplicativos web escaláveis e de alto desempenho.
+Este projeto é a interface de usuário do GLWare, construída com o framework Angular. O front-end interage com o back-end para fornecer uma experiência de compra intuitiva e amigável para os usuários. O Angular é uma estrutura robusta que permite criar aplicações web escaláveis e de alto desempenho.
 
 ## Requisitos
 

@@ -1,0 +1,37 @@
+.container {
+  width: 80%;
+  margin: auto;
+}
+
+.favoritos-container {
+  
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+mat-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.favorito-card {
+  position: relative;
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+  max-width: 200px;
+  border-radius: 10px;
+}
+
+.favorito-card img {
+  max-width: 100%;
+  height: auto;
+  margin-top: 10px;
+}
+
+#noFavoritos {
+  text-align: center;
+  margin-top: 20px;
+}

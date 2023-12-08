@@ -4,6 +4,7 @@ import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 import { Hardware } from 'src/app/models/hardware.model';
 import { CarrinhoService } from 'src/app/services/carrinho.service';
 import { HardwareService } from 'src/app/services/hardware.service';
+import { UsuarioService } from 'src/app/services/usuario.service';
 
 type Card = {
   id: number;
@@ -26,13 +27,16 @@ export class HardwareCardListComponent implements OnInit {
   pageSize = 16;
   page = 0;
   filter: string = '';
+  usuario: any;
+  selectedHardwareId: number | null = null;
 
   constructor(
+    private usuarioService: UsuarioService,
     private hardwareService: HardwareService,
     private carrinhoService: CarrinhoService,
     private route: ActivatedRoute,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.route.queryParamMap.subscribe((params: ParamMap | null) => {
@@ -40,16 +44,20 @@ export class HardwareCardListComponent implements OnInit {
         this.filter = params.get('filter')! || '';
         this.page = +params.get('page')! || 0;
         this.pageSize = +params.get('pageSize')! || 16;
-  
+
         this.loadHardwares();
         this.loadTotal();
       }
     });
+
+    this.usuarioService.getLoggedUser().subscribe(data => {
+      this.usuario = data;
+    })
   }
-  
+
   loadCards() {
     const cards: Card[] = [];
-    
+
     this.hardwares.forEach(hardware => {
       cards.push({
         id: hardware.id,
@@ -109,6 +117,8 @@ export class HardwareCardListComponent implements OnInit {
   }
 
   addToCarrinho(card: Card) {
+    this.selectedHardwareId = card.id;
+
     this.carrinhoService.add({
       id: card.id,
       nome: card.modelo,
@@ -125,5 +135,24 @@ export class HardwareCardListComponent implements OnInit {
       queryParamsHandling: 'merge',
       replaceUrl: true
     });
+  }
+
+  associateFavorito(hardwareId: number) {
+    console.log('Associating favorito for hardwareId:', hardwareId);
+
+    if (this.selectedHardwareId == null) {
+      const usuarioId = this.usuario.id;
+
+      this.usuarioService.addFavorito(usuarioId, hardwareId).subscribe(
+        (usuario) => {
+          console.log('Favorito associated successfully', usuario);
+        },
+        (error) => {
+          console.error('Error associating favorito', error);
+        }
+      );
+    } else {
+      console.error('No hardware selected to associate with favorito');
+    }
   }
 }

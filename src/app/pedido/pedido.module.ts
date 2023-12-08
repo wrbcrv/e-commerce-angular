@@ -12,12 +12,14 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
+import { FavoritosComponent } from './components/favoritos/favoritos.component';
 
 @NgModule({
   declarations: [
     CarrinhoComponent,
     CheckoutComponent,
-    HardwareDetailsComponent
+    HardwareDetailsComponent,
+    FavoritosComponent
   ],
   imports: [
     CommonModule,

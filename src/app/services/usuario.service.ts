@@ -5,6 +5,7 @@ import { Endereco, Telefone, Usuario } from '../models/usuario.model';
 import { Perfil } from '../models/perfil.modal';
 import { Cartao } from '../models/cartao.model';
 import { Tipo } from '../models/tipo.model';
+import { Hardware } from '../models/hardware.model';
 
 @Injectable({
   providedIn: 'root'
@@ -174,4 +175,16 @@ export class UsuarioService {
 
     return this.http.get(`${this.baseUrl}`.replace('usuarios', 'logged'), { headers });
   }
+
+  addFavorito(usuarioId: number, hardwareId: number): Observable<Usuario> {
+    return this.http.put<Usuario>(`${this.baseUrl}/${usuarioId}/favoritos/${hardwareId}`, {});
+  }
+
+  getFavoritos(usuarioId: number): Observable<Hardware[]> {
+    return this.http.get<Hardware[]>(`${this.baseUrl}/${usuarioId}/favoritos`);
+  }
+
+  deleteFavorito(usuarioId: number, hardwareId: number): Observable<Usuario> {
+    return this.http.delete<Usuario>(`${this.baseUrl}/${usuarioId}/favoritos/${hardwareId}`);
+  }  
 }

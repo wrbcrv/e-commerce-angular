@@ -9,6 +9,7 @@ import { UserComponent } from './template/components/user/user.component';
 import { HardwareDetailsComponent } from './pedido/components/hardware-details/hardware-details.component';
 import { AuthGuard } from './auth/guards/auth-guard';
 import { CarrinhoGuard } from './pedido/guards/carrinho-guard';
+import { FavoritosComponent } from './pedido/components/favoritos/favoritos.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -39,7 +40,8 @@ const routes: Routes = [
       { path: 'checkout', component: CheckoutComponent, canActivate: [CarrinhoGuard] },
       { path: 'carrinho', component: CarrinhoComponent },
       { path: 'produtos/:id', component: HardwareDetailsComponent },
-      { path: 'produtos', component: HardwareCardListComponent }
+      { path: 'produtos', component: HardwareCardListComponent },
+      { path: 'favoritos', component: FavoritosComponent }
     ]
   },
   { path: '**', redirectTo: '/produtos' }

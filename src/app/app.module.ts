@@ -50,7 +50,7 @@ registerLocaleData(localePt);
     PedidoModule,
     ContaModule,
     FormsModule,
-    MatIconModule
+    MatIconModule,
   ],
   providers: [
     JwtHelperService,

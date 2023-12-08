@@ -1,0 +1,16 @@
+<div class="container">
+  <h3>Lista de Favoritos</h3>
+  <div class="favoritos-container" *ngIf="favoritos && favoritos.length > 0; else noFavoritos">
+    <div class="favorito-card" *ngFor="let favorito of favoritos">
+      <mat-icon (click)="deletarFavorito(favorito.id, usuario.id)">delete</mat-icon>
+      <img [src]="getImageUrl(favorito.imageName)" alt="">
+      <p>{{ favorito.categoria.label }}</p>
+      <p>{{ favorito.status.label }}</p>
+      <p>{{ favorito.modelo }}</p>
+      <p>{{ favorito.preco | currency: 'BRL' }}</p>
+    </div>
+  </div>
+  <ng-template #noFavoritos>
+    <p id="noFavoritos">Nenhum favorito encontrado.</p>
+  </ng-template>
+</div>

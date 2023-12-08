@@ -16,6 +16,11 @@
         <span class="category">{{ card.categoria }}</span>
         <span class="status">{{ card.status }}</span>
       </div>
+      <div class="add-favorite" (click)="associateFavorito(card.id)">
+        <span class="material-symbols-outlined">
+          favorite
+          </span>
+      </div>
       <img [src]="card.imageName">
       <strong class="description">{{ card.modelo }}</strong>
       <strong class="price">{{ card.preco | currency: 'BRL'}}</strong>

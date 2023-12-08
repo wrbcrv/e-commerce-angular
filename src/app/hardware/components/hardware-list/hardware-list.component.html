@@ -75,6 +75,11 @@
       <td mat-cell *matCellDef="let hardware"> {{hardware.status.label}} </td>
     </ng-container>
 
+    <ng-container matColumnDef="descricao-column">
+      <th mat-header-cell *matHeaderCellDef> Descricao </th>
+      <td mat-cell *matCellDef="let hardware"> {{hardware.descricao}} </td>
+    </ng-container>
+
     <!-- Ações Column -->
     <ng-container matColumnDef="acoes-column">
       <th mat-header-cell *matHeaderCellDef> Ações </th>

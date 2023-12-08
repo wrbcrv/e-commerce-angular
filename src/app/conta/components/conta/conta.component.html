@@ -3,7 +3,7 @@
 <div class="container">
   <div class="profile-container">
     <div class="profile">
-      <img [src]="getImageUrl(usuario?.imageName)">
+      <img src="/assets/profile.png">
       <span class="text">{{usuario?.nome}} {{usuario?.sobrenome}}</span>
       <span class="text">{{usuario?.login}}</span>
       <nav>
@@ -11,11 +11,11 @@
           <span class="material-symbols-outlined">location_on</span>
           Meus Endereços
         </span>
-        <span>
+        <span routerLink="pedidos">
           <span class="material-symbols-outlined">receipt</span>
           Meus Pedidos
         </span>
-        <span>
+        <span routerLink="dados/{{usuario?.id}}">
           <span class="material-symbols-outlined">settings</span>
           Meus Dados
         </span>
@@ -31,23 +31,30 @@
       <span routerLink="enderecos" class="material-symbols-outlined">arrow_forward</span>
     </strong>
     <div class="adress-container">
-      <div class="adress" *ngFor="let endereco of usuario?.enderecos.slice(0, 2)">
-        <div>
-          <strong>{{endereco.nome}} {{endereco.sobrenome}}</strong>
-          <span>{{endereco.endereco}}, {{endereco.numero}}</span>
-          <span>{{endereco.bairro}}</span>
-          <span>{{endereco.complemento}}</span>
-          <span>{{endereco.cidade.nome}}, {{endereco.cidade.estado.sigla}} - {{endereco.cep}}</span>
-          <span>Tel: {{endereco.telefone}}</span>
+      <ng-container *ngIf="usuario?.enderecos && usuario.enderecos.length > 0; else emptyEnderecos">
+        <div class="adress" *ngFor="let endereco of usuario.enderecos.slice(0, 2)">
+          <div>
+            <strong>{{endereco.nome}} {{endereco.sobrenome}}</strong>
+            <span>{{endereco.endereco}}, {{endereco.numero}}</span>
+            <span>{{endereco.bairro}}</span>
+            <span>{{endereco.complemento}}</span>
+            <span>{{endereco.cidade.nome}}, {{endereco.cidade.estado.sigla}} - {{endereco.cep}}</span>
+            <span>Tel: {{endereco.telefone}}</span>
+          </div>
         </div>
-      </div>
+      </ng-container>
+      <ng-template #emptyEnderecos>
+        <div class="empty-message">
+          <p>Nenhum endereço disponível.</p>
+        </div>
+      </ng-template>
     </div>
     <strong class="title orders">
       <div class="flex-container">
         <span class="material-symbols-outlined">receipt</span>
         <span>Meus Pedidos</span>
       </div>
-      <span class="material-symbols-outlined">arrow_forward</span>
+      <span routerLink="pedidos" class="material-symbols-outlined">arrow_forward</span>
     </strong>
     <div class="order-container">
       <div class="orders-table">
@@ -66,7 +73,7 @@
               <tr *ngIf="i < 2">
                 <td>{{pedido?.id}}</td>
                 <td>{{pedido?.data}}</td>
-                <td></td>
+                <td>{{pedido?.cartao?.tipo?.label}}</td>
                 <td>{{pedido?.total | currency: 'BRL'}}</td>
                 <td></td>
               </tr>

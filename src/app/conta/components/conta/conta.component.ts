@@ -10,6 +10,7 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 export class ContaComponent implements OnInit {
   usuario: any;
   pedidos: any;
+  cartoes: any;
 
   constructor(
     private pedidoService: PedidoService,
@@ -28,6 +29,7 @@ export class ContaComponent implements OnInit {
     this.pedidoService.get().subscribe({
       next: (data) => {
         this.pedidos = data;
+        console.log(this.pedidos)
       }
     })
   }

@@ -43,7 +43,8 @@ export class HardwareFormComponent implements OnInit {
       lancamento: [null],
       fabricante: [null],
       categoria: [null],
-      status: [null]
+      status: [null],
+      descricao: [null]
     });
   }
 
@@ -91,7 +92,8 @@ export class HardwareFormComponent implements OnInit {
       lancamento: [hardware?.lancamento ? new Date(hardware.lancamento) : null],
       fabricante: [fabricante],
       categoria: [categoria],
-      status: [status]
+      status: [status],
+      descricao: [hardware?.descricao || null]
     });
   }
 
@@ -118,6 +120,7 @@ export class HardwareFormComponent implements OnInit {
               this.formGroup.get('fabricante')?.setErrors({ apiError: this.getErrorMessage('fabricante') });
               this.formGroup.get('categoria')?.setErrors({ apiError: this.getErrorMessage('categoria') });
               this.formGroup.get('status')?.setErrors({ apiError: this.getErrorMessage('status') });
+              this.formGroup.get('descricao')?.setErrors({ apiError: this.getErrorMessage('descricao') });
 
               console.log('Erro ao incluir' + JSON.stringify(error));
             }

@@ -21,6 +21,7 @@ export class HardwareListComponent implements OnInit {
     'lancamento-column',
     'categoria-column',
     'status-column',
+    'descricao-column',
     'acoes-column'
   ];
   hardwares: Hardware[] = [];

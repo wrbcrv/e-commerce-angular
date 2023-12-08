@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Item } from 'src/app/models/item.interface';
 import { CarrinhoService } from 'src/app/services/carrinho.service';
+import { HardwareService } from 'src/app/services/hardware.service';
 
 @Component({
   selector: 'app-carrinho',
@@ -13,6 +14,7 @@ export class CarrinhoComponent implements OnInit {
 
   constructor(
     private carrinhoService: CarrinhoService,
+    private hardwareService: HardwareService,
     private router: Router) { }
 
   ngOnInit(): void {

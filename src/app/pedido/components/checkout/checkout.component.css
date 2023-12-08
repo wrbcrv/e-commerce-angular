@@ -11,7 +11,7 @@ strong {
 }
 
 .container {
-  width: 80%;
+  max-width: 1024px;
   margin: auto;
 }
 
@@ -31,6 +31,24 @@ strong {
   margin-bottom: 10px;
 }
 
+.form-flex-container {
+  display: flex;
+  gap: 22px;
+}
+
+.flex-content {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.flex-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
 label {
   display: block;
   padding: 10px;
@@ -40,6 +58,7 @@ label {
 }
 
 input[type="radio"] {
+  margin: 5px;
   margin-right: 10px;
 }
 
@@ -64,4 +83,24 @@ label span {
   border: 1px solid #25A244;
   color: #25A244;
   margin-top: 10px;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+mat-expansion-panel {
+  margin-bottom: 40px;
+}
+
+.cupom-form {
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 40px;
+}
+
+.summary-container {
+  height: fit-content;
+  border-radius: 10px;
 }

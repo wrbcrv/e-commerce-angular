@@ -22,6 +22,8 @@ import { PedidoModule } from './pedido/pedido.module';
 import { AdminComponent } from './template/components/admin/admin.component';
 import { UserComponent } from './template/components/user/user.component';
 import { ContaModule } from './conta/conta.module';
+import { FormsModule } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
 
 registerLocaleData(localePt);
 
@@ -46,7 +48,9 @@ registerLocaleData(localePt);
     TemplateModule,
     AuthModule,
     PedidoModule,
-    ContaModule
+    ContaModule,
+    FormsModule,
+    MatIconModule
   ],
   providers: [
     JwtHelperService,

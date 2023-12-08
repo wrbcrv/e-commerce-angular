@@ -52,18 +52,6 @@
             Desconto é obrigatório.
           </mat-error>
         </mat-form-field>
-        <mat-form-field appearance="outline" class="full-width-input" *ngIf="isAssociateRoute">
-          <mat-label>Hardwares</mat-label>
-          <mat-select formControlName="hardwares" multiple>
-            <mat-option *ngFor="let hardware of hardwares" [value]="hardware.id">
-              {{ hardware.nome }}
-            </mat-option>
-          </mat-select>
-          <mat-error *ngIf="formGroup.get('hardwares')?.hasError('required') 
-                && formGroup.get('hardwares')?.touched">
-            Selecione pelo menos um hardware.
-          </mat-error>
-        </mat-form-field>
       </form>
     </mat-card-content>
     <mat-card-actions>

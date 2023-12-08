@@ -76,4 +76,9 @@ export class CarrinhoService {
       this.updateLocalStorage();
     }
   }
+
+  isCarrinhoVazio(): boolean {
+    const items = this.carrinhoSubject.value;
+    return items.length === 0;
+  }
 }

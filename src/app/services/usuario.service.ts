@@ -3,6 +3,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Endereco, Telefone, Usuario } from '../models/usuario.model';
 import { Perfil } from '../models/perfil.modal';
+import { Cartao } from '../models/cartao.model';
+import { Tipo } from '../models/tipo.model';
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +29,17 @@ export class UsuarioService {
   }
 
   update(usuario: Usuario): Observable<Usuario> {
-    return this.http.put<Usuario>(`${this.baseUrl}/${usuario.id}`, usuario);
+    const obj = {
+      nome: usuario.nome,
+      sobrenome: usuario.sobrenome,
+      cpf: usuario.cpf,
+      rg: usuario.rg,
+      login: usuario.login,
+      senha: usuario.senha,
+      idPerfil: usuario.perfil.id
+    }
+
+    return this.http.put<Usuario>(`${this.baseUrl}/${usuario.id}`, obj);
   }
 
   delete(usuario: Usuario): Observable<any> {
@@ -96,6 +108,36 @@ export class UsuarioService {
     return this.http.delete<any>(`${this.baseUrl}/${usuarioId}/enderecos/${enderecoId}`);
   }
 
+  createCartao(usuarioId: number, cartao: Cartao[]): Observable<Cartao[]> {
+    const object = cartao.map(cartao => ({
+      idTipo: cartao.tipo.id,
+      numero: cartao.numero,
+      cvv: cartao.cvv,
+      validade: cartao.validade,
+      titular: cartao.titular,
+      cpf: cartao.cpf
+    }));
+
+    return this.http.post<Cartao[]>(`${this.baseUrl}/${usuarioId}/cartoes`, object);
+  }
+
+  updateCartao(usuarioId: number, cartaoId: number, cartao: Cartao): Observable<Cartao[]> {
+    const object = {
+      idTipo: cartao.tipo.id,
+      numero: cartao.numero,
+      cvv: cartao.cvv,
+      validade: cartao.validade,
+      titular: cartao.titular,
+      cpf: cartao.cpf
+    };
+
+    return this.http.put<Cartao[]>(`${this.baseUrl}/${usuarioId}/enderecos/${cartaoId}`, object);
+  }
+
+  deletarCartao(usuarioId: number, cartaoId: number): Observable<any> {
+    return this.http.delete<any>(`${this.baseUrl}/${usuarioId}/cartoes/${cartaoId}`);
+  }
+
   count(): Observable<number> {
     return this.http.get<number>(`${this.baseUrl}/count`);
   }
@@ -119,6 +161,10 @@ export class UsuarioService {
 
   getPerfis(): Observable<Perfil[]> {
     return this.http.get<Perfil[]>(`${this.baseUrl}/perfis`);
+  }
+
+  getTipos(): Observable<Tipo[]> {
+    return this.http.get<Tipo[]>(`${this.baseUrl}/tipos`)
   }
 
   getLoggedUser(): Observable<any> {

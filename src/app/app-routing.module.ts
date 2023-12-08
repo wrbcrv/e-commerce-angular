@@ -7,6 +7,8 @@ import { HardwareCardListComponent } from './pedido/components/hardware-card-lis
 import { AdminComponent } from './template/components/admin/admin.component';
 import { UserComponent } from './template/components/user/user.component';
 import { HardwareDetailsComponent } from './pedido/components/hardware-details/hardware-details.component';
+import { AuthGuard } from './auth/guards/auth-guard';
+import { CarrinhoGuard } from './pedido/guards/carrinho-guard';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -14,6 +16,8 @@ const routes: Routes = [
   {
     path: 'admin',
     component: AdminComponent,
+    canActivate: [AuthGuard],
+    data: { roles: ['Admin'] },
     children: [
       { path: 'cidades', loadChildren: () => import('./cidade/cidade.module').then(m => m.CidadeModule) },
       { path: 'cupons', loadChildren: () => import('./cupom/cupom.module').then(m => m.CupomModule) },
@@ -32,12 +36,13 @@ const routes: Routes = [
     component: UserComponent,
     children: [
       { path: 'conta', loadChildren: () => import('./conta/conta.module').then(m => m.ContaModule) },
-      { path: 'checkout', component: CheckoutComponent },
+      { path: 'checkout', component: CheckoutComponent, canActivate: [CarrinhoGuard] },
       { path: 'carrinho', component: CarrinhoComponent },
       { path: 'produtos/:id', component: HardwareDetailsComponent },
       { path: 'produtos', component: HardwareCardListComponent }
     ]
   },
+  { path: '**', redirectTo: '/produtos' }
 ];
 
 @NgModule({

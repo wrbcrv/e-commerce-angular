@@ -1,0 +1,41 @@
+h1 {
+  text-align: center;
+}
+
+.order-details {
+  width: 80%;
+  margin: auto;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.user-details,
+.address-details,
+.card-details,
+.item-list {
+  margin-bottom: 10px;
+}
+
+.flex-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.user-details,
+.address-details,
+.card-details {
+  flex: 1;
+}
+
+.item-list {
+  flex: 2;
+}
+
+.item {
+  border-bottom: 1px solid #ddd;
+  padding: 10px 0;
+}

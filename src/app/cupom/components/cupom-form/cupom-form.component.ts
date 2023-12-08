@@ -28,8 +28,7 @@ export class CupomFormComponent implements OnInit {
       codigo: [(cupom && cupom.codigo) ? cupom.codigo : '', Validators.required],
       inicio: [(cupom && cupom.inicio) ? new Date(cupom.inicio) : Validators.required],
       termino: [(cupom && cupom.termino) ? new Date(cupom.termino) : Validators.required],
-      desconto: [(cupom && cupom.termino) ? cupom.desconto : '', Validators.required],
-      hardwares: [(cupom && cupom.hardwares) ? cupom.hardwares : []]
+      desconto: [(cupom && cupom.termino) ? cupom.desconto : '', Validators.required]
     });
   }
 

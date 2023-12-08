@@ -34,8 +34,6 @@ export class CidadeFormComponent implements OnInit {
       this.estados = data;
       this.initializeForm();
     })
-
-    console.log('Route Data:', this.activatedRoute.snapshot.data);
   }
 
   initializeForm() {
@@ -47,8 +45,6 @@ export class CidadeFormComponent implements OnInit {
       nome: [(cidade && cidade.nome) ? cidade.nome : '', Validators.required],
       estado: [estado]
     })
-
-    console.log('cidade from Snapshot:', cidade);
   }
 
   salvar(): void {

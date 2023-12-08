@@ -98,7 +98,17 @@ img {
 }
 
 .adress-container {
+  min-width: 821px;
+  min-height: 166px;
   gap: 20px;
+}
+
+.empty-message {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-style: italic;
 }
 
 .adress {
@@ -133,6 +143,11 @@ table {
 
 thead {
   color: #000;
+}
+
+tbody {
+  min-width: 821px;
+  min-height: 114px;
 }
 
 th,

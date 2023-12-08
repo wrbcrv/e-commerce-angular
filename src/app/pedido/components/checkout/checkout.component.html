@@ -18,6 +18,91 @@
       </div>
     </label>
   </div>
+  <div class="title">
+    <span class="material-symbols-outlined">credit_card</span>
+    Método de pagamento
+  </div>
+  <div *ngFor="let cartao of usuario?.cartoes; let i = index">
+    <label class="flex-container">
+      <input type="radio" [value]="i + 1" [(ngModel)]="idCartao">
+      <div class="flex-content">
+        <div class="flex-wrapper">
+          <span><strong>({{ cartao.tipo.label }})</strong> Terminando em {{ cartao.numero.slice(- 4) }}</span>
+          <span>{{ cartao.titular }}</span>
+        </div>
+        <span>{{ cartao.validade | date: 'MM/yyyy' }}</span>
+      </div>
+    </label>
+  </div>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Cadastrar Novo Cartão
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <form [formGroup]="formGroup">
+      <div class="form-flex-container">
+        <mat-form-field appearance="outline">
+          <mat-label>Tipo</mat-label>
+          <mat-select matNativeControl formControlName="tipo">
+            <mat-option *ngFor="let tipo of tipos" [value]="tipo">
+              {{ tipo.label }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Número</mat-label>
+          <input matInput type="text" formControlName="numero" placeholder="Número">
+        </mat-form-field>
+      </div>
+      <div class="form-flex-container">
+        <mat-form-field appearance="outline">
+          <mat-label>CVV</mat-label>
+          <input matInput type="text" formControlName="cvv" placeholder="CVV">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Validade</mat-label>
+          <input matInput type="date" formControlName="validade" placeholder="Validade">
+        </mat-form-field>
+      </div>
+      <mat-form-field appearance="outline">
+        <mat-label>Titular</mat-label>
+        <input matInput type="text" formControlName="titular" placeholder="Titular">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>CPF</mat-label>
+        <input matInput type="text" formControlName="cpf" placeholder="CPF">
+      </mat-form-field>
+      <button mat-raised-button color="primary" (click)="createCartao()">Cadastrar Cartão</button>
+    </form>
+  </mat-expansion-panel>
+  <form [formGroup]="cupomFormGroup" class="cupom-form">
+    <mat-form-field appearance="outline">
+      <mat-label>Cupom</mat-label>
+      <input matInput type="text" formControlName="codigo" placeholder="Titular">
+    </mat-form-field>
+    <button mat-flat-button (click)="findAndAddCupon()">Inserir Cupom</button>
+  </form>
+  <div class="summary-container">
+    <div class="summary-flex-container">
+      <div class="title">
+        <span class="material-symbols-outlined">find_in_page</span>
+        <strong>Resumo</strong>
+      </div>
+      <div class="subtotal">
+        Subtotal
+        <strong>{{ calculateTotal() | currency: 'BRL' }}</strong>
+      </div>
+      <div class="frete">
+        Frete
+        <strong>R$ 0,00</strong>
+      </div>
+      <div class="total">
+        Total
+        <strong>{{ calculateTotal() | currency: 'BRL' }}</strong>
+      </div>
+    </div>
+  </div>
   <button class="button" (click)="finishOrder()">Prosseguir</button>
   <button class="button" routerLink="/carrinho">Voltar Para o Carrinho</button>
 </div>

@@ -56,28 +56,12 @@
           <mat-icon>add</mat-icon>
           Adicionar Endereço
         </button>
-        <mat-form-field appearance="outline" class="full-width-input" *ngIf="isAssociateRoute">
-          <mat-label>Hardwares</mat-label>
-          <mat-select formControlName="hardwares" multiple>
-            <mat-option *ngFor="let hardware of hardwares" [value]="hardware.id">
-              {{ hardware.nome }}
-            </mat-option>
-          </mat-select>
-          <mat-error *ngIf="formGroup.get('hardwares')?.hasError('required') 
-                && formGroup.get('hardwares')?.touched">
-            Selecione pelo menos um hardware.
-          </mat-error>
-        </mat-form-field>
       </form>
     </mat-card-content>
     <mat-card-content>
       <button mat-flat-button color="primary" (click)="salvar()"
         [disabled]="enderecos.length === 0 || enderecos.length === 0" *ngIf="!isAssociateRoute">
         Salvar
-      </button>
-      <button mat-flat-button color="primary" (click)="associarHardwares()" [disabled]="formGroup.invalid"
-        *ngIf="isAssociateRoute">
-        Associar
       </button>
       <button mat-button color="warn" routerLink="/admin/fornecedores/list">
         Cancelar

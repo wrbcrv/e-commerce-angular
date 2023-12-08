@@ -16,7 +16,7 @@
         <span class="category">{{ card.categoria }}</span>
         <span class="status">{{ card.status }}</span>
       </div>
-      <img [src]="card.imageUrl">
+      <img [src]="card.imageName">
       <strong class="description">{{ card.modelo }}</strong>
       <strong class="price">{{ card.preco | currency: 'BRL'}}</strong>
       <div class="button-container">

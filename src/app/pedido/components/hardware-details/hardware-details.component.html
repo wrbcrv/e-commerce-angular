@@ -1,6 +1,6 @@
 <div class="container">
   <div class="product-container">
-    <img class="img-fluid" [src]="imageUrl">
+    <img class="img-fluid" [src]="imageName">
     <div class="product-info">
       <div class="product-model">{{produto?.modelo}}</div>
       <div class="product-brand">Marca: {{produto?.marca?.nome}}</div>
@@ -8,15 +8,26 @@
         <span class="title">Disponível</span>
         <span>Estoque: {{produto?.estoque}}</span>
       </div>
+
       <div class="product-price">
         <span class="price">{{produto?.preco | currency: 'BRL'}}</span>
         <div class="product-action">
-          <button class="btn btn-primary">
+          <button class="btn btn-primary" (click)="addToCart()" >
             <span class="material-symbols-outlined">add_shopping_cart</span>
-            Comprar
+            Adicionar ao Carrinho
           </button>
         </div>
       </div>
     </div>
   </div>
+  <strong class="title">
+    <span class="material-symbols-outlined">description</span>
+    <h2>Informações Sobre o Produto</h2>
+  </strong>
+  <div class="description">{{ produto?.descricao }}</div>
+  <div class="description">Fabricante: {{ produto?.fabricante.nome }}</div>
+  <div class="description">Data de Lançamento: {{ produto?.lancamento }}</div>
+  <div class="description">Categoria: {{ produto?.categoria.label }}</div>
+  <div class="description">Estado: {{ produto?.status.label }}</div>
+
 </div>

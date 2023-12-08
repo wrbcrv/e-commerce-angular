@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Hardware } from 'src/app/models/hardware.model';
+import { CarrinhoService } from 'src/app/services/carrinho.service';
 import { HardwareService } from 'src/app/services/hardware.service';
 
 @Component({
@@ -10,11 +11,12 @@ import { HardwareService } from 'src/app/services/hardware.service';
 })
 export class HardwareDetailsComponent {
   produto: any;
-  imageUrl: string | undefined;
+  imageName: string | undefined;
 
   constructor(
     private route: ActivatedRoute,
-    private hardwareService: HardwareService
+    private hardwareService: HardwareService,
+    private carrinhoService: CarrinhoService
   ) { }
 
   ngOnInit(): void {
@@ -23,11 +25,24 @@ export class HardwareDetailsComponent {
 
   getProdutoDetalhes(): void {
     const id = this.route.snapshot.paramMap.get('id');
-  
+
     if (id !== null) {
       this.hardwareService.findById(id).subscribe(produto => {
         this.produto = produto;
-        this.imageUrl = this.hardwareService.getImageUrl(produto.imageName);
+        console.log(this.produto);
+        this.imageName = this.hardwareService.getImageUrl(produto.imageName);
+      });
+    }
+  }
+
+  addToCart(): void {
+    if (this.produto) {
+      this.carrinhoService.add({
+        id: this.produto.id,
+        nome: this.produto.modelo,
+        preco: this.produto.preco,
+        quantidade: 1,
+        imageName: this.imageName || ''
       });
     }
   }

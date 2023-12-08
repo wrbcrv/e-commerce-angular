@@ -38,13 +38,8 @@ export class CupomService {
     return this.http.get<Cupom>(`${this.baseUrl}/${id}`);
   }
 
-  findByNome(nome: string, page: number, pageSize: number): Observable<Cupom[]> {
-    const params = {
-      page: page.toString(),
-      pageSize: pageSize.toString()
-    }
-
-    return this.http.get<Cupom[]>(`${this.baseUrl}/search/${nome}`, { params });
+  findByCodigo(codigo: string): Observable<Cupom> {
+    return this.http.get<Cupom>(`${this.baseUrl}/search/${codigo}`);
   }
 
   count(): Observable<number> {

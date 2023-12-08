@@ -80,20 +80,15 @@ export class LoginComponent implements OnInit {
       if (usuario.id == null) {
         this.usuarioService.create(usuario).subscribe({
           next: (response) => {
-            console.log('Usuario cadastrado com sucesso' + JSON.stringify(response));
-            this.router.navigateByUrl('/login');
+            this.authService.login(usuario.login, usuario.senha).subscribe({
+              next: (response) => {
+                this.router.navigateByUrl('/conta');
+              },
+              error: (error) => { }
+            });
           },
           error: (error) => {
-            this.apiResponse = error.error
-
-            this.registerFormGroup.get('nome')?.setErrors({ apiError: this.getErrorMessage('nome') });
-            this.registerFormGroup.get('sobrenome')?.setErrors({ apiError: this.getErrorMessage('sobrenome') });
-            this.registerFormGroup.get('cpf')?.setErrors({ apiError: this.getErrorMessage('cpf') });
-            this.registerFormGroup.get('rg')?.setErrors({ apiError: this.getErrorMessage('rg') });
-            this.registerFormGroup.get('login')?.setErrors({ apiError: this.getErrorMessage('login') });
-            this.registerFormGroup.get('senha')?.setErrors({ apiError: this.getErrorMessage('senha') });
-
-            console.log('Erro ao incluir' + JSON.stringify(error));
+            this.apiResponse = error.error;
           }
         });
       }

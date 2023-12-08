@@ -1,0 +1,31 @@
+<h1>Detalhes do Pedido</h1>
+<div *ngFor="let order of pedidos" class="order-details">
+  <h2>Pedido #{{ order.id }}</h2>
+  <div class="flex-container">
+    <div class="user-details">
+      <h3>Dados do Usuário</h3>
+      <p>Nome: {{ order.usuario.nome }} {{ order.usuario.sobrenome }}</p>
+      <p>CPF: {{ order.usuario.cpf }}</p>
+    </div>
+    <div class="address-details">
+      <h3>Endereço de Entrega</h3>
+      <p>{{ order.endereco.endereco }}, {{ order.endereco.numero }}, {{ order.endereco.bairro }}</p>
+      <p>{{ order.endereco.cidade.nome }}, {{ order.endereco.cidade.estado.sigla }} - CEP: {{ order.endereco.cep }}</p>
+    </div>
+    <div class="card-details">
+      <h3>Detalhes do Cartão</h3>
+      <p>{{ order.cartao.tipo.label }}</p>
+      <p>Terminando em {{ order.cartao.numero.slice(- 4) }}</p>
+    </div>
+  </div>
+  <div>
+    <h3>Itens do Pedido</h3>
+    <ul class="item-list">
+      <li *ngFor="let item of order.itens" class="item">
+        {{ item.quantidade }}x {{ item.nome }} - R$ {{ item.preco.toFixed(2) | currency: 'BRL' }}
+      </li>
+    </ul>
+  </div>
+  <p>Desconto do cupom: {{order?.cupons[0]?.desconto | currency: 'BRL'}}</p>
+  <p>Total do Pedido: {{ order.total.toFixed(2) | currency: 'BRL' }}</p>
+</div>

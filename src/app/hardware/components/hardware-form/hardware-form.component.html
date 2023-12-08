@@ -91,6 +91,13 @@
           </mat-form-field>
         </div>
         <mat-form-field appearance="outline" class="full-width-input">
+          <mat-label>Descricao</mat-label>
+          <input matInput type="text" formControlName="descricao" />
+          <mat-error *ngIf="formGroup.get('descricao')?.getError('apiError')">
+            {{formGroup.get('descricao')?.getError('apiError')}}
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="full-width-input">
           <mat-label>Imagem</mat-label>
           <input type="file" (change)="loadSelectedImage($event)" hidden #fileInput>
           <input matInput [value]="fileName" readonly>

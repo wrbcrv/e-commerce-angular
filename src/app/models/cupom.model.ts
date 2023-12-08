@@ -7,7 +7,6 @@ export class Cupom {
   inicio!: Date;
   termino!: Date
   desconto!: number;
-  hardwares: Hardware[] = [];
 }
 
 export { Hardware }

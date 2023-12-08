@@ -12,12 +12,16 @@ import { EnderecosComponent } from './components/enderecos/enderecos.component';
 import { ContaRoutingModule } from './conta-routing.module';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { PedidosComponent } from './components/pedidos/pedidos.component';
+import { DadosFormComponent } from './components/dados-form/dados-form.component';
 
 @NgModule({
   declarations: [
     ContaComponent,
     EnderecosComponent,
-    EnderecosFormComponent
+    EnderecosFormComponent,
+    PedidosComponent,
+    DadosFormComponent
   ],
   imports: [
     CommonModule,

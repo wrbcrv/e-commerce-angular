@@ -142,27 +142,6 @@ export class FornecedorFormComponent implements OnInit {
     );
   }
 
-  associarHardwares() {
-    const fornecedorId = this.formGroup.get('id')?.value;
-    const hardwareIds = this.formGroup.get('hardwares')?.value;
-
-    if (hardwareIds && hardwareIds.length > 0) {
-      for (const hardwareId of hardwareIds) {
-        this.fornecedorService.associateHardware(fornecedorId, hardwareId).subscribe(
-          (response) => {
-            console.log('Hardware associado com sucesso.' + JSON.stringify(response));
-            this.router.navigateByUrl('/admin/fornecedores/list');
-          },
-          (error) => {
-            console.log('Erro ao associar hardware: ' + JSON.stringify(error));
-          }
-        );
-      }
-    } else {
-      console.log('Selecione pelo menos um hardware antes de associar.');
-    }
-  }
-
   adicionarEndereco() {
     const enderecoFormGroup = this.formBuilder.group({
       id: [null],

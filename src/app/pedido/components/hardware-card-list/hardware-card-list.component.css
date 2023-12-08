@@ -82,8 +82,8 @@
   background-color: rgba(128, 128, 128, 0.5);
   color: #fff;
   font-size: 12px;
-  padding: 5px;
-  border-radius: 5px;
+  padding: 5px 10px;
+  border-radius: 100px;
   width: fit-content;
 }
 

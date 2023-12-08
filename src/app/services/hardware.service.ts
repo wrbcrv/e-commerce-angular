@@ -23,7 +23,8 @@ export class HardwareService {
       idFabricante: hardware.fabricante.id,
       lancamento: hardware.lancamento,
       idCategoria: hardware.categoria.id,
-      idStatus: hardware.status.id
+      idStatus: hardware.status.id,
+      descricao: hardware.descricao
     }
 
     return this.http.post<Hardware>(`${this.baseUrl}`, obj);
@@ -39,7 +40,8 @@ export class HardwareService {
       idFabricante: hardware.fabricante.id,
       lancamento: hardware.lancamento,
       idCategoria: hardware.categoria.id,
-      idStatus: hardware.status.id
+      idStatus: hardware.status.id,
+      descricao: hardware.descricao
     }
 
     return this.http.put<Hardware>(`${this.baseUrl}/${hardware.id}`, obj);

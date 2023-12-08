@@ -11,7 +11,7 @@ import { CupomService } from 'src/app/services/cupom.service';
 export class CupomListComponent implements OnInit {
 
   tableColumns: string[] = ['id-column', 'descricao-column', 'codigo-column', 'inicio-column', 'termino-column', 'desconto-column', 'hardwares-column', 'acoes-column'];
-  cupons: Cupom[] = [];
+  cupons: any;
   totalRegistros = 0;
   pageSize = 2;
   pagina = 0;
@@ -26,7 +26,7 @@ export class CupomListComponent implements OnInit {
 
   carregarCupons() {
     if (this.filtro) {
-      this.cupomService.findByNome(this.filtro, this.pagina, this.pageSize).subscribe(data => {
+      this.cupomService.findByCodigo(this.filtro).subscribe(data => {
         this.cupons = data;
       });
     } else {

@@ -1,5 +1,6 @@
 import { Component, OnInit, signal } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 import { Hardware } from 'src/app/models/hardware.model';
 import { CarrinhoService } from 'src/app/services/carrinho.service';
@@ -35,7 +36,8 @@ export class HardwareCardListComponent implements OnInit {
     private hardwareService: HardwareService,
     private carrinhoService: CarrinhoService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private _snackBar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
@@ -126,6 +128,8 @@ export class HardwareCardListComponent implements OnInit {
       quantidade: 1,
       imageName: card.imageName
     });
+
+    this.openSnackBar('Adicionado ao carrinho', 'Ok');
   }
 
   private updateUrl() {
@@ -138,21 +142,25 @@ export class HardwareCardListComponent implements OnInit {
   }
 
   associateFavorito(hardwareId: number) {
-    console.log('Associating favorito for hardwareId:', hardwareId);
-
     if (this.selectedHardwareId == null) {
       const usuarioId = this.usuario.id;
 
       this.usuarioService.addFavorito(usuarioId, hardwareId).subscribe(
         (usuario) => {
-          console.log('Favorito associated successfully', usuario);
+          this.openSnackBar('Adicionado aos favoritos', 'Ok');
         },
         (error) => {
-          console.error('Error associating favorito', error);
+          this.openSnackBar('Erro ao adicionar aos favoritos', 'Ok')
         }
       );
     } else {
       console.error('No hardware selected to associate with favorito');
     }
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000
+    });
   }
 }

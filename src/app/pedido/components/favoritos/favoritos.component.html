@@ -2,7 +2,9 @@
   <h3>Lista de Favoritos</h3>
   <div class="favoritos-container" *ngIf="favoritos && favoritos.length > 0; else noFavoritos">
     <div class="favorito-card" *ngFor="let favorito of favoritos">
-      <mat-icon (click)="deletarFavorito(favorito.id, usuario.id)">delete</mat-icon>
+      <button (click)="deletarFavorito(usuario.id, favorito.id)" class="mat-icon-button" mat-icon-button color="basic">
+        <span class="material-symbols-outlined">delete</span>
+      </button>
       <img [src]="getImageUrl(favorito.imageName)" alt="">
       <p>{{ favorito.categoria.label }}</p>
       <p>{{ favorito.status.label }}</p>

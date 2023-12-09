@@ -122,6 +122,10 @@ export class UsuarioService {
     return this.http.post<Cartao[]>(`${this.baseUrl}/${usuarioId}/cartoes`, object);
   }
 
+  findCartaoByUsuarioId(usuarioId: number, cartaoId: number): Observable<Cartao> {
+    return this.http.get<Cartao>(`${this.baseUrl}/${usuarioId}/cartoes/${cartaoId}`);
+  }
+
   updateCartao(usuarioId: number, cartaoId: number, cartao: Cartao): Observable<Cartao[]> {
     const object = {
       idTipo: cartao.tipo.id,
@@ -186,5 +190,5 @@ export class UsuarioService {
 
   deleteFavorito(usuarioId: number, hardwareId: number): Observable<Usuario> {
     return this.http.delete<Usuario>(`${this.baseUrl}/${usuarioId}/favoritos/${hardwareId}`);
-  }  
+  }
 }

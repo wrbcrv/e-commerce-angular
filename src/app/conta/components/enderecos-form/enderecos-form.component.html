@@ -60,7 +60,7 @@
     <div class="flex-container">
       <mat-form-field appearance="outline">
         <mat-label>Estado</mat-label>
-        <mat-select [disabled]="true">
+        <mat-select formControlName="estado">
           <mat-option *ngFor="let estado of estados" [value]="estado">{{ estado.nome }}</mat-option>
         </mat-select>
         <mat-error *ngIf="formGroup.get('cidade')?.hasError('required')">Cidade é obrigatória</mat-error>

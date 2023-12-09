@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { HardwareService } from 'src/app/services/hardware.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 
 @Component({
@@ -10,9 +12,16 @@ export class FavoritosComponent implements OnInit {
   favoritos: any;
   usuario: any;
 
-  constructor(private usuarioSevice: UsuarioService) { }
+  constructor(
+    private usuarioSevice: UsuarioService,
+    private hardwareService: HardwareService,
+    private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
+    this.load();
+  }
+
+  load(): void {
     this.usuarioSevice.getLoggedUser().subscribe(data => {
       this.usuario = data;
 
@@ -31,18 +40,25 @@ export class FavoritosComponent implements OnInit {
   }
 
   getImageUrl(imageName: string): string {
-    return this.usuarioSevice.getImageUrl(imageName);
+    return this.hardwareService.getImageUrl(imageName);
   }
 
   deletarFavorito(usuarioId: number, hardwareId: number): void {
-    this.usuarioSevice.deleteFavorito(usuarioId, hardwareId).subscribe(
-      usuario => {
-        console.log('Favorito deletado com sucesso:', usuario);
-        window.location.reload();
+    this.usuarioSevice.deleteFavorito(usuarioId, hardwareId).subscribe({
+      next: (usuario) => {
+        this.openSnackBar('Favorito deletado com sucesso:', 'Ok');
+        this.load();
+
       },
-      error => {
-        console.error('Erro ao deletar favorito:', error);
+      error: () => {
+        this.openSnackBar('Erro ao deletar favorito', 'Ok');
       }
-    );
+    });
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000
+    });
   }
 }

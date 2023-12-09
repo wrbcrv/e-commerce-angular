@@ -49,5 +49,9 @@
       {{formGroup.get('senha')?.getError('apiError')}}
     </mat-error>
   </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Confirmar Senha</mat-label>
+    <input matInput type="password" formControlName="confirmSenha" />
+  </mat-form-field>
   <button mat-raised-button color="" (click)="update()">Atualizar Dados</button>
 </form>

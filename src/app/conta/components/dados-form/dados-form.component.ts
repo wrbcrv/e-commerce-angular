@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Perfil } from 'src/app/models/perfil.modal';
 import { Usuario } from 'src/app/models/usuario.model';
@@ -21,8 +22,9 @@ export class DadosFormComponent implements OnInit {
     private authService: AuthService,
     private formBuilder: FormBuilder,
     private activatedRoute: ActivatedRoute,
-    private router: Router) {
-
+    private router: Router,
+    private _snackBar: MatSnackBar) {
+    
     this.formGroup = formBuilder.group({
       id: [null],
       nome: [null],
@@ -31,6 +33,7 @@ export class DadosFormComponent implements OnInit {
       rg: [null],
       login: [null],
       senha: [null],
+      confirmSenha: [null],
       perfil: [null]
     });
   }
@@ -59,12 +62,22 @@ export class DadosFormComponent implements OnInit {
       rg: [(usuario && usuario.rg) ? usuario.rg : '', Validators.required],
       login: [(usuario && usuario.login) ? usuario.login : '', Validators.required],
       senha: ['', Validators.required],
+      confirmSenha: ['', Validators.required],
       perfil: [perfil]
-    })
+    });
   }
 
   update(): void {
     if (this.formGroup.valid) {
+      const senha = this.formGroup.get('senha')?.value;
+      const confirmSenha = this.formGroup.get('confirmSenha')?.value;
+
+      if (senha != confirmSenha) {
+        this.formGroup.setErrors({ senhasNaoCoincidem: true });
+        console.warn('As senhas não coincidem');
+        return;
+      }
+
       const usuario = this.formGroup.value;
 
       this.usuarioService.update(usuario).subscribe({
@@ -78,5 +91,11 @@ export class DadosFormComponent implements OnInit {
         }
       });
     }
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000
+    });
   }
 }

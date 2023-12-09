@@ -5,9 +5,9 @@
     <span class="material-symbols-outlined">home</span>
     Endereço de Entrega
   </div>
-  <div *ngFor="let endereco of usuario?.enderecos; let i = index">
+  <div *ngFor="let endereco of usuario?.enderecos">
     <label class="flex-container">
-      <input type="radio" [value]="i + 1" name="selected" [(ngModel)]="idEndereco">
+      <input type="radio" name="endereco" (change)="findEnderecoByUsuarioId(endereco.id)">
       <div class="content">
         <strong>{{ endereco.nome }} {{ endereco.sobrenome }}</strong>
         <span>{{ endereco.endereco }} {{ endereco.numero }}</span>
@@ -22,9 +22,9 @@
     <span class="material-symbols-outlined">credit_card</span>
     Método de pagamento
   </div>
-  <div *ngFor="let cartao of usuario?.cartoes; let i = index">
+  <div *ngFor="let cartao of usuario?.cartoes">
     <label class="flex-container">
-      <input type="radio" [value]="i + 1" [(ngModel)]="idCartao">
+      <input type="radio" name="cartao" (change)="findCartaoByUsuarioId(cartao.id)">
       <div class="flex-content">
         <div class="flex-wrapper">
           <span><strong>({{ cartao.tipo.label }})</strong> Terminando em {{ cartao.numero.slice(- 4) }}</span>
@@ -83,26 +83,6 @@
     </mat-form-field>
     <button mat-flat-button (click)="findAndAddCupon()">Inserir Cupom</button>
   </form>
-  <div class="summary-container">
-    <div class="summary-flex-container">
-      <div class="title">
-        <span class="material-symbols-outlined">find_in_page</span>
-        <strong>Resumo</strong>
-      </div>
-      <div class="subtotal">
-        Subtotal
-        <strong>{{ calculateTotal() | currency: 'BRL' }}</strong>
-      </div>
-      <div class="frete">
-        Frete
-        <strong>R$ 0,00</strong>
-      </div>
-      <div class="total">
-        Total
-        <strong>{{ calculateTotal() | currency: 'BRL' }}</strong>
-      </div>
-    </div>
-  </div>
   <button class="button" (click)="finishOrder()">Prosseguir</button>
   <button class="button" routerLink="/carrinho">Voltar Para o Carrinho</button>
 </div>

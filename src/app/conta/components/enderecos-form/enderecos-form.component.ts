@@ -39,6 +39,7 @@ export class EnderecosFormComponent implements OnInit {
       numero: [null],
       bairro: [null],
       complemento: [null],
+      estado: [null],
       cidade: [null],
       telefone: [null]
     });
@@ -74,6 +75,7 @@ export class EnderecosFormComponent implements OnInit {
       numero: [(endereco && endereco.numero) ? endereco.numero : '', Validators.required],
       bairro: [(endereco && endereco.bairro) ? endereco.bairro : '', Validators.required],
       complemento: [(endereco && endereco.complemento) ? endereco.complemento : '', Validators.required],
+      estado: [],
       cidade: [cidade],
       telefone: [(endereco && endereco.telefone) ? endereco.telefone : '', Validators.required]
     });

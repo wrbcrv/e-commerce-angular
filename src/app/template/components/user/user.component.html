@@ -11,7 +11,7 @@
       <div class="circle">{{itemCount}}</div>
     </div>
     <span>Olá, {{usuario?.nome}}!</span>
-    <img routerLink="/conta" class="profile" [src]="getImageUrl(usuario?.imageName)">
+    <img src="./assets/profile.png" routerLink="/conta" class="profile">
     <span (click)="logout()" class="loggout-button">
       <span>Sair</span>
       <span class="material-symbols-outlined loggout">logout</span>

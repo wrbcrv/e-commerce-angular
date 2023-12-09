@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Hardware } from 'src/app/models/hardware.model';
 import { CarrinhoService } from 'src/app/services/carrinho.service';
 import { HardwareService } from 'src/app/services/hardware.service';
@@ -14,9 +15,11 @@ export class HardwareDetailsComponent {
   imageName: string | undefined;
 
   constructor(
-    private route: ActivatedRoute,
     private hardwareService: HardwareService,
-    private carrinhoService: CarrinhoService
+    private carrinhoService: CarrinhoService,
+    private _snackBar: MatSnackBar,
+    private ActivatedRoute: ActivatedRoute,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -24,7 +27,7 @@ export class HardwareDetailsComponent {
   }
 
   getProdutoDetalhes(): void {
-    const id = this.route.snapshot.paramMap.get('id');
+    const id = this.ActivatedRoute.snapshot.paramMap.get('id');
 
     if (id !== null) {
       this.hardwareService.findById(id).subscribe(produto => {
@@ -44,6 +47,14 @@ export class HardwareDetailsComponent {
         quantidade: 1,
         imageName: this.imageName || ''
       });
+
+      this.openSnackBar('Adicionado ao carrinho', 'Ok');
     }
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000
+    });
   }
 }

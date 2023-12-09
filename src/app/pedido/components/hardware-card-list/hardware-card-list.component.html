@@ -17,9 +17,9 @@
         <span class="status">{{ card.status }}</span>
       </div>
       <div class="add-favorite" (click)="associateFavorito(card.id)">
-        <span class="material-symbols-outlined">
-          favorite
-          </span>
+        <button mat-icon-button color="basic">
+          <span class="material-symbols-outlined">favorite</span>
+        </button>
       </div>
       <img [src]="card.imageName">
       <strong class="description">{{ card.modelo }}</strong>

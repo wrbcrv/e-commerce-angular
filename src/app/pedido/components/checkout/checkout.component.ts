@@ -18,13 +18,13 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 export class CheckoutComponent implements OnInit {
   items: Item[] = [];
   usuario: any;
-  idEndereco: number = 1;
-  idCartao: number = 1;
   formGroup: FormGroup;
   tipos: Tipo[] = [];
   cupons: Cupom[] = [];
   cupomFormGroup: FormGroup;
   cupom: any;
+  enderecoId!: string;
+  cartaoId!: number;
 
   constructor(
     private carrinhoService: CarrinhoService,
@@ -110,7 +110,7 @@ export class CheckoutComponent implements OnInit {
   }
 
   finishOrder() {
-    this.pedidoService.save(this.items, this.idEndereco, this.idCartao, this.cupons).subscribe({
+    this.pedidoService.save(this.items, this.enderecoId, this.cartaoId, this.cupons).subscribe({
       next: () => {
         console.log(this.cupons);
         this.carrinhoService.removeAll();
@@ -138,5 +138,29 @@ export class CheckoutComponent implements OnInit {
 
   calculateTotal(): number {
     return this.items.reduce((total, item) => total + item.quantidade * item.preco, 0);
+  }
+
+  findEnderecoByUsuarioId(enderecoId: string): void {
+    this.usuarioService.findEnderecoByUsuarioId(this.usuario.id, enderecoId).subscribe({
+      next: (res) => {
+        console.log("Sucesso ao obter endereço: ", res);
+        this.enderecoId = enderecoId;
+      },
+      error: (err) => {
+        console.log("Erro ao obter endereço: ", err)
+      }
+    });
+  }
+
+  findCartaoByUsuarioId(cartaoId: number): void {
+    this.usuarioService.findCartaoByUsuarioId(this.usuario.id, cartaoId).subscribe({
+      next: (res) => {
+        console.log("Sucesso ao obter cartão: ", res);
+        this.cartaoId = cartaoId;
+      },
+      error: (err) => {
+        console.log("Erro ao obter cartão: ", err)
+      }
+    });
   }
 }

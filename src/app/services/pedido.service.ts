@@ -16,7 +16,7 @@ export class PedidoService {
     return this.http.get<Item[]>(`${this.baseUrl}`)
   }
 
-  save(carrinho: Item[], idEndereco: number, idCartao: number, cupons: Cupom[]): Observable<Item> {
+  save(carrinho: Item[], idEndereco: string, idCartao: number, cupons: Cupom[]): Observable<Item> {
     const itens = carrinho.map(item => ({
       quantidade: item.quantidade,
       preco: item.preco,

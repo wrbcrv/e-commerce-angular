@@ -33,6 +33,10 @@ nav > span,
   width: fit-content;
 }
 
+.profile-container {
+  min-height: 447px;
+}
+
 nav {
   flex-direction: column;
   width: 100%;
